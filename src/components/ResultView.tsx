@@ -109,8 +109,8 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
       <p>Niveau d'oxalate estimé : {state.result.level}</p>
       {state.result.matchedIngredients.length > 0 && (
         <ul>
-          {state.result.matchedIngredients.map((m) => (
-            <li key={m.dbItem}>{m.ingredientText}</li>
+          {state.result.matchedIngredients.map((m, index) => (
+            <li key={index}>{m.ingredientText}</li>
           ))}
         </ul>
       )}

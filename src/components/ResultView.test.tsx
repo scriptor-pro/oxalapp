@@ -95,6 +95,32 @@ describe("ResultView", () => {
     );
   });
 
+  it("renders matched ingredients that share the same dbItem without a duplicate-key warning", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Chocolat bilingue",
+      ingredientsText: "Cacao / Cocoa 70%",
+      imageUrl: null,
+    });
+
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
+
+    await screen.findByText(/très élevé/i);
+
+    const items = screen.getAllByRole("listitem");
+    expect(items).toHaveLength(2);
+    expect(items[0]).toHaveTextContent("cacao");
+    expect(items[1]).toHaveTextContent("cocoa");
+
+    const keyWarning = consoleError.mock.calls.some((args) =>
+      String(args[0]).includes("key")
+    );
+    expect(keyWarning).toBe(false);
+
+    consoleError.mockRestore();
+  });
+
   it("still displays the result when saving to PocketBase fails", async () => {
     (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",
