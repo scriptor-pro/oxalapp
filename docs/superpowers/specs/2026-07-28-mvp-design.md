@@ -40,8 +40,8 @@ Navigateur (PWA React/TSX)
   └─→ PocketBase (auth email/mdp, historique de scans, favoris)
 ```
 
-Le front est une PWA statique (React/TSX + Vite), déployée sur
-Vercel/Netlify. PocketBase tourne sur un petit VPS et gère uniquement les
+Le front est une PWA statique (React/TSX + Vite), déployée sur Vercel.
+PocketBase tourne sur un petit VPS et gère uniquement les
 comptes utilisateurs et leurs données personnelles (historique, favoris) —
 jamais la donnée produit (vient d'Open Food Facts en temps réel) ni la
 base oxalate (embarquée statiquement dans le bundle).
