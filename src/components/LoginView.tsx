@@ -26,7 +26,8 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
       }
       await pb.collection("users").authWithPassword(email, password);
       onAuthenticated();
-    } catch {
+    } catch (err) {
+      console.error("Erreur d'authentification PocketBase:", err);
       setError("Identifiants incorrects ou erreur d'inscription.");
     } finally {
       setIsSubmitting(false);

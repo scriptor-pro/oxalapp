@@ -29,6 +29,7 @@ export function App() {
           Scanner
         </button>
         <button onClick={() => setTab("history")}>Historique</button>
+        <button onClick={() => pb.authStore.clear()}>Se déconnecter</button>
       </nav>
 
       {tab === "scan" &&

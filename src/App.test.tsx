@@ -6,7 +6,7 @@ import { pb } from "./lib/pocketbase";
 
 vi.mock("./lib/pocketbase", () => ({
   pb: {
-    authStore: { isValid: false, model: null, onChange: vi.fn(() => () => {}) },
+    authStore: { isValid: false, model: null, onChange: vi.fn(() => () => {}), clear: vi.fn() },
     collection: vi.fn(),
   },
 }));
@@ -40,5 +40,15 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /historique/i }));
 
     expect(screen.getByRole("button", { name: /scanner/i })).toBeInTheDocument();
+  });
+
+  it("shows a logout button when authenticated and calls authStore.clear on click", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: /se déconnecter/i }));
+
+    expect(pb.authStore.clear).toHaveBeenCalled();
   });
 });
