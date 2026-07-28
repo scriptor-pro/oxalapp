@@ -1,0 +1,5890 @@
+[
+  {
+    "item": "Artichoke, boiled",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 84.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Arugula, raw",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 cup",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Asparagus, boiled or steamed",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bamboo shoots",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "1 cup",
+    "servingGrams": 151.0,
+    "oxalatePerServing": 35.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Beans, Green, Variety, boiled or steamed",
+    "avgOxalatePer100g": 24.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 62.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beans, Lima or Butter, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "min 10 1/2 cup",
+    "servingGrams": 94.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beans, Mung",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 101.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beans, Pole, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "minutes 26 1/2 cup",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 16.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beans, String, boiled or canned",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 65.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beets, boiled, steamed or pickled",
+    "avgOxalatePer100g": 57.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 48.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Bok Choy, leaves",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bok Choy, stalks, diced",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Broccoli greens, Raab (Rabe or Rapini), raw",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Broccoli greens, Raab (Rabe or Rapini), steamed",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "mins 9 1/2 cup, sliced",
+    "servingGrams": 62.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Broccoli, boiled or steamed",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Broccoli, raw",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Broccolini, steamed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "minutes 14 1/2 cup, chopped",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Brussel Sprouts, boiled or steamed",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Brussel Sprouts, raw",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "1 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 14.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cabbage, green, boiled or steamed",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cabbage, green, raw, shredded",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup",
+    "servingGrams": 70.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Carrots, boiled, steamed or canned",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Carrots, raw",
+    "avgOxalatePer100g": 24.0,
+    "servingSize": "1 cup, grated",
+    "servingGrams": 128.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cauliflower, raw, boiled or steamed",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Celeriac, canned",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1/2 cup or 1 piece",
+    "servingGrams": 77.5,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Celery, raw, stem only, diced",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "1 cup",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Collard, raw, chopped",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Collards, chopped, boiled or steamed",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 95.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, boiled or canned",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Creasy greens (early winter or American cress), boiled",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "min 9 1/2 cup, chopped",
+    "servingGrams": 50.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cucumbers, Variety, with & without skin",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Dandelion greens, red rib, raw or boiled",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 45.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Eggplant, raw, boiled, baked or roasted",
+    "avgOxalatePer100g": 62.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 42.0,
+    "oxalatePerServing": 26.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Endive, Belgian or Curly, raw",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup, chopped",
+    "servingGrams": 50.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Escarole",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 cup, chopped",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fennel, boiled",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 bulb",
+    "servingGrams": 218.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fiddleheads (Ostrich ferns), Boiled for",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "mins 30 1/2 cup",
+    "servingGrams": 64.0,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Garlic, raw",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 clove",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Good King Henry, stems, buds or leaves, boiled",
+    "avgOxalatePer100g": 245.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 45.0,
+    "oxalatePerServing": 110.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Good King Henry, stems, buds or leaves, raw",
+    "avgOxalatePer100g": 475.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 48.0,
+    "oxalatePerServing": 228.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Grape leaves, canned, in vinegar brine, Krinos",
+    "avgOxalatePer100g": 135.0,
+    "servingSize": "1 leaf",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Greens Turnip, boiled",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "min 7 1/2 cup, chopped",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Greens, Pea",
+    "avgOxalatePer100g": 26.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 72.5,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Hearts of Palm, whole, Haddon House",
+    "avgOxalatePer100g": 37.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Huazontle (Aztec broccoli)",
+    "avgOxalatePer100g": 438.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 263.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Jicama, peeled, raw",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Kale, Variety, boiled, simmered or steamed",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/2 cup cooked",
+    "servingGrams": 65.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Kale, Variety, Raw",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 cup",
+    "servingGrams": 25.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Kohlrabi",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup sliced",
+    "servingGrams": 165.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Leeks, raw",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 cup",
+    "servingGrams": 89.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lettuce, variety, shredded or chopped, raw",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup, shredded",
+    "servingGrams": 56.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Mangold or Spinach beet",
+    "avgOxalatePer100g": 874.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 67.5,
+    "oxalatePerServing": 590.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Mushrooms, Variety, boiled or canned",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1/2 cup, sliced",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Mushrooms, Variety, dried",
+    "avgOxalatePer100g": 76.0,
+    "servingSize": "1/3 cup, dried",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Mustard Greens, boiled or steamed",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 70.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nopal (Prickly Pear), cooked",
+    "avgOxalatePer100g": 116.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 75.0,
+    "oxalatePerServing": 87.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nopal (Prickly Pear), Raw",
+    "avgOxalatePer100g": 152.0,
+    "servingSize": "1 cup",
+    "servingGrams": 149.0,
+    "oxalatePerServing": 226.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Okra, Boiled, simmered",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "mins 101 1/2 cup",
+    "servingGrams": 56.0,
+    "oxalatePerServing": 56.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Onion, Variety, boiled or sautéed",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 105.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Onion, Variety, raw",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Parsnips, boiled for",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "mins 19 1/2 cup, sliced",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peas, Snow, whole, fresh",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 98.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pepper, Sweet and Hot, Variety, Cooked",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1/2 cup sliced",
+    "servingGrams": 75.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pepper, Sweet and Hot, Variety, Raw",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1/2 cup, sliced",
+    "servingGrams": 57.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potato Salad",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 138.0,
+    "oxalatePerServing": 26.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Potato, New with skin, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "min 21 1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 16.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potato, Red, new, boiled w/out skin",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potato, Russet, baked or microwaved, flesh & skin",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 64.0,
+    "oxalatePerServing": 29.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Potato, White, deep fried",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 36.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Potato, White, instant, mashed",
+    "avgOxalatePer100g": 49.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potato, White/Russet, boiled, with/without skin",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potatoes, Fingerling, White or Red, boiled",
+    "avgOxalatePer100g": 42.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 32.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Potatoes, Hash Browns",
+    "avgOxalatePer100g": 26.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pumpkin, canned",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Purslane, leaves",
+    "avgOxalatePer100g": 621.0,
+    "servingSize": "1 cup",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 248.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Radicchio, raw, shredded",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 49.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Radish, White, Red or Daikon, raw",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup sliced",
+    "servingGrams": 100.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Roselle (Red Sorrel - Hibiscus Sabdariffa)",
+    "avgOxalatePer100g": 166.0,
+    "servingSize": "1 cup (edible parts)",
+    "servingGrams": 57.0,
+    "oxalatePerServing": 95.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Rutabaga, boiled or pressure cooked",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup, cubed",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seaweed, Dulse flakes",
+    "avgOxalatePer100g": 136.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 14.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seaweed, Kombu",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "One 1x4 inch piece",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seaweed, Nori, dry roasted",
+    "avgOxalatePer100g": 97.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seaweed, Wakame",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Shallots",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sorrel, boiled",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "min 582 1/2 cup, chopped",
+    "servingGrams": 52.0,
+    "oxalatePerServing": 303.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Sorrel, raw",
+    "avgOxalatePer100g": 779.0,
+    "servingSize": "1 cup, chopped",
+    "servingGrams": 52.0,
+    "oxalatePerServing": 405.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Spinach, fresh or frozen, boiled or steamed",
+    "avgOxalatePer100g": 567.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 87.0,
+    "oxalatePerServing": 493.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Spouts, Mung Bean",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 52.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sprouts, Alfalfa",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/ 2 cup",
+    "servingGrams": 16.5,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Squash, Winter & Summer variety , Baked or boiled",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 100.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Squash, Winter & Summer, Raw",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 150.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sweet Potato, Orange, baked or boiled with or without skin",
+    "avgOxalatePer100g": 126.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 125.0,
+    "oxalatePerServing": 158.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Sweet Potato, Orange, baked, boiled, or canned without skin",
+    "avgOxalatePer100g": 42.0,
+    "servingSize": "1/2 cup mashed",
+    "servingGrams": 134.0,
+    "oxalatePerServing": 56.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Swiss Chard, Green, boiled",
+    "avgOxalatePer100g": 335.0,
+    "servingSize": "1/2 cup chopped",
+    "servingGrams": 87.5,
+    "oxalatePerServing": 293.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Swiss Chard, Green, raw",
+    "avgOxalatePer100g": 657.0,
+    "servingSize": "1 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 237.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Swiss Chard, Red or green, boiled and steamed",
+    "avgOxalatePer100g": 679.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 87.5,
+    "oxalatePerServing": 594.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Swiss Chard, Red, raw",
+    "avgOxalatePer100g": 1167.0,
+    "servingSize": "1 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 420.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Taro Leaves, Giant and Elephant Ears, Raw",
+    "avgOxalatePer100g": 652.0,
+    "servingSize": "1 cup",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 183.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Tomatillo, raw",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 medium tomatillo",
+    "servingGrams": 34.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tomato, Variety, All Colors, Raw",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup, sliced",
+    "servingGrams": 180.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tomatoes, canned",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 121.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Turnip Greens, steamed",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/2 cup, chopped",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Turnip, boiled, steamed or raw",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Vipergrass or salsify",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup",
+    "servingGrams": 135.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Water Chestnuts, canned, sliced, Dynasty",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 70.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Watercress, raw",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 cup",
+    "servingGrams": 58.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yam, flesh only, baked",
+    "avgOxalatePer100g": 68.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 100.0,
+    "oxalatePerServing": 68.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Apple, Apple Puree",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 165.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Apple, Variety, Fresh",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 medium",
+    "servingGrams": 138.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Apricot, dried",
+    "avgOxalatePer100g": 87.0,
+    "servingSize": "4 x 1/2 apricots",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Apricots, Fresh",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 cup, halves",
+    "servingGrams": 155.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Avocado, fresh",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/2 cup sliced",
+    "servingGrams": 73.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bananas",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 medium",
+    "servingGrams": 118.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Blackberries, fresh",
+    "avgOxalatePer100g": 31.0,
+    "servingSize": "1 cup",
+    "servingGrams": 144.0,
+    "oxalatePerServing": 45.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Berries, Blueberries, fresh or frozen",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "1 cup",
+    "servingGrams": 200.0,
+    "oxalatePerServing": 27.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Berries, Craisins, dried",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Cranberries, dried",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Cranberries, whole, fresh or canned",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Elderberries, dried",
+    "avgOxalatePer100g": 316.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 16.0,
+    "oxalatePerServing": 51.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Berries, Elderberries, raw, black",
+    "avgOxalatePer100g": 72.0,
+    "servingSize": "1 cup",
+    "servingGrams": 145.0,
+    "oxalatePerServing": 105.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Berries, Gooseberries, raw, red and green",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 cup",
+    "servingGrams": 150.0,
+    "oxalatePerServing": 33.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Berries, Huckleberries, fresh",
+    "avgOxalatePer100g": 47.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 84.0,
+    "oxalatePerServing": 39.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Berries, Raspberries, raw",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 cup",
+    "servingGrams": 123.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Strawberries, canned",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 130.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berries, Strawberries, Fresh",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup, halves",
+    "servingGrams": 150.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bitter Gourd (Bitter Melon), Fresh",
+    "avgOxalatePer100g": 86.0,
+    "servingSize": "1 cup",
+    "servingGrams": 93.0,
+    "oxalatePerServing": 80.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Bitter Gourd (Bitter Melon), Wok-fried",
+    "avgOxalatePer100g": 88.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 46.5,
+    "oxalatePerServing": 41.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cactus, Nopal (Prickly Pear), Raw",
+    "avgOxalatePer100g": 152.0,
+    "servingSize": "1 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 131.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Cactus, or Nopal (Prickly Pear), boiled",
+    "avgOxalatePer100g": 232.0,
+    "servingSize": "1 leaf",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 67.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Chayote or Mirliton, boiled",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "min 8 1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cherries, Bing, canned, Oregon Fruit Products",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 140.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cherries, dried",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 18.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cherries, Sweet, raw",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 cup",
+    "servingGrams": 98.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Currants, Black, raw",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1 cup",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Currants, Red, raw",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 cup",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Dates, Chopped",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 45.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Figs, dried",
+    "avgOxalatePer100g": 76.0,
+    "servingSize": "1 fig",
+    "servingGrams": 8.4,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Figs, fresh",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1 medium fig",
+    "servingGrams": 50.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fruit Cocktail, drained",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 95.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grapefruit, White and Pink",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1/2 grapefruit, 3 1/4 in dia1m2e3ter 13 Grapes, dried, red or green, raisins 9 1/4 cup",
+    "servingGrams": 37.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grapes, Green or Red",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup",
+    "servingGrams": 92.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Guava",
+    "avgOxalatePer100g": 70.0,
+    "servingSize": "1 medium",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 83.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Kiwi, fresh, raw",
+    "avgOxalatePer100g": 36.0,
+    "servingSize": "1 medium w/out skin",
+    "servingGrams": 76.0,
+    "oxalatePerServing": 27.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Kumquat",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 kumquat",
+    "servingGrams": 19.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lemon, raw",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 slice",
+    "servingGrams": 7.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lime, raw",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 lime",
+    "servingGrams": 67.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lychee or Litchee, fresh",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 cup",
+    "servingGrams": 190.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Mango, fresh",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup, cubed",
+    "servingGrams": 165.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Melons, variety including watermelon",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup cubed",
+    "servingGrams": 160.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nectarines",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 medium (2 1/2 in diamet1e4r2) 2 Olives, canned, black, pitted 37 6 medium olives",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Olives, canned, green, stuffed or unstuffed",
+    "avgOxalatePer100g": 50.0,
+    "servingSize": "6 medium olives",
+    "servingGrams": 23.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Orange, Mandarin or Clementine, fresh or canned",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 medium or 1/2 cup",
+    "servingGrams": 82.0,
+    "oxalatePerServing": 14.0,
+    "level": "faible"
+  },
+  {
+    "item": "Oranges, fresh, variety",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 medium",
+    "servingGrams": 140.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Papaya, raw",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1/2 cup, mashed",
+    "servingGrams": 115.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Passion Fruit or Granadilla",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 passion fruit",
+    "servingGrams": 18.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peaches, raw or canned",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 small or 1/2 cup sliced",
+    "servingGrams": 127.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pears, variety, fresh, canned or baked",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 84.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Persimmons, Hachiya",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 medium",
+    "servingGrams": 200.0,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Persimmons, Southern, wild, pulp",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pineapple, fresh or canned",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pineapple, preserved w/out sugar",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Plums, variety, fresh",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 medium",
+    "servingGrams": 70.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Prunes, pitted, Sunsweet",
+    "avgOxalatePer100g": 45.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 66.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Rhubarb, raw",
+    "avgOxalatePer100g": 1060.0,
+    "servingSize": "1 cup, diced",
+    "servingGrams": 122.0,
+    "oxalatePerServing": 1293.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Rhubarb, stewed or canned",
+    "avgOxalatePer100g": 666.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 799.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Star Fruit or Carambola, raw",
+    "avgOxalatePer100g": 295.0,
+    "servingSize": "1 medium fruit",
+    "servingGrams": 91.0,
+    "oxalatePerServing": 269.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Tamarillo (tree tomato) raw",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 medium fruit",
+    "servingGrams": 100.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tangelo, Raw, Medium",
+    "avgOxalatePer100g": 39.0,
+    "servingSize": "1 medium fruit",
+    "servingGrams": 205.0,
+    "oxalatePerServing": 79.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Bread, Bagel, White or Whole grain, variety",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "1 bagel",
+    "servingGrams": 95.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Cornbread",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 slice",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, English Muffin, White or Whole grain",
+    "avgOxalatePer100g": 21.0,
+    "servingSize": "1 muffin",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Hotdog or Hamburger Buns, White or Whole grain",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1 bun",
+    "servingGrams": 43.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Organic Seeds and Grains (High seed content, any grain)",
+    "avgOxalatePer100g": 112.0,
+    "servingSize": "1 slice",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 42.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Bread, Rye",
+    "avgOxalatePer100g": 44.0,
+    "servingSize": "1 slice",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Tortilla, Wheat, White or Whole Wheat",
+    "avgOxalatePer100g": 35.0,
+    "servingSize": "1 med tortilla",
+    "servingGrams": 49.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Wheat, White",
+    "avgOxalatePer100g": 24.0,
+    "servingSize": "1 slice",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bread, Wheat, Whole Grain, 100% Whole Wheat",
+    "avgOxalatePer100g": 35.0,
+    "servingSize": "1 slice",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cereal, All-Bran, Kellogg's",
+    "avgOxalatePer100g": 166.0,
+    "servingSize": "1 cup",
+    "servingGrams": 62.0,
+    "oxalatePerServing": 103.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Cereal, Bran Flakes",
+    "avgOxalatePer100g": 141.0,
+    "servingSize": "1 cup",
+    "servingGrams": 35.91,
+    "oxalatePerServing": 51.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Chex, Wheat, General Mills",
+    "avgOxalatePer100g": 78.0,
+    "servingSize": "1 cup",
+    "servingGrams": 58.75,
+    "oxalatePerServing": 46.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Fiber One, General Mills",
+    "avgOxalatePer100g": 63.0,
+    "servingSize": "1 cup",
+    "servingGrams": 54.42,
+    "oxalatePerServing": 34.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Grape-Nuts Flakes, Post",
+    "avgOxalatePer100g": 57.0,
+    "servingSize": "1 cup",
+    "servingGrams": 43.0,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Honey Toasted Oats, Kashi",
+    "avgOxalatePer100g": 63.0,
+    "servingSize": "1 cup",
+    "servingGrams": 40.0,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Meuslix",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "1 cup",
+    "servingGrams": 140.0,
+    "oxalatePerServing": 64.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Millet, Whole, cooked",
+    "avgOxalatePer100g": 37.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 87.0,
+    "oxalatePerServing": 32.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Shredded Wheat, Post",
+    "avgOxalatePer100g": 80.0,
+    "servingSize": "2 biscuits",
+    "servingGrams": 51.0,
+    "oxalatePerServing": 41.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Special K, Protein Plus, formerly Low Carb",
+    "avgOxalatePer100g": 184.0,
+    "servingSize": "1 cup",
+    "servingGrams": 33.89,
+    "oxalatePerServing": 62.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereal, Weetabix",
+    "avgOxalatePer100g": 90.0,
+    "servingSize": "2 biscuits",
+    "servingGrams": 35.0,
+    "oxalatePerServing": 31.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cereals, Buckwheat",
+    "avgOxalatePer100g": 123.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 105.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Corn, Cornmeal",
+    "avgOxalatePer100g": 37.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 31.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, Grits",
+    "avgOxalatePer100g": 26.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 74.4,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, Popcorn, popped",
+    "avgOxalatePer100g": 33.0,
+    "servingSize": "1 cup",
+    "servingGrams": 12.6,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, Sweet, fresh or canned",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 82.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, Tortilla, yellow or white",
+    "avgOxalatePer100g": 26.0,
+    "servingSize": "1 item",
+    "servingGrams": 25.5,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Almond Meal, Trader Joes",
+    "avgOxalatePer100g": 519.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 197.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Flour, Amaranth",
+    "avgOxalatePer100g": 283.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 26.0,
+    "oxalatePerServing": 74.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Flour, Baking, Gluten-free, Bob's Red Mill",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 37.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Barley",
+    "avgOxalatePer100g": 41.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 35.0,
+    "oxalatePerServing": 14.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Buckwheat",
+    "avgOxalatePer100g": 280.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 84.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Flour, Cassava",
+    "avgOxalatePer100g": 61.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Chestnut",
+    "avgOxalatePer100g": 49.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Chickpea",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 23.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Coconut",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 26.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Cornmeal, yellow",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Flaxseed meal or ground Flaxseed",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 26.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Oat",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 24.5,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Potato Starch, Bob's Red Mill",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 42.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Rice, White or Brown, Ground",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 39.5,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Rye",
+    "avgOxalatePer100g": 38.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Semolina",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 41.5,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Sorghum, White",
+    "avgOxalatePer100g": 42.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Soy, Arrowhead Mills",
+    "avgOxalatePer100g": 135.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 28.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Flour, Spelt",
+    "avgOxalatePer100g": 58.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 34.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Tapioca Flour",
+    "avgOxalatePer100g": 33.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Teff, Brown",
+    "avgOxalatePer100g": 222.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 34.0,
+    "oxalatePerServing": 75.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Flour, Teff, Ivory",
+    "avgOxalatePer100g": 193.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 34.0,
+    "oxalatePerServing": 66.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Flour, Tigernut",
+    "avgOxalatePer100g": 41.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Wheat Gluten",
+    "avgOxalatePer100g": 54.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 36.0,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, White or Whole Wheat",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Flour, Wild Rice",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 39.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Four, Arrowroot Starch",
+    "avgOxalatePer100g": 89.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 28.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Grain, Amaranth, uncooked",
+    "avgOxalatePer100g": 151.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 48.5,
+    "oxalatePerServing": 73.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Grain, Barley, pearl, boiled",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 84.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Bran, Rice",
+    "avgOxalatePer100g": 200.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 60.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Grain, Bran, Wheat",
+    "avgOxalatePer100g": 207.0,
+    "servingSize": "1/4 up",
+    "servingGrams": 14.5,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Grain, Farro, uncooked",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/4 cup dry",
+    "servingGrams": 43.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Oat Bran, Manna Mills",
+    "avgOxalatePer100g": 79.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Polenta, organic, De la Estancia",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Quinoa, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "min 44 1/4 cup dry",
+    "servingGrams": 46.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Quinoa, cooked",
+    "avgOxalatePer100g": 61.0,
+    "servingSize": "1/2 cup, cooked",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 55.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Grain, Seitan Wheat Gluten",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 piece",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Wheat Germ",
+    "avgOxalatePer100g": 81.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grain, Wheat, Bulgar",
+    "avgOxalatePer100g": 68.0,
+    "servingSize": "1/4 cup dry",
+    "servingGrams": 25.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grains, Millet, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "min 7 1/2 cup",
+    "servingGrams": 87.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grains, Millet, dry, uncooked",
+    "avgOxalatePer100g": 21.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 50.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grains, Rice, Black, cooked",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "mins 13 1/2 cup",
+    "servingGrams": 70.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grains, Sorghum, cooked",
+    "avgOxalatePer100g": 70.0,
+    "servingSize": "mins 9 1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grains, Wheat berries, simmered for",
+    "avgOxalatePer100g": 90.0,
+    "servingSize": "mins 24 1/2 cup",
+    "servingGrams": 76.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Angel Hair style, Miracle Noodles, Uncooked",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "3 oz",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Angel Hair, Rice, DeBoles, Cooked",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min 13 1/2 cup",
+    "servingGrams": 68.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Couscous, dried, boiled",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.5,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Egg Noodles, Cooked",
+    "avgOxalatePer100g": 26.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 37.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Elbow, Brown Rice, Tinkyada, Cooked",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "min 7 2 cup",
+    "servingGrams": 128.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Fettuccine style, Miracle Noodles, Uncooked",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "3 oz",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Fettuccine, Organic Spinach Fettuccine, Cooked",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min 98 1 cup cooked",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 109.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Pasta, Kamut Spirals, Eden, Cooked",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "min 23 1 cup",
+    "servingGrams": 108.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Ribbons, Spelt, Eden, Cooked",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "min 18 1 cup",
+    "servingGrams": 110.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Rice",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 73.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Rye Spirals, Whole Grain, Eden",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 cup",
+    "servingGrams": 140.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Tri Color Rotini, Cooked",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "min 36 1 cup cooked",
+    "servingGrams": 144.0,
+    "oxalatePerServing": 52.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Pasta, Veggie Rotini, Hodgson Mill, Cooked",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "min 39 1 cup cooked",
+    "servingGrams": 144.0,
+    "oxalatePerServing": 56.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Pasta, Wheat, Non-whole wheat varieties, Cooked & drained",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 cup",
+    "servingGrams": 128.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pasta, Wheat, Whole wheat varieties, Cooked & drained",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "1 cup",
+    "servingGrams": 128.0,
+    "oxalatePerServing": 31.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Rice, Brown, Variety, boiled",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rice, Long Grain & Wild, Herb Roasted, Chicken Flavored, Uncle Ben's",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1/2 cup cooked",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rice, Ready Cooked, Uncle Ben's, Variety",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rice, White, Variety, Boiled",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rice, Wild, boiled",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Eggs Whole and Egg White Products (e.g. Egg beaters)",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 egg equivalent",
+    "servingGrams": 65.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fish and Seafood, Variety",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "4 oz",
+    "servingGrams": 113.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Vegetarian, baked",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 133.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Anasazi, dried & boiled or canned",
+    "avgOxalatePer100g": 39.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 120.0,
+    "oxalatePerServing": 47.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Black or Turtle, dried, boiled",
+    "avgOxalatePer100g": 60.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 51.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Blue, boiled",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Butter, boiled",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 78.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Cannellini",
+    "avgOxalatePer100g": 89.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 89.0,
+    "oxalatePerServing": 79.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Fava",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Flor de Mayo",
+    "avgOxalatePer100g": 107.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 96.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Garbanzo or Chickpeas, dried & boiled or canned",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Great Northern, dried, boiled",
+    "avgOxalatePer100g": 75.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 89.0,
+    "oxalatePerServing": 67.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Kidney, Red, dried & boiled or canned",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 109.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Lima, dried & boiled or canned",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 109.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Mung, dried, boiled",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 101.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Navy, dried & boiled or canned",
+    "avgOxalatePer100g": 56.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 95.0,
+    "oxalatePerServing": 53.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, October, boiled",
+    "avgOxalatePer100g": 29.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, Pink, dried, boiled",
+    "avgOxalatePer100g": 76.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 64.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Pinto, dried, boiled",
+    "avgOxalatePer100g": 34.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 29.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Red, Chili, small, dried, boiled",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 91.0,
+    "oxalatePerServing": 29.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Red, small, dried, boiled",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 91.0,
+    "oxalatePerServing": 28.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Soy, dried, boiled",
+    "avgOxalatePer100g": 45.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 39.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Beans, Soybean Curd (Tofu)",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/2 cup, cubed",
+    "servingGrams": 125.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Beans, White, dried, boiled",
+    "avgOxalatePer100g": 61.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 55.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Edamame",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 75.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Lentils, variety, dried & boiled or canned",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 96.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Black-eyed Peas, canned",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Green Peas, dried & boiled or canned",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Green Pigeon Peas, canned",
+    "avgOxalatePer100g": 36.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 31.5,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Purple hull",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 86.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Split Peas, Yellow or Green, boiled",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 98.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Legumes, Peas, Sugar Snap",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 26.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Refried beans",
+    "avgOxalatePer100g": 124.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 80.0,
+    "oxalatePerServing": 99.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Legumes, Tempeh",
+    "avgOxalatePer100g": 48.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 83.0,
+    "oxalatePerServing": 40.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meats and Poultry, Variety including sausage and liver",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "4 oz",
+    "servingGrams": 113.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Almond, raw or dry roasted",
+    "avgOxalatePer100g": 369.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 107.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Nuts, Brazil Nuts, raw or roasted",
+    "avgOxalatePer100g": 181.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 52.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Cashew, Butter",
+    "avgOxalatePer100g": 218.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 63.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Cashew, raw or roasted",
+    "avgOxalatePer100g": 249.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 72.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Chestnut, roasted",
+    "avgOxalatePer100g": 28.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 28.4,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Coconut, Dry, Shredded",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 21.5,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Hazelnut or filberts, Raw",
+    "avgOxalatePer100g": 181.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 53.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Macadamia, raw or dry roasted",
+    "avgOxalatePer100g": 44.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Peanut Butter, Creamy or Chunky",
+    "avgOxalatePer100g": 125.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 36.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Peanuts, roasted",
+    "avgOxalatePer100g": 131.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 38.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Pecans raw or roasted",
+    "avgOxalatePer100g": 52.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 15.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Pine, raw or roasted",
+    "avgOxalatePer100g": 185.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 54.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Nuts, Pistachio, raw or roasted",
+    "avgOxalatePer100g": 42.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Soy nut butter",
+    "avgOxalatePer100g": 38.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Soynuts",
+    "avgOxalatePer100g": 84.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nuts, Walnuts, raw or roasted",
+    "avgOxalatePer100g": 62.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Chia, Bob's Red Mill",
+    "avgOxalatePer100g": 470.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 13.0,
+    "oxalatePerServing": 61.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Seeds, Flax (linseed)",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Hemp Hearts",
+    "avgOxalatePer100g": 55.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Papaya",
+    "avgOxalatePer100g": 154.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 31.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Seeds, Pumpkin Seed Butter",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Pumpkin, raw or roasted",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Saviseed (sacha inchi seeds)",
+    "avgOxalatePer100g": 247.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 72.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Seeds, Sunflower Seed Spread/Butter",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Sunflower, raw or roasted",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Wattle, roasted, ground",
+    "avgOxalatePer100g": 104.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sprouts, Pumpkin, raw",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sprouts, Watermelon, raw",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Almond Milk, Homemade (160g Almonds =",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "cups milk) 68 1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 165.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Milk, plant-based, Soy, Chocolate flavor, Silk",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 28.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Yogurt, plant-based, Almond, All flavors, Multi- Brand",
+    "avgOxalatePer100g": 39.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 66.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Yogurt, plant-based, Cashew, Strawberry",
+    "avgOxalatePer100g": 21.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 36.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cheese, hard and soft variety",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, Cottage Cheese, Variety",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 113.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, Ice Cream, Variety",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 76.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, Kefir",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 122.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, OPTIFAST, powder, variety including chocolate",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 serving (1.53 oz)",
+    "servingGrams": 43.5,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, Sour Cream",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Products, Yogurt, fresh & frozen, variety, Multi-Brands",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, Cows or Goats, All types",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Almond Milk, Commercial, Multi-Brands (Calcium-fortified recommended)",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Cashew",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Coconut Milk",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Flax",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Hazelnut",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Hemp",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Macadamia",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Oat milk",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Pea",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Rice, All Flavors, Multi-Brands",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk, plant-based, Soy, variety flavors (except chocolate), Multi-Brands",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup",
+    "servingGrams": 242.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Non-Dairy Milk Product, Creamer and Whipped Topping",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 6.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Coconut, Mixed Berries, Siggi's",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Coconut, So Delicous",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Coconut, Strawberry",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Coconut, variety flavors, Multi-Brands",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Oat, Strawberry, Oatly",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yogurt, plant-based, Soy, vanilla or strawberry",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "6 oz",
+    "servingGrams": 170.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lecithin, Liquid, unbleached",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "No-Nut Butter, Creamy, The Sneaky Chef",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Butter",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Margarine, All types",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Oils, All types nut, vegetable and seed oils",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 13.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Shortening, all vegatable",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 12.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Star Fruit, Sour (Homemade)",
+    "avgOxalatePer100g": 829.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 1990.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Juice, Nectar, Rhubarb",
+    "avgOxalatePer100g": 198.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 496.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Juice, Star Fruit, Sweet (Homemade)",
+    "avgOxalatePer100g": 202.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 485.0,
+    "level": "très élevé"
+  },
+  {
+    "item": "Juice, Beetroot",
+    "avgOxalatePer100g": 66.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 164.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Juice, Bitter Gourd/Bitter Melon",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 68.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Juice, Mango",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 27.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Tea, Black, Multiple Brands, flavored and unflavored, with/without caffeine",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 27.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Alcohol, Beer (regular/light), Hard Ciders, Hard Seltzers",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "12 oz",
+    "servingGrams": 356.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Alcohol, Distilled Spirits (brandy, gin, rum, tequila, vodka, whiskey and liqueurs)",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1.5 oz",
+    "servingGrams": 28.4,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Alcohol, Wine (white, rose, red, fortified)",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "4 oz",
+    "servingGrams": 112.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Coconut Water",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Coffee, Black",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 236.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Carnation Breakfast Essentials, Vanila or Chocolate, RTC",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 bottle (8.45 fl oz)",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Apple",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Apricot Nectar",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Apricot",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Black Currant",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Carrot",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Cherry",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Cranberry",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Grapefruit",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Grape, Green",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Grape, Red",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Lemon",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 244.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Lime",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Orange, (with/without pulp)",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Pineapple",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Plum",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Pomegranate",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Red Currant",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Tomato",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice, Vegetable, (tomato, carrot, celery, beets)",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Soda, Variety, with /without sugar",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "12 oz",
+    "servingGrams": 355.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tea, Green, Multiple Brands, flavored and unflavored",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tea, Iced, Multiple Brands, (Brewed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min) 7 1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tea, Herbal, Mate",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 cup",
+    "servingGrams": 237.0,
+    "oxalatePerServing": 14.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tea, Herbal, Variety Flavors",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Agave Nectar, light, Madhava",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Artificial Sweeteners, Aspartame",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Artificial Sweeteners, Saccharin, Sweet-N-Low",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Artificial Sweeteners, Splenda",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Artificial Sweeteners, Sugar replacement, Swerve",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Candy,",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "Musketeers, Mars 44 1 bar",
+    "servingGrams": 60.4,
+    "oxalatePerServing": 27.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Candy, Dark Chocolate, bar or chips",
+    "avgOxalatePer100g": 232.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 65.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Candy, M&Ms, Milk chocolate",
+    "avgOxalatePer100g": 67.0,
+    "servingSize": "20 pieces",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Candy, M&Ms, Peanut",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "10 pieces",
+    "servingGrams": 24.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Candy, Milk Chocolate, bar or chips",
+    "avgOxalatePer100g": 115.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 32.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Candy, Truffles, Dark Chocolate (See's)",
+    "avgOxalatePer100g": 140.0,
+    "servingSize": "1 candy",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 28.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Candy, White Chocolate, bar or chips",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chocolate Syrup",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cocoa or Cacao Powder, Dark Chocolate (Not Dutch Process)",
+    "avgOxalatePer100g": 656.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 12.0,
+    "oxalatePerServing": 79.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Cocoa Powder, Dutch Process w/alkali, Dark Chocolate",
+    "avgOxalatePer100g": 170.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 12.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn Syrup, Dark or Light",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fudge Brownie Mix, mix only",
+    "avgOxalatePer100g": 86.0,
+    "servingSize": "1 brownie (2 in. sq)",
+    "servingGrams": 24.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Honey, Clover, Madhava Mountain Gold",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Hot Chocolate, Dark Chocolate Mix",
+    "avgOxalatePer100g": 213.0,
+    "servingSize": "3 tbsp",
+    "servingGrams": 31.0,
+    "oxalatePerServing": 66.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Hot Chocolate, Milk Chocolate or French Vanilla Mix",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "3 tbsp",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Apricot",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Blueberry",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Fig, Jillies Jams",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Gooseberry Preserves Swiss Hero",
+    "avgOxalatePer100g": 29.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Grape, Concord",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Orange Marmalade",
+    "avgOxalatePer100g": 50.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Red Plum",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams or Preserves, Strawberry",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Jellies, Jams, or Preserves, Lingonberry Syrup",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Maple Syrup, pure,",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Molasses, Full flavor",
+    "avgOxalatePer100g": 43.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ovaltine, powder, canned",
+    "avgOxalatePer100g": 53.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 11.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Stevia Powder",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 pkt",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sugar, Brown",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.6,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sugar, Cane, White",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Syrup, Barley Malt",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Syrup, Brown Rice",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Syrup, Eldeberry",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Xylitol",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Baking Powder",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Baking Soda",
+    "avgOxalatePer100g": 35.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.6,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiment, Adobo (Mexican Acobo)",
+    "avgOxalatePer100g": 257.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiment, Chiles, Green, Chopped, Old El Paso",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiment, Chutney, Major Grey's, Crosse&Blackwell",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 19.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiment, Seasoned Salt, Lawry's",
+    "avgOxalatePer100g": 33.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.8,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiment, Tabasco pepper sauce, Mclhenny",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "2 small peppers",
+    "servingGrams": 18.5,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Horseradish, extra hot, Beaver",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Ketchup",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Mayonnaise",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Mole Sauce (Mexican), Almond",
+    "avgOxalatePer100g": 245.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 78.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Condiments, Mole Sauce (Mexican), Black",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Mole Sauce (Mexican), Green",
+    "avgOxalatePer100g": 147.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 47.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Condiments, Mole Sauce (Mexican), Red",
+    "avgOxalatePer100g": 321.0,
+    "servingSize": "2 Tbsp",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 103.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Condiments, Mustard, Dijon",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Mustard, Yellow, French's",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Soy Sauce, Kikkoman",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Steak Sauce, A-1, Kraft",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 17.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Tahini, made from dry roasted sesame seeds, Joyva",
+    "avgOxalatePer100g": 273.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 41.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Condiments, Vinegar, Variety flavors",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Condiments, Worcestershire Sauce",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 16.8,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Corn, Cornstarch",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 8.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cream of Tartar",
+    "avgOxalatePer100g": 80.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Gelatin, Unflavored, Knox",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Allspice, McCormick",
+    "avgOxalatePer100g": 1075.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.9,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Almond Extract, McCormick",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Anise, McCormick",
+    "avgOxalatePer100g": 951.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Basil, Fresh",
+    "avgOxalatePer100g": 133.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Basil, Sweet, Fresh",
+    "avgOxalatePer100g": 159.0,
+    "servingSize": "1/4 cup, whole",
+    "servingGrams": 6.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Capers, Mezzetta",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cardamom, ground, McCormick",
+    "avgOxalatePer100g": 307.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Celery Seeds, dried, McCormick",
+    "avgOxalatePer100g": 1274.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.5,
+    "oxalatePerServing": 32.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Herbs and Spices, Chili Powder, McCormick",
+    "avgOxalatePer100g": 312.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.6,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Chili, whole, green, fire roasted, Ortega",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 chili",
+    "servingGrams": 72.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Chipolte Chili, Mexican whole",
+    "avgOxalatePer100g": 150.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Chives, fresh",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/4 cup, chopped",
+    "servingGrams": 12.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cilantro, fresh",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cinnamon, ground",
+    "avgOxalatePer100g": 1072.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.3,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Herbs and Spices, Cloves, dried, ground",
+    "avgOxalatePer100g": 2001.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 42.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Herbs and Spices, Coriander seed, dried",
+    "avgOxalatePer100g": 1031.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cress",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.4,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cumin Seed",
+    "avgOxalatePer100g": 1100.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Cumin, ground",
+    "avgOxalatePer100g": 996.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Curry Powder",
+    "avgOxalatePer100g": 951.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 19.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Dill, fresh",
+    "avgOxalatePer100g": 145.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Fennel seed, dried, McCormick",
+    "avgOxalatePer100g": 1293.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Garlic powder",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.1,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Ginger, Crystallized, ground",
+    "avgOxalatePer100g": 38.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Ginger, fresh",
+    "avgOxalatePer100g": 178.0,
+    "servingSize": "1 tsp, sliced",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Ginger, Ground",
+    "avgOxalatePer100g": 964.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Italian Seasoning, dried",
+    "avgOxalatePer100g": 634.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.8,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Lemon balm, leaves",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Lemon Extract, pure",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Lemon Peel",
+    "avgOxalatePer100g": 673.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Mace, ground",
+    "avgOxalatePer100g": 72.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.7,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Maple Flavoring, Imitation",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Marjoram",
+    "avgOxalatePer100g": 361.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.6,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Mesquite Seasoning, dried, ground",
+    "avgOxalatePer100g": 164.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.7,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Mustard, English, powdered, Colman's",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Nutmeg, ground",
+    "avgOxalatePer100g": 244.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.2,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Onion Powder",
+    "avgOxalatePer100g": 74.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.4,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Orange Extract, pure",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Orange Peel",
+    "avgOxalatePer100g": 640.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Oregano, ground",
+    "avgOxalatePer100g": 417.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Paprika",
+    "avgOxalatePer100g": 284.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Parsley, dried",
+    "avgOxalatePer100g": 1127.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.3,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Parsley, Raw, Leaves only",
+    "avgOxalatePer100g": 110.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pasilla Chili, whole",
+    "avgOxalatePer100g": 103.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pepper, ground, Black",
+    "avgOxalatePer100g": 572.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pepper, White",
+    "avgOxalatePer100g": 44.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.4,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Peppermint Leaves",
+    "avgOxalatePer100g": 56.0,
+    "servingSize": "2 leaves",
+    "servingGrams": 0.1,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Poultry Seasoning, dried, ground",
+    "avgOxalatePer100g": 465.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.5,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Rosemary, dried",
+    "avgOxalatePer100g": 176.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.2,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Rosemary, fresh",
+    "avgOxalatePer100g": 219.0,
+    "servingSize": "1 Tbsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Saffron, McCormick",
+    "avgOxalatePer100g": 230.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.7,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Sage, dried, ground, McCormick",
+    "avgOxalatePer100g": 574.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.7,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Sage, leaves",
+    "avgOxalatePer100g": 85.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Savory, fresh",
+    "avgOxalatePer100g": 55.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.4,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Savory, ground, McCormick",
+    "avgOxalatePer100g": 423.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Seasoning Blend, Mrs. Dash",
+    "avgOxalatePer100g": 191.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Tarragon, ground",
+    "avgOxalatePer100g": 118.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Tarragon, leaves, McCormick",
+    "avgOxalatePer100g": 142.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Thyme, dried",
+    "avgOxalatePer100g": 182.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.4,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Tree Chili (Chile de Arbol Peppers), whole",
+    "avgOxalatePer100g": 51.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Turmeric",
+    "avgOxalatePer100g": 2107.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.2,
+    "oxalatePerServing": 46.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Herbs and Spices, Vanilla Extract, imitation",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Vanilla Extract, pure, McCormick",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices Lemon Myrtle, dried, ground",
+    "avgOxalatePer100g": 2853.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.7,
+    "oxalatePerServing": 49.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Herbs and Spices Mountain Pepper berry, dried, whole",
+    "avgOxalatePer100g": 84.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.4,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices Mountain Pepper Leaf, dried, ground",
+    "avgOxalatePer100g": 52.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.1,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pepper, Red, Cayenne",
+    "avgOxalatePer100g": 306.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pepper, Red, Cayenne, Dried",
+    "avgOxalatePer100g": 74.0,
+    "servingSize": "5 peppers",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Herbs and Spices, Pepper, Red, Crushed",
+    "avgOxalatePer100g": 96.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Malt, Powder",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 12.3,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Cayenne, raw",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 medium",
+    "servingGrams": 3.5,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Cayenne, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 31 6 small peppers",
+    "servingGrams": 12.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Habanero, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 11 4 small peppers",
+    "servingGrams": 14.5,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Jalapeno, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 28 2 small peppers",
+    "servingGrams": 35.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Lemon, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 26 5 small peppers",
+    "servingGrams": 12.5,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, New Mexican or Anaheim, raw",
+    "avgOxalatePer100g": 48.0,
+    "servingSize": "1/2 cup, sliced",
+    "servingGrams": 46.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Serrano, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 30 2 small peppers",
+    "servingGrams": 18.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Peppers, Tabasco, with seeds, sautéed",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "min in 1 tsp safflower oil 21 2 small peppers",
+    "servingGrams": 18.5,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Salt, Artesian, Oz Tukka",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.3,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Salt, Celtic, Light Grey, Selina Naturally",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Salt, Iodized, Hain",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 6.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Caraway, McCormick",
+    "avgOxalatePer100g": 863.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.1,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Mustard, McCormick",
+    "avgOxalatePer100g": 29.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Poppy, McCormick",
+    "avgOxalatePer100g": 1620.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.8,
+    "oxalatePerServing": 45.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Seeds, Sesame, toasted",
+    "avgOxalatePer100g": 216.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Seeds, Sesame, whole dried",
+    "avgOxalatePer100g": 3800.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 114.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Seeds, Sesame, whole dried, hulled",
+    "avgOxalatePer100g": 146.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tomato Paste, Hunt's",
+    "avgOxalatePer100g": 19.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 16.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yeast, active dry",
+    "avgOxalatePer100g": 56.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 12.3,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Apple + Banana fruit, Trader Joes",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 bar",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Banana bread flax, organic, Go Raw",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 bar",
+    "servingGrams": 34.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Granola, Oats and honey, Nature Valley",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 bar",
+    "servingGrams": 33.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Peanut butter, Crunchy, Clif",
+    "avgOxalatePer100g": 106.0,
+    "servingSize": "1 bar",
+    "servingGrams": 68.0,
+    "oxalatePerServing": 72.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Bars, Pumpkin, Live, organic, Go Raw",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 bar",
+    "servingGrams": 51.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Raspberry, organic, Lydia's Organics",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 bar",
+    "servingGrams": 43.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Rawma bar, Pumpkin, Gopal's Healthfoods",
+    "avgOxalatePer100g": 39.0,
+    "servingSize": "1 bar",
+    "servingGrams": 54.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Real Live, organic, Go Raw",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 bar",
+    "servingGrams": 51.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bars, Snow Angell, organic, white Chocolate, Coconut",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 bar",
+    "servingGrams": 35.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Basil Wraps, Blue Mountain Organic",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "1 cup",
+    "servingGrams": 240.0,
+    "oxalatePerServing": 60.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Breadcrumbs, Original or Japanese Style, Panko",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 35.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Breakfast Biscuits, Any Brand",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 biscuit",
+    "servingGrams": 85.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Breakfast Sandwich: Eggwich - Variety without spinach",
+    "avgOxalatePer100g": 16.0,
+    "servingSize": "1 item",
+    "servingGrams": 115.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Breakfast sandwich: Jimmy Dean Eggwich - Bacon, spinach, onion & parmesan",
+    "avgOxalatePer100g": 80.0,
+    "servingSize": "1 item",
+    "servingGrams": 109.0,
+    "oxalatePerServing": 88.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Brownies, Entenmann's Little Bites",
+    "avgOxalatePer100g": 85.0,
+    "servingSize": "2 items",
+    "servingGrams": 27.6,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cake Mix, White or Angel Food Cake Mix, Multiple Brands",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1/12 packet",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chips, Banana",
+    "avgOxalatePer100g": 203.0,
+    "servingSize": "13 pieces",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 61.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Chips, Corn, Multiple Brands",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chips, Pistachio Crisps",
+    "avgOxalatePer100g": 31.0,
+    "servingSize": "1 oz (15 crisps)",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chips, Plantain, Inka Crops",
+    "avgOxalatePer100g": 140.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 39.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Chips, Popcorn, Popcorn Indina",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "20 chips",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chips, Potato Chips, Multiple Brands",
+    "avgOxalatePer100g": 66.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 18.0,
+    "level": "faible"
+  },
+  {
+    "item": "Chips, Sweet Potato Chips, Terra",
+    "avgOxalatePer100g": 219.0,
+    "servingSize": "1 oz",
+    "servingGrams": 17.0,
+    "oxalatePerServing": 37.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Chips, Tortilla Strips, Mission",
+    "avgOxalatePer100g": 34.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Coating Mix, seasoned, Shake N Bake, original, Chicken or Pork",
+    "avgOxalatePer100g": 36.0,
+    "servingSize": "1/8 packet",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Coffee Mate, Nestle, Any Flavor",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Animal Crackers, Kinni Kritters",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "12 cookies",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Chocolate Chip",
+    "avgOxalatePer100g": 63.0,
+    "servingSize": "5 cookies",
+    "servingGrams": 32.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Fig Newton's",
+    "avgOxalatePer100g": 36.0,
+    "servingSize": "1 cookie",
+    "servingGrams": 14.7,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Milano, Double Chocolate, Pepperidge Farms",
+    "avgOxalatePer100g": 80.0,
+    "servingSize": "2 cookies",
+    "servingGrams": 27.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Mint Cookies, Milano, Pepperidge Farms",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "2 cookies",
+    "servingGrams": 25.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Moravian, Variety flavors",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "10 cookies",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cookies, Vanilla Wafers, Nabisco",
+    "avgOxalatePer100g": 25.0,
+    "servingSize": "8 cookies",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers and Snack Foods, Sesame Wheat Crackers, Sesmark Sesame Thins",
+    "avgOxalatePer100g": 384.0,
+    "servingSize": "8 crackers",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 115.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Crackers, Buttercrisp Crackers, Keeblers",
+    "avgOxalatePer100g": 24.0,
+    "servingSize": "5 crackers",
+    "servingGrams": 16.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Cheeze-it, Sunshine",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "27 crackers",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Chips, Toasted, Ritz, Main Street Original",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Graham, Original or Cinnamon, Keeblers",
+    "avgOxalatePer100g": 29.0,
+    "servingSize": "8 crackers",
+    "servingGrams": 29.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Inner Peas, Trader Joes",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "22 pieces",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Oyster",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Pretzels Crisps, Snack Factory",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "14 crackers",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Pretzels, Rold Gold",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1",
+    "servingGrams": 60.0,
+    "oxalatePerServing": 16.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Rice Cakes / Thins / Snacks, Multiple brands and flavors",
+    "avgOxalatePer100g": 31.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Ritz, Garlic Butter",
+    "avgOxalatePer100g": 28.0,
+    "servingSize": "5 crackers",
+    "servingGrams": 16.0,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Rye, Crispbreads, variety flavors & brands, without sesame",
+    "avgOxalatePer100g": 55.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 16.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Saltines, Multiple Brands",
+    "avgOxalatePer100g": 32.0,
+    "servingSize": "5 crackers",
+    "servingGrams": 15.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Sesame Crackers, Multiple Brands",
+    "avgOxalatePer100g": 122.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 34.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Crackers, Soybean Crackers",
+    "avgOxalatePer100g": 204.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 57.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Crackers, Stone-ground",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "Grain Crackers, Kashi 270 4 crackers",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 76.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Crackers, Tomato snacks, sun-dried, slow roasted",
+    "avgOxalatePer100g": 44.0,
+    "servingSize": "0.5 oz",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Wasabi peas, Trader Joe's",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Crackers, Wheat Crackers / Wheat Thins, Multiple Brands and Flavors",
+    "avgOxalatePer100g": 47.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Egg Replacer, Bobs Red Mill",
+    "avgOxalatePer100g": 142.0,
+    "servingSize": "1 tblsp",
+    "servingGrams": 7.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fries, French (Multiple Fast-Food Restaurants)",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1 small serving",
+    "servingGrams": 100.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Frozen Meals, Lean Cuisine, Stouffers, All Chicken Entrees",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 meal",
+    "servingGrams": 258.0,
+    "oxalatePerServing": 55.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Fruit Pectin, Sure-Jell",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Gelatin, Jell-O, any flavor, regular or sugar free",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1/2 cup prepared",
+    "servingGrams": 22.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ice cream bar, original, Klondike",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 bar",
+    "servingGrams": 102.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Meat Substitutes, Black Bean Patty, Morningstar Farms",
+    "avgOxalatePer100g": 60.0,
+    "servingSize": "1 burger",
+    "servingGrams": 67.0,
+    "oxalatePerServing": 40.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Grillers, Morningstar Farms",
+    "avgOxalatePer100g": 39.0,
+    "servingSize": "1 burger",
+    "servingGrams": 64.0,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Meatless Breakfast Patties, Boca",
+    "avgOxalatePer100g": 78.0,
+    "servingSize": "1 patty",
+    "servingGrams": 38.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Meatless burger, Gardenburger",
+    "avgOxalatePer100g": 87.0,
+    "servingSize": "1 burger",
+    "servingGrams": 71.0,
+    "oxalatePerServing": 61.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Meatless Burgers, Boca",
+    "avgOxalatePer100g": 105.0,
+    "servingSize": "1 burger",
+    "servingGrams": 71.0,
+    "oxalatePerServing": 75.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Meatless Chicken Patties, Boca",
+    "avgOxalatePer100g": 37.0,
+    "servingSize": "1 patty",
+    "servingGrams": 71.0,
+    "oxalatePerServing": 26.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Meat Substitutes, Textured Vegetable Protein (TVP)",
+    "avgOxalatePer100g": 320.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 24.0,
+    "oxalatePerServing": 77.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Miso Paste, Red, Cold Mountain",
+    "avgOxalatePer100g": 49.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 7.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Nutella",
+    "avgOxalatePer100g": 71.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 18.5,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pancake Mix, Multiple brands",
+    "avgOxalatePer100g": 23.0,
+    "servingSize": "1/4 cup, dry",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pickles, Baby Kosher Dills, Vlasic",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 pickle",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pie Crust, Multiple Brands",
+    "avgOxalatePer100g": 24.0,
+    "servingSize": "1/8 crust",
+    "servingGrams": 19.5,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pie Mix, pumpkin with spices, canned",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 87.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pizza Crust, Boboli, Italian",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "1/2 of 8 in shell",
+    "servingGrams": 71.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "Potato Flakes, cooked, Bob's Red Mill",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/3 cup flakes",
+    "servingGrams": 17.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pudding and Pie Filling, instant, Jell-O, Any Flavor (regular or reduced calorie)",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1/2 cup prepared",
+    "servingGrams": 128.0,
+    "oxalatePerServing": 12.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ravioli, Beef, Overstuffed, Chef Boyardee",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 cup",
+    "servingGrams": 260.0,
+    "oxalatePerServing": 31.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Ravioli, Beef, Regular, Chef Boyardee",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 cup",
+    "servingGrams": 244.0,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Salad Dressing, Any flavor, Multiple Brands",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sauce, Pasta, Spicy tomato and basil, Classico",
+    "avgOxalatePer100g": 8.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 125.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sauce, Pasta/Marinara, ready to serve",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "2 tbsp",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sauce, Sloppy Joe, Manwich, Original",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 64.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "Soup,",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "Bean Soup 25 1 cup",
+    "servingGrams": 164.0,
+    "oxalatePerServing": 40.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soup, Chili with Beans",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 cup",
+    "servingGrams": 236.0,
+    "oxalatePerServing": 51.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soup, Chili, No Beans",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 cup",
+    "servingGrams": 236.0,
+    "oxalatePerServing": 43.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soup, Spicy Black Bean and Kale",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 cup",
+    "servingGrams": 246.0,
+    "oxalatePerServing": 29.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soup, Sweet Potato",
+    "avgOxalatePer100g": 16.0,
+    "servingSize": "1 cup",
+    "servingGrams": 245.0,
+    "oxalatePerServing": 40.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soup, Vegetable Quinoa",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 cup",
+    "servingGrams": 241.0,
+    "oxalatePerServing": 31.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Soy Cheese",
+    "avgOxalatePer100g": 57.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 16.0,
+    "level": "faible"
+  },
+  {
+    "item": "Stuffing, Stovetop Stuffing Mix, Chicken, prepared as directed, Kraft",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 55.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Tempeh, Organic, Lightlife",
+    "avgOxalatePer100g": 61.0,
+    "servingSize": "1/2 cup",
+    "servingGrams": 83.0,
+    "oxalatePerServing": 50.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Cajun Lime Tilapia without seasonal vegetables",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 324.0,
+    "oxalatePerServing": 24.0,
+    "level": "faible"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Garlic Herbed Chicken without herbed potatoes",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 294.0,
+    "oxalatePerServing": 39.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Herbed potatoes",
+    "avgOxalatePer100g": 27.0,
+    "servingSize": "1 serving",
+    "servingGrams": 83.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Italian Chicken & Portobello Sandwich without fresh fruit",
+    "avgOxalatePer100g": 12.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 171.0,
+    "oxalatePerServing": 21.0,
+    "level": "faible"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Paradise Chicken Salad",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 41.3,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Seasonal Vegetables (broccoli and zucchini)",
+    "avgOxalatePer100g": 16.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 33.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Applebees, Weight Watchers Entrees, Steak & Portobellos",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 entrée",
+    "servingGrams": 328.0,
+    "oxalatePerServing": 34.0,
+    "level": "modéré"
+  },
+  {
+    "item": "McDonalds, Bacon, Egg and Cheese Biscuit",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "1 biscuit",
+    "servingGrams": 126.0,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "McDonalds, Egg McMuffin",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 McMuffin",
+    "servingGrams": 108.0,
+    "oxalatePerServing": 11.0,
+    "level": "faible"
+  },
+  {
+    "item": "McDonalds, Sausage Biscuit",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 biscuit",
+    "servingGrams": 108.0,
+    "oxalatePerServing": 20.0,
+    "level": "faible"
+  },
+  {
+    "item": "McDonalds, Sausage McMuffin",
+    "avgOxalatePer100g": 18.0,
+    "servingSize": "1 McMuffin",
+    "servingGrams": 119.0,
+    "oxalatePerServing": 22.0,
+    "level": "faible"
+  },
+  {
+    "item": "Starbucks, Coffee Cake, Classic",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "1 slice",
+    "servingGrams": 90.0,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Starbucks, Latte, Dark Chocolate Mocha, skim milk",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 cup",
+    "servingGrams": 224.0,
+    "oxalatePerServing": 45.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Starbucks, Latte, White Chocolate Mocha, skim milk",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 cup",
+    "servingGrams": 224.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Wendy's, Caesar Salad, Side order, with or without croutons",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 side salad",
+    "servingGrams": 16.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Wendy's, Chili",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 small chili",
+    "servingGrams": 225.0,
+    "oxalatePerServing": 25.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Wendy's, Hamburger, Junior, plain",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 burger",
+    "servingGrams": 68.0,
+    "oxalatePerServing": 7.0,
+    "level": "faible"
+  },
+  {
+    "item": "AdrenaSense Adrenal Formula, Natural Factors Canada",
+    "avgOxalatePer100g": 150.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.3,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Algae, dried",
+    "avgOxalatePer100g": 109.0,
+    "servingSize": "1 oz",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 30.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Aloe Vera Juice",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 cup",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ashwagandha, Oregon's Wild Harvest",
+    "avgOxalatePer100g": 959.0,
+    "servingSize": "3 capsules",
+    "servingGrams": 1.4,
+    "oxalatePerServing": 13.0,
+    "level": "faible"
+  },
+  {
+    "item": "Barley Life, AIM,",
+    "avgOxalatePer100g": 157.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.5,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Beet Powder, Frontier Co-op",
+    "avgOxalatePer100g": 997.0,
+    "servingSize": "1 tbsp",
+    "servingGrams": 10.0,
+    "oxalatePerServing": 100.0,
+    "level": "élevé"
+  },
+  {
+    "item": "Beet Supplement, Solaray and Natures Way, AVERAGE",
+    "avgOxalatePer100g": 510.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.75,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Berberine, Ultra, Wellness Formula",
+    "avgOxalatePer100g": 21.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.6,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Bio Tears Oral Gel Caps (1 gel cap)",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "1 gel cap",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Black Cohosh, Puritan's Pride",
+    "avgOxalatePer100g": 46.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.54,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Black Walnut Hull Extract, Solray",
+    "avgOxalatePer100g": 617.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Borage Oil, Weaver Street Market",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Boswella Resin Extract, Solgar",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.52,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Brown Rice, isolate",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 scoop",
+    "servingGrams": 27.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cholest-Off, Nature Made,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 6 1 caplet",
+    "servingGrams": 6.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Co-Q-10",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 softgel",
+    "servingGrams": 4.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Curcumin, Full Spectrum, Solgar",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 softgel",
+    "servingGrams": 1.3,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Cysta Q Complex,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 0 1 capsule",
+    "servingGrams": 0.3,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "DIM (Diindolyl-methane) + BioPerine",
+    "avgOxalatePer100g": 75.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.25,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Echinacea, powder",
+    "avgOxalatePer100g": 142.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Enteral Nutrition Formula, Boost Breeze, Orange",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 bottle (8.45 fl oz)",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 33.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Enteral Nutrition Formula, Boost, Peach",
+    "avgOxalatePer100g": 10.0,
+    "servingSize": "1 bottle (8.45 fl oz)",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 26.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Enteral Nutrition, Multiple Brands, Chocolate Flavor",
+    "avgOxalatePer100g": 13.0,
+    "servingSize": "1 bottle (8.45 fl oz)",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 34.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Enteral Nutrition, Variety Brands, All other flavored / unflavored",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 bottle (8.45 fl oz)",
+    "servingGrams": 250.0,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Estroven, Regular strength, Estroven",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 caplet",
+    "servingGrams": 1.1,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Evening Primrose Oil,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 0 capsule",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fermented Superfood Complex, Swanson Ultra",
+    "avgOxalatePer100g": 28.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Feverfew",
+    "avgOxalatePer100g": 652.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.61,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fiber and Spice, Supplement, Balance of Nature",
+    "avgOxalatePer100g": 309.0,
+    "servingSize": "2 scoops",
+    "servingGrams": 17.0,
+    "oxalatePerServing": 53.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Formula",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "Antifungal, The Treatment, Tetra Corporation 0 N/A",
+    "servingGrams": 0.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Fruits, Supplement, Balance of Nature",
+    "avgOxalatePer100g": 82.0,
+    "servingSize": "3 capsules",
+    "servingGrams": 2.4,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ginkgo Biloba",
+    "avgOxalatePer100g": 2034.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.28,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Ginkgo Biloba Extract, 21st Centuary",
+    "avgOxalatePer100g": 33.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.46,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Glucosamine, vegetarian, Weaver Street market",
+    "avgOxalatePer100g": 3.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.75,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Goldenseal Root, powder",
+    "avgOxalatePer100g": 211.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.63,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Grape Seed Extract, Natural Factors Canada",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.45,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Green coffee bean extract, Walgreens",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "2 tablets",
+    "servingGrams": 2.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Hawthorn Solid Extract, Wise Woman Herbals",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "1/8 tsp",
+    "servingGrams": 1.7,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Hemp, Bob's Red Mill",
+    "avgOxalatePer100g": 104.0,
+    "servingSize": "1/4 cup",
+    "servingGrams": 31.0,
+    "oxalatePerServing": 32.0,
+    "level": "modéré"
+  },
+  {
+    "item": "HydroEye Soft Gels",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.4,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Intestamine, Douglas Laboratries",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "6 capsules",
+    "servingGrams": 4.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Juice PLUS +, Garden Blend,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 652 2 capsules",
+    "servingGrams": 0.75,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Kelp, Powder",
+    "avgOxalatePer100g": 200.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 2.78,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lactose Stop, renew Life Formula",
+    "avgOxalatePer100g": 30.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.28,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "L-Glutamine, Powder, Vitamin Shop",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 4.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Licorice DGL, Natural Factors",
+    "avgOxalatePer100g": 22.0,
+    "servingSize": "1 tablet",
+    "servingGrams": 1.6,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Lutein. Sundown Naturals",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.25,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Maca, Oregan's Wild Harvest",
+    "avgOxalatePer100g": 21.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Medibolic, Thorne",
+    "avgOxalatePer100g": 109.0,
+    "servingSize": "2 scoops",
+    "servingGrams": 21.0,
+    "oxalatePerServing": 23.0,
+    "level": "faible"
+  },
+  {
+    "item": "Milk Thistle, Seed",
+    "avgOxalatePer100g": 1517.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.0,
+    "oxalatePerServing": 46.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Milk Thistle, Seed Powder",
+    "avgOxalatePer100g": 1802.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 5.0,
+    "oxalatePerServing": 90.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Moringa, Leaf Powder, GENESIS today",
+    "avgOxalatePer100g": 2136.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 0.8,
+    "oxalatePerServing": 17.0,
+    "level": "faible"
+  },
+  {
+    "item": "Multivitamin/Multimineral Supplement, Centrum Specialist",
+    "avgOxalatePer100g": 260.0,
+    "servingSize": "2 tablets",
+    "servingGrams": 1.9,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Muscadine grape seed, Natures Pearls",
+    "avgOxalatePer100g": 888.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.65,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "N-Acetyl Glucosamine, Source Naturals",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "1 tablet",
+    "servingGrams": 1.1,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Powdered Fruit, Orchard Blend, Juice Plus +,",
+    "avgOxalatePer100g": 293.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.5,
+    "oxalatePerServing": 4.0,
+    "level": "faible"
+  },
+  {
+    "item": "Powdered Vegetables, Garden Blend, Juice Plus+",
+    "avgOxalatePer100g": 591.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.5,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  },
+  {
+    "item": "Powdered Wheat Grass Drink, Organic, Amazing Grass",
+    "avgOxalatePer100g": 104.0,
+    "servingSize": "1 packet",
+    "servingGrams": 8.0,
+    "oxalatePerServing": 8.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pumpkin Seed, Sprout Living",
+    "avgOxalatePer100g": 11.0,
+    "servingSize": "2 scoops",
+    "servingGrams": 28.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Pycnogenol, Pine Bark Extract, Root",
+    "avgOxalatePer100g": 2.0,
+    "servingSize": "18 1 capsule",
+    "servingGrams": 0.25,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Raspbery Ketone extract, Walgreens",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "2 tablets",
+    "servingGrams": 2.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Reacted Iron, Ortho Molecular Products",
+    "avgOxalatePer100g": 9.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.41,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Red Palm Oil, Organic",
+    "avgOxalatePer100g": 0.0,
+    "servingSize": "1 tbls",
+    "servingGrams": 14.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rhodiola Extract, Solaray",
+    "avgOxalatePer100g": 20.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.1,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Rhubarb Extract (Siberian)",
+    "avgOxalatePer100g": 247.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.53,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Sea Cucumber, herbal healers",
+    "avgOxalatePer100g": 15.0,
+    "servingSize": "1 capsules",
+    "servingGrams": 7.0,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "Senekot,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "tablet 0 1 tablet",
+    "servingGrams": 0.3,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Slippery Elm Bark",
+    "avgOxalatePer100g": 2432.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 1.5,
+    "oxalatePerServing": 36.0,
+    "level": "modéré"
+  },
+  {
+    "item": "Solgar No.",
+    "avgOxalatePer100g": 7.0,
+    "servingSize": "347 1 capsule",
+    "servingGrams": 0.48,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Soy, Ultra amino",
+    "avgOxalatePer100g": 16.0,
+    "servingSize": "3 Tblsp",
+    "servingGrams": 30.0,
+    "oxalatePerServing": 5.0,
+    "level": "faible"
+  },
+  {
+    "item": "Spirulina,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "tablet 1 6 tablets",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Spirulina,",
+    "avgOxalatePer100g": 6.0,
+    "servingSize": "tablets 1 6 tablets",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "St. John's Wort",
+    "avgOxalatePer100g": 155.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 0.9,
+    "oxalatePerServing": 1.0,
+    "level": "faible"
+  },
+  {
+    "item": "TheraLife Eye Capsules,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 2 1 capsule",
+    "servingGrams": 1.8,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "TheraTears Soft Gels,",
+    "avgOxalatePer100g": 1.0,
+    "servingSize": "capsule 0 1 capsule",
+    "servingGrams": 0.3,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "ThyroSense Thyroid Formula, Natural Factors Canada",
+    "avgOxalatePer100g": 16.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Turmeric Root Extract, Solgar",
+    "avgOxalatePer100g": 17.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.5,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Valerian Root",
+    "avgOxalatePer100g": 203.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 2.0,
+    "level": "faible"
+  },
+  {
+    "item": "Veggies, Supplement, Balance of Nature",
+    "avgOxalatePer100g": 415.0,
+    "servingSize": "3 capsules",
+    "servingGrams": 2.4,
+    "oxalatePerServing": 10.0,
+    "level": "faible"
+  },
+  {
+    "item": "Willow bark, white",
+    "avgOxalatePer100g": 1419.0,
+    "servingSize": "1 capsule",
+    "servingGrams": 0.4,
+    "oxalatePerServing": 6.0,
+    "level": "faible"
+  },
+  {
+    "item": "Xylitol, NOW",
+    "avgOxalatePer100g": 4.0,
+    "servingSize": "1 tsp",
+    "servingGrams": 3.2,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yeast Nutritional, Laramie Co-op",
+    "avgOxalatePer100g": 14.0,
+    "servingSize": "3 Tblsp",
+    "servingGrams": 20.0,
+    "oxalatePerServing": 3.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yellow Dock Liquid Extract, Herb Pharm",
+    "avgOxalatePer100g": 5.0,
+    "servingSize": "1 serving",
+    "servingGrams": 0.7,
+    "oxalatePerServing": 0.0,
+    "level": "faible"
+  },
+  {
+    "item": "Yellow Dock root, vegetarian capsules, Natures Way",
+    "avgOxalatePer100g": 901.0,
+    "servingSize": "2 capsules",
+    "servingGrams": 1.0,
+    "oxalatePerServing": 9.0,
+    "level": "faible"
+  }
+]
