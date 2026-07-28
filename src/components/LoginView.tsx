@@ -10,10 +10,12 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
+    setIsSubmitting(true);
     try {
       if (mode === "signup") {
         await pb.collection("users").create({
@@ -26,6 +28,8 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
       onAuthenticated();
     } catch {
       setError("Identifiants incorrects ou erreur d'inscription.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -39,6 +43,7 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <label htmlFor="password">Mot de passe</label>
@@ -47,23 +52,28 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         {error && <p role="alert">{error}</p>}
 
         {mode === "login" ? (
-          <button type="submit">Se connecter</button>
+          <button type="submit" disabled={isSubmitting}>
+            Se connecter
+          </button>
         ) : (
-          <button type="submit">S'inscrire</button>
+          <button type="submit" disabled={isSubmitting}>
+            S'inscrire
+          </button>
         )}
       </form>
 
       {mode === "login" ? (
-        <button type="button" onClick={() => setMode("signup")}>
+        <button type="button" onClick={() => setMode("signup")} disabled={isSubmitting}>
           Créer un compte
         </button>
       ) : (
-        <button type="button" onClick={() => setMode("login")}>
+        <button type="button" onClick={() => setMode("login")} disabled={isSubmitting}>
           Retour à la connexion
         </button>
       )}
