@@ -53,7 +53,9 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          minLength={mode === "signup" ? 8 : undefined}
         />
+        {mode === "signup" && <p>Minimum 8 caractères.</p>}
 
         {error && <p role="alert">{error}</p>}
 
