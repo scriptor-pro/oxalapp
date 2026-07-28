@@ -70,14 +70,46 @@ def merge_wrapped_lines(lines: list[str]) -> list[str]:
 
 
 def parse_entry(line: str) -> dict | None:
-    match = FULL_PATTERN.match(line)
+    # Remove annotations that appear between item and data:
+    # 1. Cooking time: "15 min", "10 minutes", etc.
+    # 2. Cooking liquid: "1 tsp safflower oil", etc.
+    # 3. Parenthetical conversions: "(160g Almonds = 2 cups milk)", etc.
+
+    # First, remove parenthetical unit conversions
+    # e.g., "(160g Almonds = 2 cups milk)" -> ""
+    cleaned_line = re.sub(r'\([^)]*\)', '', line)
+
+    # Then, remove cooking time annotations
+    cleaned_line = re.sub(
+        r'(\s(?:boiled|steamed|baked|sautéed|fried|grilled|roasted|cooked|prepared|stewed|simmered|canned|cured))\s+\d+\s+(?:min(?:s|ute)?(?:s)?|hour|hours|second(?:s)?|sec)(?:\s+(?:in|of|on|at|with|for|under)\s+)?',
+        r'\1 ',
+        cleaned_line,
+        flags=re.IGNORECASE
+    )
+
+    # Finally, remove cooking liquid annotations (e.g., "in 1 tsp safflower oil")
+    cleaned_line = re.sub(
+        r'(?:in\s+)?\d+\s+(?:tsp|tbsp|cup|oz|ml|L)\s+(?:safflower|sesame|olive|coconut|vegetable|canola)\s+oil\s+',
+        '',
+        cleaned_line,
+        flags=re.IGNORECASE
+    )
+
+    match = FULL_PATTERN.match(cleaned_line)
     if not match:
         return None
+
+    # Post-parse validation: reject entries with corrupted fields
+    # Corruption pattern: servingSize contains odd text like "min ", "cups ", etc.
+    serving_size = match.group("serving_size").strip()
+    if re.match(r"^(min|cups|ml|L|pound|kg|hour|sec|x)\s", serving_size, re.IGNORECASE):
+        return None
+
     oxalate_per_serving = float(match.group("oxalate_serving"))
     return {
         "item": match.group("item").strip(),
         "avgOxalatePer100g": float(match.group("avg100")),
-        "servingSize": match.group("serving_size").strip(),
+        "servingSize": serving_size,
         "servingGrams": float(match.group("serving_g")),
         "oxalatePerServing": oxalate_per_serving,
         "level": classify(oxalate_per_serving),

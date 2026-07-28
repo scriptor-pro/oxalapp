@@ -48,9 +48,39 @@ def test_wrapped_line_item_is_merged_correctly():
     assert creasy["oxalatePerServing"] == 4
 
 
+def test_corrupted_entries_with_cooking_annotations_are_fixed():
+    """Verify that entries with cooking time/method annotations are properly parsed.
+    This catches the corruption where cooking annotations (e.g., "10 min in",
+    "160g = X cups") were misparsed as data values."""
+    data = json.loads(OUTPUT.read_text())
+
+    # Sorrel should have high oxalate (582), not the cooking time (15)
+    sorrel = next((e for e in data if e["item"] == "Sorrel, boiled"), None)
+    assert sorrel is not None, "expected Sorrel, boiled in output"
+    assert sorrel["avgOxalatePer100g"] == 582, f"Sorrel avg100 should be 582, got {sorrel['avgOxalatePer100g']}"
+    assert sorrel["servingSize"] == "1/2 cup, chopped", f"Sorrel serving size corrupted: {sorrel['servingSize']}"
+    assert sorrel["oxalatePerServing"] == 303
+
+    # Almond milk should have proper avg100 (68), not truncated/corrupted
+    almond = next((e for e in data if "Almond Milk, Homemade" in e["item"]), None)
+    assert almond is not None, "expected Almond Milk, Homemade in output"
+    assert almond["avgOxalatePer100g"] == 68, f"Almond avg100 should be 68, got {almond['avgOxalatePer100g']}"
+    assert almond["servingSize"] == "1 cup", f"Almond serving size should be '1 cup', got {almond['servingSize']}"
+    assert almond["oxalatePerServing"] == 165
+
+    # Sautéed peppers should have reasonable avg100 (not 10), with proper serving size
+    cayenne = next((e for e in data if "Cayenne" in e["item"] and "sautéed" in e["item"]), None)
+    assert cayenne is not None, "expected Peppers, Cayenne, with seeds, sautéed in output"
+    assert cayenne["avgOxalatePer100g"] == 31, f"Cayenne avg100 should be 31, got {cayenne['avgOxalatePer100g']}"
+    assert cayenne["servingSize"] == "6 small peppers", f"Cayenne serving size corrupted: {cayenne['servingSize']}"
+    assert "min in" not in cayenne["item"], f"Cooking time leaked into item name: {cayenne['item']}"
+    assert "oil" not in cayenne["servingSize"].lower(), f"Oil annotation leaked into serving size: {cayenne['servingSize']}"
+
+
 if __name__ == "__main__":
     test_extraction_produces_valid_json()
     test_entries_have_expected_shape()
     test_known_high_oxalate_item_is_present()
     test_wrapped_line_item_is_merged_correctly()
+    test_corrupted_entries_with_cooking_annotations_are_fixed()
     print("All tests passed.")
