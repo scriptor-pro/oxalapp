@@ -51,4 +51,27 @@ describe("App", () => {
 
     expect(pb.authStore.clear).toHaveBeenCalled();
   });
+
+  it("shows the reset-password screen when a reset-token query param is present", () => {
+    const originalLocation = window.location.href;
+    window.history.pushState({}, "", "/?reset-token=abc123");
+
+    render(<App />);
+
+    expect(screen.getByLabelText(/nouveau mot de passe/i)).toBeInTheDocument();
+
+    window.history.pushState({}, "", originalLocation);
+  });
+
+  it("shows the reset-password screen even when already authenticated", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+    const originalLocation = window.location.href;
+    window.history.pushState({}, "", "/?reset-token=abc123");
+
+    render(<App />);
+
+    expect(screen.getByLabelText(/nouveau mot de passe/i)).toBeInTheDocument();
+
+    window.history.pushState({}, "", originalLocation);
+  });
 });

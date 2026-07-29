@@ -4,6 +4,7 @@ import { LoginView } from "./components/LoginView";
 import { ScannerView } from "./components/ScannerView";
 import { ResultView } from "./components/ResultView";
 import { HistoryView } from "./components/HistoryView";
+import { ResetPasswordView } from "./components/ResetPasswordView";
 
 type Tab = "scan" | "history";
 
@@ -11,12 +12,32 @@ export function App() {
   const [authed, setAuthed] = useState(pb.authStore.isValid);
   const [tab, setTab] = useState<Tab>("scan");
   const [scannedEan, setScannedEan] = useState<string | null>(null);
+  const [resetToken, setResetToken] = useState<string | null>(() =>
+    new URLSearchParams(window.location.search).get("reset-token")
+  );
 
   useEffect(() => {
     return pb.authStore.onChange(() => {
       setAuthed(pb.authStore.isValid);
     });
   }, []);
+
+  if (resetToken) {
+    return (
+      <ResetPasswordView
+        token={resetToken}
+        onResetComplete={() => {
+          window.history.replaceState({}, "", window.location.pathname);
+          setResetToken(null);
+        }}
+        onRequestNewReset={() => {
+          window.history.replaceState({}, "", window.location.pathname);
+          setResetToken(null);
+          setAuthed(false);
+        }}
+      />
+    );
+  }
 
   if (!authed) {
     return <LoginView onAuthenticated={() => setAuthed(true)} />;
