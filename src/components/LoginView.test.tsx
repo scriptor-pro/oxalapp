@@ -86,4 +86,19 @@ describe("LoginView", () => {
     });
     expect(authWithPassword).toHaveBeenCalledWith("new@example.com", "password123");
   });
+
+  it("shows the forgot-password link on the login screen", () => {
+    render(<LoginView onAuthenticated={vi.fn()} />);
+    expect(screen.getByRole("button", { name: /mot de passe oublié/i })).toBeInTheDocument();
+  });
+
+  it("switches to the forgot-password view and back", () => {
+    render(<LoginView onAuthenticated={vi.fn()} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /mot de passe oublié/i }));
+    expect(screen.getByRole("button", { name: /envoyer/i })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /retour à la connexion/i }));
+    expect(screen.getByRole("button", { name: /se connecter/i })).toBeInTheDocument();
+  });
 });

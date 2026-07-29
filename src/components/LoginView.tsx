@@ -1,12 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { pb } from "../lib/pocketbase";
+import { ForgotPasswordView } from "./ForgotPasswordView";
 
 interface LoginViewProps {
   onAuthenticated: () => void;
 }
 
 export function LoginView({ onAuthenticated }: LoginViewProps) {
-  const [mode, setMode] = useState<"login" | "signup">("login");
+  const [mode, setMode] = useState<"login" | "signup" | "forgot-password">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -32,6 +33,10 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  if (mode === "forgot-password") {
+    return <ForgotPasswordView onBackToLogin={() => setMode("login")} />;
   }
 
   return (
@@ -78,6 +83,12 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
       ) : (
         <button type="button" onClick={() => setMode("login")} disabled={isSubmitting}>
           Retour à la connexion
+        </button>
+      )}
+
+      {mode === "login" && (
+        <button type="button" onClick={() => setMode("forgot-password")} disabled={isSubmitting}>
+          Mot de passe oublié ?
         </button>
       )}
     </div>
