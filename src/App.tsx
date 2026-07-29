@@ -29,6 +29,7 @@ export function App() {
         onResetComplete={() => {
           window.history.replaceState({}, "", window.location.pathname);
           setResetToken(null);
+          setAuthed(false);
         }}
         onRequestNewReset={() => {
           window.history.replaceState({}, "", window.location.pathname);

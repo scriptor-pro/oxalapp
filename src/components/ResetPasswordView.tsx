@@ -33,7 +33,6 @@ export function ResetPasswordView({
     try {
       await pb.collection("users").confirmPasswordReset(token, password, passwordConfirm);
       setSuccess(true);
-      onResetComplete();
     } catch (err) {
       console.error("Erreur lors de la réinitialisation du mot de passe:", err);
       setTokenInvalid(true);
@@ -47,6 +46,9 @@ export function ResetPasswordView({
       <div>
         <h1>oxalapp</h1>
         <p>Mot de passe réinitialisé. Vous pouvez maintenant vous connecter.</p>
+        <button type="button" onClick={onResetComplete}>
+          Aller à la connexion
+        </button>
       </div>
     );
   }

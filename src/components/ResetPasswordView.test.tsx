@@ -15,7 +15,7 @@ describe("ResetPasswordView", () => {
     vi.clearAllMocks();
   });
 
-  it("confirms the password reset and calls onResetComplete", async () => {
+  it("confirms the password reset and shows the success screen without calling onResetComplete yet", async () => {
     const confirmPasswordReset = vi.fn().mockResolvedValue(true);
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       confirmPasswordReset,
@@ -46,6 +46,10 @@ describe("ResetPasswordView", () => {
       )
     );
     expect(await screen.findByText(/mot de passe réinitialisé/i)).toBeInTheDocument();
+    expect(onResetComplete).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: /aller à la connexion/i }));
+    expect(onResetComplete).toHaveBeenCalled();
   });
 
   it("shows a client-side error when passwords do not match", () => {

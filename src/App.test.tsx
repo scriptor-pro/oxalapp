@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { App } from "./App";
 import { pb } from "./lib/pocketbase";
@@ -71,6 +71,36 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByLabelText(/nouveau mot de passe/i)).toBeInTheDocument();
+
+    window.history.pushState({}, "", originalLocation);
+  });
+
+  it("returns to the login screen after a successful reset even if the user was already authenticated", async () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+    const confirmPasswordReset = vi.fn().mockResolvedValue(true);
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      confirmPasswordReset,
+    });
+    const originalLocation = window.location.href;
+    window.history.pushState({}, "", "/?reset-token=abc123");
+
+    render(<App />);
+
+    fireEvent.change(screen.getByLabelText(/nouveau mot de passe/i), {
+      target: { value: "newpassword1" },
+    });
+    fireEvent.change(screen.getByLabelText(/confirmer le mot de passe/i), {
+      target: { value: "newpassword1" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /réinitialiser/i }));
+
+    expect(await screen.findByText(/mot de passe réinitialisé/i)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /aller à la connexion/i }));
+
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: /se connecter/i })).toBeInTheDocument()
+    );
 
     window.history.pushState({}, "", originalLocation);
   });
