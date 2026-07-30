@@ -34,6 +34,22 @@ describe("ResultView", () => {
     expect(screen.getByText(/Nutella/)).toBeInTheDocument();
   });
 
+  it("shows a methodological caveat for ingredient-keyword-based results", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Nutella",
+      ingredientsText: "Sucre, huile de palme, noisettes, cacao",
+      imageUrl: null,
+    });
+
+    render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(
+        /reflète la présence d'un ingrédient connu.*pas une quantité mesurée dans ce produit précis/
+      )
+    ).toBeInTheDocument();
+  });
+
   it("saves the scan to PocketBase after a successful match", async () => {
     (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",

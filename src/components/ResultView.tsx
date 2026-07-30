@@ -118,6 +118,10 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
         Estimation indicative — les valeurs d'oxalate varient selon la
         variété, le sol, la cuisson, etc.
       </p>
+      <p>
+        Ce niveau reflète la présence d'un ingrédient connu pour sa teneur
+        en oxalate, pas une quantité mesurée dans ce produit précis.
+      </p>
       {syncError && <p>Échec de synchronisation avec l'historique.</p>}
       <button onClick={onBack}>Retour</button>
     </div>
