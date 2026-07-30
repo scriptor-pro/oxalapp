@@ -19,7 +19,9 @@ interface KnownIngredient {
 }
 
 // Curated high-signal keywords. Sourced from CLAUDE.md's list of known
-// risk ingredients plus the OHF PDF's "très élevé"/"élevé" categories.
+// risk ingredients, reclassified per the Mayo Clinic Oxalate Diet
+// Handbook thresholds (faible<5/modéré5-8/élevé8-25/très élevé>25
+// mg/portion — see docs/superpowers/specs/2026-07-30-oxalate-scoring-recalibration-design.md).
 // Deliberately excludes short/generic PDF item names (e.g. "Salt") that
 // would false-positive against unrelated ingredient text.
 const KNOWN_INGREDIENTS: KnownIngredient[] = [
@@ -27,11 +29,11 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé" },
   { keyword: "epinard", dbItem: "Spinach", level: "très élevé" },
   { keyword: "rhubarbe", dbItem: "Rhubarb, stewed or canned", level: "très élevé" },
-  { keyword: "amande", dbItem: "Almonds", level: "élevé" },
-  { keyword: "son de ble", dbItem: "Wheat Bran", level: "élevé" },
-  { keyword: "betterave", dbItem: "Beets, boiled, steamed or pickled", level: "modéré" },
-  { keyword: "patate douce", dbItem: "Sweet Potato, Orange", level: "modéré" },
-  { keyword: "the noir", dbItem: "Tea, Black", level: "élevé" },
+  { keyword: "amande", dbItem: "Almonds", level: "très élevé" },
+  { keyword: "son de ble", dbItem: "Wheat Bran", level: "très élevé" },
+  { keyword: "betterave", dbItem: "Beets, boiled, steamed or pickled", level: "très élevé" },
+  { keyword: "patate douce", dbItem: "Sweet Potato, Orange", level: "très élevé" },
+  { keyword: "the noir", dbItem: "Tea, Black", level: "très élevé" },
   { keyword: "the vert", dbItem: "Tea, Green", level: "élevé" },
 ];
 

@@ -31,9 +31,27 @@ describe("matchIngredients", () => {
   });
 
   it("takes the highest level among multiple matched ingredients", () => {
-    // épinard (spinach) is très élevé; amande (almond) is modéré-ish;
-    // overall must be the highest of the matched set.
+    // épinard (spinach) and amande (almond) are both très élevé after
+    // recalibration; overall must be the highest of the matched set.
     const result = matchIngredients("farine de blé, épinards, sucre");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("reclassifies green tea as élevé after recalibration (was faible)", () => {
+    const result = matchIngredients("Extrait de thé vert, eau, sucre");
+
+    expect(result.level).toBe("élevé");
+  });
+
+  it("reclassifies almond as très élevé after recalibration (was élevé)", () => {
+    const result = matchIngredients("Amandes grillées, sel");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("reclassifies beet as très élevé after recalibration (was modéré)", () => {
+    const result = matchIngredients("Betterave cuite, vinaigre");
 
     expect(result.level).toBe("très élevé");
   });
