@@ -61,7 +61,11 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
           required
           minLength={mode === "signup" ? 8 : undefined}
         />
-        {mode === "signup" && <p>Minimum 8 caractères.</p>}
+        {mode === "signup" && (
+          <p style={{ color: password.length >= 8 ? "green" : undefined }}>
+            {password.length >= 8 ? "✓ " : ""}Minimum 8 caractères.
+          </p>
+        )}
 
         {error && <p role="alert">{error}</p>}
 
