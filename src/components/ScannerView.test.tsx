@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { ScannerView } from "./ScannerView";
 
@@ -43,5 +43,34 @@ describe("ScannerView", () => {
     expect(
       await screen.findByText(/autorisation.*caméra/i)
     ).toBeInTheDocument();
+  });
+
+  it("calls onScanned with a manually entered 13-digit EAN", () => {
+    const onScanned = vi.fn();
+    mockDecodeFromVideoDevice.mockResolvedValue(undefined);
+
+    render(<ScannerView onScanned={onScanned} />);
+
+    fireEvent.change(screen.getByLabelText(/code-barres/i), {
+      target: { value: "3017620422003" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /valider/i }));
+
+    expect(onScanned).toHaveBeenCalledWith("3017620422003");
+  });
+
+  it("rejects a manually entered code that is not exactly 13 digits", () => {
+    const onScanned = vi.fn();
+    mockDecodeFromVideoDevice.mockResolvedValue(undefined);
+
+    render(<ScannerView onScanned={onScanned} />);
+
+    fireEvent.change(screen.getByLabelText(/code-barres/i), {
+      target: { value: "12345" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /valider/i }));
+
+    expect(onScanned).not.toHaveBeenCalled();
+    expect(screen.getByText(/13 chiffres/i)).toBeInTheDocument();
   });
 });
