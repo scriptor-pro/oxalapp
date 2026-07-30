@@ -38,7 +38,7 @@ describe("matchIngredients", () => {
     expect(result.level).toBe("très élevé");
   });
 
-  it("reclassifies green tea as élevé after recalibration (was faible)", () => {
+  it("reclassifies green tea as élevé after recalibration (unchanged)", () => {
     const result = matchIngredients("Extrait de thé vert, eau, sucre");
 
     expect(result.level).toBe("élevé");
