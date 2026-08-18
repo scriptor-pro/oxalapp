@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">oxalapp</string>
+    <string name="title_activity_main">oxalapp</string>
+    <string name="package_name">com.oxalapp.app</string>
+    <string name="custom_url_scheme">com.oxalapp.app</string>
+</resources>
