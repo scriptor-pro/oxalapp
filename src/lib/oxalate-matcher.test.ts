@@ -138,4 +138,48 @@ describe("matchIngredients", () => {
 
     expect(result.level).toBe("élevé");
   });
+
+  it("detects tomate as élevé", () => {
+    const result = matchIngredients("Sauce tomate, sel, sucre");
+
+    expect(result.level).toBe("élevé");
+  });
+
+  it("detects pomme de terre as très élevé", () => {
+    const result = matchIngredients("Pommes de terre, huile de tournesol, sel");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects blette as très élevé", () => {
+    const result = matchIngredients("Blettes, eau, sel");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects Dutch aardappel/aardappelen as très élevé", () => {
+    const result = matchIngredients("Aardappelen, zonnebloemolie, zout");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("does not double-report when a longer keyword contains a shorter one (graines de fenouil vs fenouil)", () => {
+    const result = matchIngredients("Graines de fenouil, sel");
+
+    expect(result.matchedIngredients).toHaveLength(1);
+    expect(result.matchedIngredients[0].ingredientText).toBe("graines de fenouil");
+  });
+
+  it("does not double-report when a longer keyword contains a shorter one (graines de celeri vs celeri)", () => {
+    const result = matchIngredients("Graines de céleri, sel");
+
+    expect(result.matchedIngredients).toHaveLength(1);
+    expect(result.matchedIngredients[0].ingredientText).toBe("graines de celeri");
+  });
+
+  it("does not double-report French and Dutch synonyms of the same dbItem (amande/amandel)", () => {
+    const result = matchIngredients("Amandel, suiker");
+
+    expect(result.matchedIngredients).toHaveLength(1);
+  });
 });

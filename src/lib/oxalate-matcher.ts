@@ -87,6 +87,35 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "ble en grains", dbItem: "Grains, Wheat berries", level: "élevé" },
   { keyword: "ble concasse", dbItem: "Grains, Wheat berries", level: "élevé" },
 
+  // Élargissement légumes 2026-08-20, même méthode et même source
+  // (oxalate-database.json, niveaux élevé/très élevé) que l'élargissement
+  // céréales/légumineuses/fruits à coque/épices ci-dessus. "tomate" et
+  // "pomme de terre" sont volontairement gardés malgré leur fréquence
+  // très élevée dans les produits transformés (choix explicite de
+  // l'utilisateur — préférer alerter souvent plutôt que jamais, à la
+  // différence de "blé"/"riz" exclus plus haut pour la raison inverse).
+  { keyword: "algue seche", dbItem: "Algae, dried", level: "très élevé" },
+  { keyword: "artichaut", dbItem: "Artichoke, boiled", level: "élevé" },
+  { keyword: "pousse de bambou", dbItem: "Bamboo shoots", level: "très élevé" },
+  { keyword: "margose", dbItem: "Bitter Gourd, Fresh", level: "très élevé" },
+  { keyword: "chou de bruxelles", dbItem: "Brussel Sprouts, raw", level: "élevé" },
+  { keyword: "nopal", dbItem: "Cactus, Nopal, Raw", level: "très élevé" },
+  { keyword: "carotte", dbItem: "Carrots, raw", level: "très élevé" },
+  { keyword: "celeri", dbItem: "Celery, raw, stem only, diced", level: "très élevé" },
+  { keyword: "pissenlit", dbItem: "Dandelion greens, red rib, raw or boiled", level: "élevé" },
+  { keyword: "aubergine", dbItem: "Eggplant, raw, boiled, baked or roasted", level: "très élevé" },
+  { keyword: "fenouil", dbItem: "Fennel, boiled", level: "élevé" },
+  { keyword: "coeur de palmier", dbItem: "Hearts of Palm, whole", level: "très élevé" },
+  { keyword: "poireau", dbItem: "Leeks, raw", level: "élevé" },
+  { keyword: "blette", dbItem: "Mangold or Spinach beet", level: "très élevé" },
+  { keyword: "gombo", dbItem: "Okra, Boiled, simmered", level: "très élevé" },
+  { keyword: "panais", dbItem: "Parsnips, boiled", level: "élevé" },
+  { keyword: "pomme de terre", pluralOverride: "pommes de terre", dbItem: "Potato, White, deep fried", level: "très élevé" },
+  { keyword: "pourpier", dbItem: "Purslane, leaves", level: "très élevé" },
+  { keyword: "oseille", dbItem: "Sorrel, raw", level: "très élevé" },
+  { keyword: "tomate", dbItem: "Tomato, Variety, All Colors, Raw", level: "élevé" },
+  { keyword: "igname", dbItem: "Yam, flesh only, baked", level: "très élevé" },
+
   // Synonymes néerlandais 2026-08-20 : de nombreux produits sur Open Food
   // Facts pour le marché belge sont étiquetés uniquement en néerlandais
   // (ex: "Kurkuma" plutôt que "curcuma"). Traductions non revues par un
@@ -135,6 +164,30 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "kurkuma", dbItem: "Turmeric", level: "très élevé" },
   { keyword: "walnoot", pluralOverride: "walnoten", dbItem: "Nuts, Walnuts", level: "élevé" },
   { keyword: "tarwekorrels", dbItem: "Grains, Wheat berries", level: "élevé" },
+
+  // Synonymes néerlandais pour l'élargissement légumes ci-dessus (même
+  // 2026-08-20). "nopal" et "coeur de palmier" n'ont pas de synonyme NL
+  // ici faute de confiance suffisante dans la traduction (mêmes critères
+  // que les 5 entrées omises plus haut).
+  { keyword: "artisjok", pluralOverride: "artisjokken", dbItem: "Artichoke, boiled", level: "élevé" },
+  { keyword: "bamboescheut", pluralOverride: "bamboescheuten", dbItem: "Bamboo shoots", level: "très élevé" },
+  { keyword: "bittere meloen", dbItem: "Bitter Gourd, Fresh", level: "très élevé" },
+  { keyword: "spruitje", dbItem: "Brussel Sprouts, raw", level: "élevé" },
+  { keyword: "wortel", pluralOverride: "wortelen", dbItem: "Carrots, raw", level: "très élevé" },
+  { keyword: "selderij", dbItem: "Celery, raw, stem only, diced", level: "très élevé" },
+  { keyword: "paardenbloem", dbItem: "Dandelion greens, red rib, raw or boiled", level: "élevé" },
+  // "aubergine" is spelled identically in Dutch, so no separate entry is
+  // needed — the French keyword above (line 106) already matches it.
+  { keyword: "venkel", dbItem: "Fennel, boiled", level: "élevé" },
+  { keyword: "prei", dbItem: "Leeks, raw", level: "élevé" },
+  { keyword: "snijbiet", dbItem: "Mangold or Spinach beet", level: "très élevé" },
+  { keyword: "okra", dbItem: "Okra, Boiled, simmered", level: "très élevé" },
+  { keyword: "pastinaak", dbItem: "Parsnips, boiled", level: "élevé" },
+  { keyword: "aardappel", pluralOverride: "aardappelen", dbItem: "Potato, White, deep fried", level: "très élevé" },
+  { keyword: "postelein", dbItem: "Purslane, leaves", level: "très élevé" },
+  { keyword: "zuring", dbItem: "Sorrel, raw", level: "très élevé" },
+  { keyword: "tomaat", pluralOverride: "tomaten", dbItem: "Tomato, Variety, All Colors, Raw", level: "élevé" },
+  { keyword: "yam", dbItem: "Yam, flesh only, baked", level: "très élevé" },
 ];
 
 function normalize(text: string): string {
@@ -176,7 +229,20 @@ export function matchIngredients(ingredientsText: string): MatchResult {
     }
   }
 
-  if (matched.length === 0) {
+  // Drop a match whose keyword is a substring of another match's keyword
+  // (e.g. "fenouil" inside "graines de fenouil") so a single mention of
+  // the more specific ingredient doesn't render as two duplicate bullets
+  // in ResultView for what is really one occurrence in the text.
+  const deduped = matched.filter(
+    (m) =>
+      !matched.some(
+        (other) =>
+          other !== m &&
+          normalize(other.ingredientText).includes(normalize(m.ingredientText))
+      )
+  );
+
+  if (deduped.length === 0) {
     return { level: "non déterminable", matchedIngredients: [] };
   }
 
@@ -187,9 +253,9 @@ export function matchIngredients(ingredientsText: string): MatchResult {
     "très élevé": 3,
   };
 
-  const highest = matched.reduce((max, m) =>
+  const highest = deduped.reduce((max, m) =>
     levelRank[m.level] > levelRank[max.level] ? m : max
   );
 
-  return { level: highest.level, matchedIngredients: matched };
+  return { level: highest.level, matchedIngredients: deduped };
 }
