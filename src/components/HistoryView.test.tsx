@@ -42,7 +42,7 @@ describe("HistoryView", () => {
 
     expect(await screen.findByText("Nutella")).toBeInTheDocument();
     expect(screen.getByText("Eau minérale")).toBeInTheDocument();
-    expect(screen.getByText(/très élevé/)).toBeInTheDocument();
+    expect(screen.getByText(/très élevé/i)).toBeInTheDocument();
   });
 
   it("shows scan detail when an entry is clicked", async () => {

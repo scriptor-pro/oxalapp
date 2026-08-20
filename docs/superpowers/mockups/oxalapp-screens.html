@@ -1,0 +1,694 @@
+<title>Écrans oxalapp</title>
+<style>
+  :root {
+    --bg: #f7f8f6;
+    --surface: #ffffff;
+    --border: #dde1dc;
+    --text: #1f2924;
+    --text-muted: #5b6b62;
+    --accent: #2d6a5e;
+    --accent-fg: #ffffff;
+    --placeholder: #c7cdc9;
+
+    --level-low-bg: #e3f3e5;
+    --level-low-fg: #1f7a34;
+    --level-mod-bg: #fdecd2;
+    --level-mod-fg: #b3600a;
+    --level-high-bg: #fbdcdc;
+    --level-high-fg: #c22b2b;
+    --level-vhigh-bg: #e6e4e1;
+    --level-vhigh-fg: #17181a;
+    --crystal-fg: #4b4b4b;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14211c;
+      --surface: #1b2b24;
+      --border: #2d423a;
+      --text: #eef3f0;
+      --text-muted: #a9bab1;
+      --accent: #6fbfa8;
+      --accent-fg: #0d1a15;
+      --placeholder: #2d423a;
+
+      --level-low-bg: #1c3324;
+      --level-low-fg: #6fd38a;
+      --level-mod-bg: #3a2a12;
+      --level-mod-fg: #f0a24d;
+      --level-high-bg: #3a1c1c;
+      --level-high-fg: #f0817e;
+      --level-vhigh-bg: #34302a;
+      --level-vhigh-fg: #f3f1ec;
+      --crystal-fg: #b4b4b4;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14211c;
+    --surface: #1b2b24;
+    --border: #2d423a;
+    --text: #eef3f0;
+    --text-muted: #a9bab1;
+    --accent: #6fbfa8;
+    --accent-fg: #0d1a15;
+    --placeholder: #2d423a;
+
+    --level-low-bg: #1c3324;
+    --level-low-fg: #6fd38a;
+    --level-mod-bg: #3a2a12;
+    --level-mod-fg: #f0a24d;
+    --level-high-bg: #3a1c1c;
+    --level-high-fg: #f0817e;
+    --level-vhigh-bg: #34302a;
+    --level-vhigh-fg: #f3f1ec;
+    --crystal-fg: #b4b4b4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0 0 0.25rem;
+    text-wrap: balance;
+  }
+  .intro {
+    max-width: 640px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .screens {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .screen-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .screen-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  /* --- Phone frame, full screen with tab bar --- */
+  .phone {
+    width: 280px;
+    height: 560px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    box-shadow: 0 10px 28px -14px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .screen-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.1rem 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .app-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .top-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* --- Tab bar --- */
+  .tab-bar {
+    display: flex;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.55rem 0 0.7rem;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+  .tab.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .tab svg { width: 20px; height: 20px; }
+  .tab.active svg path,
+  .tab.active svg circle,
+  .tab.active svg rect { stroke: var(--accent); }
+  .tab svg path,
+  .tab svg circle,
+  .tab svg rect { stroke: var(--text-muted); fill: none; stroke-width: 1.6; }
+
+  /* --- Home / idle screen --- */
+  .home-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .home-icon {
+    width: 56px;
+    height: 56px;
+    color: var(--accent);
+  }
+  .home-title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .home-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: 200px;
+    line-height: 1.4;
+  }
+  .scan-button {
+    margin-top: 0.5rem;
+    background: var(--accent);
+    color: var(--accent-fg);
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .manual-link {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: underline;
+    margin-top: 0.25rem;
+  }
+
+  /* --- Scanning screen --- */
+  .scan-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+  .viewfinder {
+    width: 200px;
+    height: 200px;
+    border-radius: 18px;
+    background: repeating-linear-gradient(
+      45deg, var(--placeholder), var(--placeholder) 6px, var(--bg) 6px, var(--bg) 12px
+    );
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .viewfinder-frame {
+    position: absolute;
+    inset: 14px;
+    border: 2px solid var(--accent-fg);
+    outline: 2px solid var(--accent);
+    border-radius: 10px;
+  }
+  .scan-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 220px;
+  }
+
+  /* --- Result screen --- */
+  .product-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .product-thumb {
+    width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    background: var(--placeholder);
+    margin-bottom: 0.75rem;
+  }
+  .product-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.32rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .crystals { display: inline-flex; gap: 2px; color: var(--crystal-fg); }
+  .crystal { width: 8px; height: 11px; }
+  .crystal path { fill: currentColor; }
+
+  .level-low { background: var(--level-low-bg); color: var(--level-low-fg); }
+  .level-mod { background: var(--level-mod-bg); color: var(--level-mod-fg); }
+  .level-high { background: var(--level-high-bg); color: var(--level-high-fg); }
+  .level-vhigh { background: var(--level-vhigh-bg); color: var(--level-vhigh-fg); }
+
+  .ingredient-line {
+    margin-top: 0.65rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .disclaimer {
+    font-size: 0.66rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    border-top: 1px solid var(--border);
+    padding-top: 0.6rem;
+    margin-top: 0.4rem;
+  }
+  .fav-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -0.35rem;
+  }
+  .fav-star { width: 18px; height: 18px; color: var(--text-muted); }
+
+  /* --- History screen --- */
+  .history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .history-item:last-child { border-bottom: none; }
+  .history-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .history-name { font-size: 0.82rem; font-weight: 600; }
+  .history-date { font-size: 0.68rem; color: var(--text-muted); }
+
+  /* --- Login screen --- */
+  .login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .login-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .login-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .field-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+  .field-input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.6rem 0.7rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .login-button {
+    margin-top: 0.4rem;
+    background: var(--accent);
+    color: var(--accent-fg);
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .login-footer-link {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+
+  footer {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.5;
+  }
+</style>
+
+<h1>Écrans principaux — oxalapp</h1>
+<p class="intro">
+  Direction validée : ton sobre/rassurant, badges vert→orange→rouge→noir,
+  cristaux gris neutres portant le niveau par leur nombre (1 à 4),
+  navigation par barre d'onglets en bas, écran d'accueil avec bouton
+  d'appel à l'action avant activation caméra.
+</p>
+
+<div class="screens">
+
+  <div class="screen-col">
+    <span class="screen-name">1 — Accueil</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="top-bar">
+          <span class="app-title">oxalapp</span>
+        </div>
+        <div class="home-screen">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <path d="M14 14h3M14 18h7M18 14v7"/>
+          </svg>
+          <div class="home-title">Scanner un produit</div>
+          <div class="home-sub">Vise le code-barres pour estimer sa teneur en oxalate.</div>
+          <button class="scan-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+            Scanner
+          </button>
+          <span class="manual-link">Saisir un produit manuellement</span>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">2 — Scan en cours</span>
+    <div class="phone">
+      <div class="screen-content" style="padding-bottom:0">
+        <div class="top-bar">
+          <span class="app-title">oxalapp</span>
+          <span class="top-sub">scan</span>
+        </div>
+        <div class="scan-view">
+          <div class="viewfinder">
+            <div class="viewfinder-frame"></div>
+          </div>
+          <p class="scan-hint">Visez le code-barres du produit.</p>
+          <span class="manual-link">Ou entrez les chiffres sous le code-barres</span>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">2b — Saisie manuelle</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="top-bar">
+          <span class="app-title">oxalapp</span>
+          <span class="top-sub">résultat</span>
+        </div>
+        <p class="scan-hint" style="text-align:left; margin-bottom:1rem;">
+          Produit non trouvé sur Open Food Facts.
+        </p>
+        <form>
+          <div class="field">
+            <label class="field-label">Nom du produit</label>
+            <div class="field-input">Confiture maison</div>
+          </div>
+          <div class="field">
+            <label class="field-label">Ingrédients</label>
+            <div class="field-input" style="height:70px;">Rhubarbe, sucre, jus de citron</div>
+          </div>
+          <div class="login-button" style="margin-top:0.5rem;">Valider</div>
+        </form>
+        <p class="login-footer-link" style="margin-top:1rem;">Retour</p>
+      </div>
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">3 — Résultat (très élevé)</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="top-bar">
+          <span class="app-title">oxalapp</span>
+          <span class="top-sub">résultat</span>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb"></div>
+          <div class="product-name">Barre chocolat noir 70%</div>
+          <span class="level-badge level-vhigh">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+            Très élevé
+          </span>
+          <div class="fav-row">
+            <svg class="fav-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.7 5.8 6.3.6-4.8 4.2 1.4 6.2L12 16.8 6.4 19.8l1.4-6.2L3 9.4l6.3-.6z"/></svg>
+          </div>
+          <p class="ingredient-line">
+            Ingrédients à risque détectés : <strong>cacao</strong>, <strong>amande</strong>.
+          </p>
+          <p class="disclaimer">
+            Estimation indicative — les valeurs d'oxalate varient selon la
+            variété, le sol, la cuisson, etc. Ce niveau reflète la
+            présence d'un ingrédient connu pour sa teneur en oxalate, pas
+            une quantité mesurée dans ce produit précis.
+          </p>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">4 — Résultat (faible)</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="top-bar">
+          <span class="app-title">oxalapp</span>
+          <span class="top-sub">résultat</span>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb"></div>
+          <div class="product-name">Yaourt nature</div>
+          <span class="level-badge level-low">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+            Faible
+          </span>
+          <div class="fav-row">
+            <svg class="fav-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.7 5.8 6.3.6-4.8 4.2 1.4 6.2L12 16.8 6.4 19.8l1.4-6.2L3 9.4l6.3-.6z"/></svg>
+          </div>
+          <p class="ingredient-line">Aucun ingrédient à risque détecté.</p>
+          <p class="disclaimer">
+            Estimation indicative — les valeurs d'oxalate varient selon la
+            variété, le sol, la cuisson, etc.
+          </p>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">5 — Historique</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="top-bar">
+          <span class="app-title">Historique</span>
+        </div>
+        <div class="history-item">
+          <div class="history-meta">
+            <span class="history-name">Barre chocolat noir 70%</span>
+            <span class="history-date">Aujourd'hui, 14:32</span>
+          </div>
+          <span class="level-badge level-vhigh">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+          </span>
+        </div>
+        <div class="history-item">
+          <div class="history-meta">
+            <span class="history-name">Yaourt nature</span>
+            <span class="history-date">Hier, 09:10</span>
+          </div>
+          <span class="level-badge level-low">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+          </span>
+        </div>
+        <div class="history-item">
+          <div class="history-meta">
+            <span class="history-name">Curcuma en poudre</span>
+            <span class="history-date">18 août, 18:47</span>
+          </div>
+          <span class="level-badge level-vhigh">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+          </span>
+        </div>
+        <div class="history-item">
+          <div class="history-meta">
+            <span class="history-name">Compote de pomme</span>
+            <span class="history-date">15 août, 12:03</span>
+          </div>
+          <span class="level-badge level-mod">
+            <span class="crystals">
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3"/></svg>
+          Scanner
+        </div>
+        <div class="tab active">
+          <svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 14l3-3 3 3 4-5"/></svg>
+          Historique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-col">
+    <span class="screen-name">6 — Connexion</span>
+    <div class="phone">
+      <div class="screen-content">
+        <div class="login-form">
+          <div class="login-title">oxalapp</div>
+          <div class="login-sub">Connectez-vous pour retrouver votre historique.</div>
+          <div>
+            <div class="field-label">Email</div>
+            <div class="field-input">vous@exemple.com</div>
+          </div>
+          <div>
+            <div class="field-label">Mot de passe</div>
+            <div class="field-input">••••••••</div>
+          </div>
+          <div class="login-button">Se connecter</div>
+          <div class="login-footer-link">Mot de passe oublié ?</div>
+          <div class="login-footer-link">Créer un compte</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Rendu en thème clair et sombre selon le thème du système. Icônes de la
+  barre d'onglets et cadre de visée sont des placeholders de structure,
+  pas le dessin final. Vignette produit (rectangle gris) représente une
+  future image issue d'Open Food Facts.
+</footer>

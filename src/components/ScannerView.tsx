@@ -56,22 +56,31 @@ export function ScannerView({ onScanned }: ScannerViewProps) {
   }, []);
 
   const manualEntryForm = (
-    <form onSubmit={handleManualSubmit}>
-      <label htmlFor="manual-ean">Ou entrez les chiffres sous le code-barres</label>
-      <input
-        id="manual-ean"
-        inputMode="numeric"
-        value={manualEan}
-        onChange={(e) => setManualEan(e.target.value)}
-      />
-      <button type="submit">Valider</button>
-      {manualError && <p role="alert">Le code doit contenir exactement 13 chiffres.</p>}
+    <form className="manual-form" onSubmit={handleManualSubmit}>
+      <div className="field">
+        <label htmlFor="manual-ean" className="manual-link">
+          Ou entrez les chiffres sous le code-barres
+        </label>
+        <input
+          id="manual-ean"
+          className="field-input"
+          inputMode="numeric"
+          value={manualEan}
+          onChange={(e) => setManualEan(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="primary-button">Valider</button>
+      {manualError && (
+        <p className="sync-error" role="alert">
+          Le code doit contenir exactement 13 chiffres.
+        </p>
+      )}
     </form>
   );
 
   if (permissionError) {
     return (
-      <div>
+      <div className="screen-content scan-view">
         <p>
           Impossible d'accéder à la caméra. Vérifiez l'autorisation caméra
           dans les réglages de votre navigateur.
@@ -82,9 +91,12 @@ export function ScannerView({ onScanned }: ScannerViewProps) {
   }
 
   return (
-    <div>
-      <p>Visez le code-barres du produit.</p>
-      <video ref={videoRef} style={{ width: "100%" }} />
+    <div className="screen-content scan-view">
+      <div className="viewfinder">
+        <video ref={videoRef} className="viewfinder-video" />
+        <div className="viewfinder-frame" aria-hidden="true" />
+      </div>
+      <p className="scan-hint">Visez le code-barres du produit.</p>
       {manualEntryForm}
     </div>
   );

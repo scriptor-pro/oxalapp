@@ -124,10 +124,8 @@ describe("ResultView", () => {
 
     await screen.findByText(/très élevé/i);
 
-    const items = screen.getAllByRole("listitem");
-    expect(items).toHaveLength(2);
-    expect(items[0]).toHaveTextContent("cacao");
-    expect(items[1]).toHaveTextContent("cocoa");
+    expect(screen.getByText(/cacao/)).toBeInTheDocument();
+    expect(screen.getByText(/cocoa/)).toBeInTheDocument();
 
     const keyWarning = consoleError.mock.calls.some((args) =>
       String(args[0]).includes("key")

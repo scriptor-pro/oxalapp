@@ -29,6 +29,28 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: /historique/i })).toBeInTheDocument();
   });
 
+  it("shows a home screen with a scan call-to-action before the camera is activated", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+
+    render(<App />);
+
+    expect(
+      screen.getByRole("button", { name: /scanner un produit/i })
+    ).toBeInTheDocument();
+  });
+
+  it("activates the camera view only after the scan button is clicked", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+
+    render(<App />);
+
+    expect(screen.queryByText(/visez le code-barres/i)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /scanner un produit/i }));
+
+    expect(screen.getByText(/visez le code-barres/i)).toBeInTheDocument();
+  });
+
   it("switches to the history tab when clicked", () => {
     (pb.authStore as unknown as { isValid: boolean }).isValid = true;
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({

@@ -43,10 +43,10 @@ export function ResetPasswordView({
 
   if (success) {
     return (
-      <div>
+      <div className="screen-content login-form">
         <h1>oxalapp</h1>
         <p>Mot de passe réinitialisé. Vous pouvez maintenant vous connecter.</p>
-        <button type="button" onClick={onResetComplete}>
+        <button type="button" className="text-button" onClick={onResetComplete}>
           Aller à la connexion
         </button>
       </div>
@@ -55,10 +55,10 @@ export function ResetPasswordView({
 
   if (tokenInvalid) {
     return (
-      <div>
+      <div className="screen-content login-form">
         <h1>oxalapp</h1>
         <p>Ce lien invalide ou expiré ne peut plus être utilisé.</p>
-        <button type="button" onClick={onRequestNewReset}>
+        <button type="button" className="text-button" onClick={onRequestNewReset}>
           Redemander un lien
         </button>
       </div>
@@ -66,35 +66,41 @@ export function ResetPasswordView({
   }
 
   return (
-    <div>
+    <div className="screen-content login-form">
       <h1>oxalapp</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="new-password">Nouveau mot de passe</label>
-        <input
-          id="new-password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength={8}
-        />
+        <div className="field">
+          <label htmlFor="new-password" className="field-label">Nouveau mot de passe</label>
+          <input
+            id="new-password"
+            type="password"
+            className="field-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={8}
+          />
+        </div>
 
-        <label htmlFor="confirm-password">Confirmer le mot de passe</label>
-        <input
-          id="confirm-password"
-          type="password"
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-          required
-          minLength={8}
-        />
-        <p style={{ color: password.length >= 8 ? "green" : undefined }}>
+        <div className="field">
+          <label htmlFor="confirm-password" className="field-label">Confirmer le mot de passe</label>
+          <input
+            id="confirm-password"
+            type="password"
+            className="field-input"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            required
+            minLength={8}
+          />
+        </div>
+        <p className={password.length >= 8 ? "field-hint field-hint-valid" : "field-hint"}>
           {password.length >= 8 ? "✓ " : ""}Minimum 8 caractères.
         </p>
 
-        {error && <p role="alert">{error}</p>}
+        {error && <p className="sync-error" role="alert">{error}</p>}
 
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" className="primary-button" disabled={isSubmitting}>
           Réinitialiser
         </button>
       </form>

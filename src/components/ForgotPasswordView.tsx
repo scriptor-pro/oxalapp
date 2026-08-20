@@ -25,10 +25,10 @@ export function ForgotPasswordView({ onBackToLogin }: ForgotPasswordViewProps) {
 
   if (submitted) {
     return (
-      <div>
+      <div className="screen-content login-form">
         <h1>oxalapp</h1>
         <p>Si un compte existe avec cet email, un lien de réinitialisation a été envoyé.</p>
-        <button type="button" onClick={onBackToLogin}>
+        <button type="button" className="text-button" onClick={onBackToLogin}>
           Retour à la connexion
         </button>
       </div>
@@ -36,22 +36,25 @@ export function ForgotPasswordView({ onBackToLogin }: ForgotPasswordViewProps) {
   }
 
   return (
-    <div>
+    <div className="screen-content login-form">
       <h1>oxalapp</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="forgot-email">Email</label>
-        <input
-          id="forgot-email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={isSubmitting}>
+        <div className="field">
+          <label htmlFor="forgot-email" className="field-label">Email</label>
+          <input
+            id="forgot-email"
+            type="email"
+            className="field-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="primary-button" disabled={isSubmitting}>
           Envoyer
         </button>
       </form>
-      <button type="button" onClick={onBackToLogin}>
+      <button type="button" className="text-button" onClick={onBackToLogin}>
         Retour à la connexion
       </button>
     </div>

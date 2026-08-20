@@ -1,0 +1,335 @@
+<title>Direction visuelle oxalapp</title>
+<style>
+  :root {
+    --bg: #f7f8f6;
+    --surface: #ffffff;
+    --border: #dde1dc;
+    --text: #1f2924;
+    --text-muted: #5b6b62;
+    --accent: #2d6a5e;
+
+    --level-low-bg: #e3f3e5;
+    --level-low-fg: #1f7a34;
+    --level-mod-bg: #fdecd2;
+    --level-mod-fg: #b3600a;
+    --level-high-bg: #fbdcdc;
+    --level-high-fg: #c22b2b;
+    --level-vhigh-bg: #e6e4e1;
+    --level-vhigh-fg: #17181a;
+    --crystal-fg: #4b4b4b;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14211c;
+      --surface: #1b2b24;
+      --border: #2d423a;
+      --text: #eef3f0;
+      --text-muted: #a9bab1;
+      --accent: #6fbfa8;
+
+      --level-low-bg: #1c3324;
+      --level-low-fg: #6fd38a;
+      --level-mod-bg: #3a2a12;
+      --level-mod-fg: #f0a24d;
+      --level-high-bg: #3a1c1c;
+      --level-high-fg: #f0817e;
+      --level-vhigh-bg: #34302a;
+      --level-vhigh-fg: #f3f1ec;
+      --crystal-fg: #b4b4b4;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14211c;
+    --surface: #1b2b24;
+    --border: #2d423a;
+    --text: #eef3f0;
+    --text-muted: #a9bab1;
+    --accent: #6fbfa8;
+
+    --level-low-bg: #1c3324;
+    --level-low-fg: #6fd38a;
+    --level-mod-bg: #3a2a12;
+    --level-mod-fg: #f0a24d;
+    --level-high-bg: #3a1c1c;
+    --level-high-fg: #f0817e;
+    --level-vhigh-bg: #34302a;
+    --level-vhigh-fg: #f3f1ec;
+    --crystal-fg: #b4b4b4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0 0 0.25rem;
+    text-wrap: balance;
+  }
+  .intro {
+    max-width: 640px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  /* --- Phone frame --- */
+  .phones {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .phone-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .phone-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .phone {
+    width: 260px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 1rem;
+    box-shadow: 0 8px 24px -12px rgba(0,0,0,0.25);
+  }
+
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .app-title {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .app-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .product-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .product-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .crystals {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--crystal-fg);
+  }
+  .crystal {
+    width: 9px;
+    height: 12px;
+  }
+  .crystal.filled path { fill: currentColor; }
+  .crystal.empty path { fill: none; stroke: currentColor; stroke-width: 1.4; opacity: 0.35; }
+
+  .level-low { background: var(--level-low-bg); color: var(--level-low-fg); }
+  .level-mod { background: var(--level-mod-bg); color: var(--level-mod-fg); }
+  .level-high { background: var(--level-high-bg); color: var(--level-high-fg); }
+  .level-vhigh { background: var(--level-vhigh-bg); color: var(--level-vhigh-fg); }
+
+  .ingredient-line {
+    margin-top: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* --- Crystal icon detail row --- */
+  .crystal-detail {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+  }
+  .crystal-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .crystal-sample .crystals .crystal {
+    width: 14px;
+    height: 19px;
+  }
+  .crystal-sample-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  footer {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    text-align: center;
+  }
+</style>
+
+<h1>Direction visuelle — oxalapp</h1>
+<p class="intro">
+  Trois variantes de palette (nuances vert→rouge atténuées, ton
+  rassurant/sobre) et le pictogramme cristal d'oxalate de calcium en
+  situation. Chaque niveau reste identifiable par le texte et le nombre
+  de cristaux, jamais par la couleur seule.
+</p>
+
+<div>
+  <p class="section-label">Option orange pour « modéré » — #ff8f00 demandé, deux façons de l'utiliser lisiblement</p>
+  <div class="crystal-detail">
+    <div class="crystal-sample">
+      <span class="level-badge" style="background:#fdecd2; color:#a85e00">
+        <span class="crystals">
+          <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+          <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        </span>
+        Modéré
+      </span>
+      <span class="crystal-sample-label">A — texte assombri #a85e00 (contraste 4.62:1)</span>
+    </div>
+    <div class="crystal-sample">
+      <span class="level-badge" style="background:#ff8f00; color:#1a1200">
+        <span class="crystals">
+          <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+          <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        </span>
+        Modéré
+      </span>
+      <span class="crystal-sample-label">B — fond #ff8f00 plein, texte foncé (contraste 8.12:1)</span>
+    </div>
+  </div>
+</div>
+
+<div>
+  <p class="section-label">Pictogramme cristal — 1 à 4 selon le niveau</p>
+  <div class="crystal-detail">
+    <div class="crystal-sample">
+      <span class="crystals" style="color:var(--crystal-fg)">
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+      </span>
+      <span class="crystal-sample-label">faible</span>
+    </div>
+    <div class="crystal-sample">
+      <span class="crystals" style="color:var(--crystal-fg)">
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+      </span>
+      <span class="crystal-sample-label">modéré</span>
+    </div>
+    <div class="crystal-sample">
+      <span class="crystals" style="color:var(--crystal-fg)">
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+      </span>
+      <span class="crystal-sample-label">élevé</span>
+    </div>
+    <div class="crystal-sample">
+      <span class="crystals" style="color:var(--crystal-fg)">
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+        <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+      </span>
+      <span class="crystal-sample-label">très élevé</span>
+    </div>
+  </div>
+</div>
+
+<div>
+  <p class="section-label">Écran résultat — application des 4 niveaux</p>
+  <div class="phones">
+    <div class="phone-col">
+      <span class="phone-name">Produit A</span>
+      <div class="phone">
+        <div class="app-header">
+          <span class="app-title">oxalapp</span>
+          <span class="app-sub">résultat</span>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Barre chocolat noir 70%</div>
+          <span class="level-badge level-vhigh">
+            <span class="crystals">
+              <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+              <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+            Très élevé
+          </span>
+          <p class="ingredient-line">Cacao, amande — deux ingrédients à risque détectés.</p>
+        </div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <span class="phone-name">Produit B</span>
+      <div class="phone">
+        <div class="app-header">
+          <span class="app-title">oxalapp</span>
+          <span class="app-sub">résultat</span>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Yaourt nature</div>
+          <span class="level-badge level-low">
+            <span class="crystals">
+              <svg class="crystal filled" viewBox="0 0 9 12"><path d="M4.5 0 L8 4 L6.5 12 L2.5 12 L1 4 Z"/></svg>
+            </span>
+            Faible
+          </span>
+          <p class="ingredient-line">Aucun ingrédient à risque détecté.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Rendu en thème clair et sombre — bascule via le thème du système.</footer>

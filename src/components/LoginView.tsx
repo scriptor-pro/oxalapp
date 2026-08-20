@@ -40,58 +40,64 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
   }
 
   return (
-    <div>
+    <div className="screen-content login-form">
       <h1>oxalapp</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <div className="field">
+          <label htmlFor="email" className="field-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            className="field-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength={mode === "signup" ? 8 : undefined}
-        />
+        <div className="field">
+          <label htmlFor="password" className="field-label">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            className="field-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={mode === "signup" ? 8 : undefined}
+          />
+        </div>
         {mode === "signup" && (
-          <p style={{ color: password.length >= 8 ? "green" : undefined }}>
+          <p className={password.length >= 8 ? "field-hint field-hint-valid" : "field-hint"}>
             {password.length >= 8 ? "✓ " : ""}Minimum 8 caractères.
           </p>
         )}
 
-        {error && <p role="alert">{error}</p>}
+        {error && <p className="sync-error" role="alert">{error}</p>}
 
         {mode === "login" ? (
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit" className="primary-button" disabled={isSubmitting}>
             Se connecter
           </button>
         ) : (
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit" className="primary-button" disabled={isSubmitting}>
             S'inscrire
           </button>
         )}
       </form>
 
       {mode === "login" ? (
-        <button type="button" onClick={() => setMode("signup")} disabled={isSubmitting}>
+        <button type="button" className="text-button" onClick={() => setMode("signup")} disabled={isSubmitting}>
           Créer un compte
         </button>
       ) : (
-        <button type="button" onClick={() => setMode("login")} disabled={isSubmitting}>
+        <button type="button" className="text-button" onClick={() => setMode("login")} disabled={isSubmitting}>
           Retour à la connexion
         </button>
       )}
 
       {mode === "login" && (
-        <button type="button" onClick={() => setMode("forgot-password")} disabled={isSubmitting}>
+        <button type="button" className="text-button" onClick={() => setMode("forgot-password")} disabled={isSubmitting}>
           Mot de passe oublié ?
         </button>
       )}
