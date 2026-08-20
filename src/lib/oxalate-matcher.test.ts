@@ -182,4 +182,30 @@ describe("matchIngredients", () => {
 
     expect(result.matchedIngredients).toHaveLength(1);
   });
+
+  it("detects myrtille as très élevé", () => {
+    const result = matchIngredients("Myrtilles, sucre, pectine");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects grenade as très élevé", () => {
+    const result = matchIngredients("Jus de grenade, eau");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("does not false-positive groseille against the oseille keyword", () => {
+    const result = matchIngredients("Confiture de groseille, sucre");
+
+    expect(
+      result.matchedIngredients.some((m) => m.ingredientText === "oseille")
+    ).toBe(false);
+  });
+
+  it("detects Dutch bosbes (blueberry) as très élevé", () => {
+    const result = matchIngredients("Bosbessen, suiker");
+
+    expect(result.level).toBe("très élevé");
+  });
 });

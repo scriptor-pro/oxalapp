@@ -116,6 +116,30 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "tomate", dbItem: "Tomato, Variety, All Colors, Raw", level: "élevé" },
   { keyword: "igname", dbItem: "Yam, flesh only, baked", level: "très élevé" },
 
+  // Élargissement fruits 2026-08-20, même méthode/source que les passes
+  // précédentes. Le sureau, le cassis et la groseille (baies) n'ont pas
+  // de synonyme NL ici — traduction NL trop ambiguë/composée pour être
+  // sûre sans revue native (voir principe déjà appliqué : mieux vaut
+  // omettre qu'un mot-clé faux). "mure" et "orange" ont été retirés après
+  // revue de code : "mure" collide (une fois désaccentué) avec l'adjectif
+  // très courant "mûr/mûre" ("banane mûre"), et "orange" est un mot
+  // générique de couleur/arôme fréquent hors contexte du fruit
+  // ("colorant orange") — même risque que "blé"/"noix" déjà exclus.
+  { keyword: "abricot", dbItem: "Apricots, Fresh", level: "élevé" },
+  { keyword: "myrtille", dbItem: "Berries, Blueberries, fresh or frozen", level: "très élevé" },
+  { keyword: "canneberge", dbItem: "Berries, Cranberries", level: "élevé" },
+  { keyword: "sureau", dbItem: "Berries, Elderberries, raw, black", level: "très élevé" },
+  { keyword: "framboise", dbItem: "Berries, Raspberries, raw", level: "élevé" },
+  { keyword: "fraise", dbItem: "Berries, Strawberries, canned", level: "élevé" },
+  { keyword: "cassis", dbItem: "Currants, Black, raw", level: "élevé" },
+  { keyword: "groseille", dbItem: "Currants, Red, raw", level: "élevé" },
+  { keyword: "figue", dbItem: "Figs, fresh", level: "élevé" },
+  { keyword: "goyave", dbItem: "Guava", level: "très élevé" },
+  { keyword: "kiwi", dbItem: "Kiwi, fresh, raw", level: "très élevé" },
+  { keyword: "grenade", dbItem: "Pomegranate, seed and juice sacs", level: "très élevé" },
+  { keyword: "pruneau", dbItem: "Prunes, pitted", level: "très élevé" },
+  { keyword: "carambole", dbItem: "Star Fruit or Carambola, raw", level: "très élevé" },
+
   // Synonymes néerlandais 2026-08-20 : de nombreux produits sur Open Food
   // Facts pour le marché belge sont étiquetés uniquement en néerlandais
   // (ex: "Kurkuma" plutôt que "curcuma"). Traductions non revues par un
@@ -188,6 +212,19 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "zuring", dbItem: "Sorrel, raw", level: "très élevé" },
   { keyword: "tomaat", pluralOverride: "tomaten", dbItem: "Tomato, Variety, All Colors, Raw", level: "élevé" },
   { keyword: "yam", dbItem: "Yam, flesh only, baked", level: "très élevé" },
+
+  // Synonymes néerlandais pour l'élargissement fruits ci-dessus (même
+  // 2026-08-20). Canneberge, cassis, groseille, pruneau et carambole
+  // n'ont pas de synonyme NL ici faute de confiance suffisante.
+  { keyword: "abrikoos", pluralOverride: "abrikozen", dbItem: "Apricots, Fresh", level: "élevé" },
+  { keyword: "braam", pluralOverride: "bramen", dbItem: "Berries, Blackberries, fresh", level: "très élevé" },
+  { keyword: "bosbes", pluralOverride: "bosbessen", dbItem: "Berries, Blueberries, fresh or frozen", level: "très élevé" },
+  { keyword: "framboos", pluralOverride: "frambozen", dbItem: "Berries, Raspberries, raw", level: "élevé" },
+  { keyword: "aardbei", pluralOverride: "aardbeien", dbItem: "Berries, Strawberries, canned", level: "élevé" },
+  { keyword: "vijg", pluralOverride: "vijgen", dbItem: "Figs, fresh", level: "élevé" },
+  { keyword: "guave", dbItem: "Guava", level: "très élevé" },
+  { keyword: "sinaasappel", pluralOverride: "sinaasappelen", dbItem: "Oranges, fresh, variety", level: "élevé" },
+  { keyword: "granaatappel", pluralOverride: "granaatappels", dbItem: "Pomegranate, seed and juice sacs", level: "très élevé" },
 ];
 
 function normalize(text: string): string {
