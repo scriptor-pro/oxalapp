@@ -140,6 +140,16 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "pruneau", dbItem: "Prunes, pitted", level: "très élevé" },
   { keyword: "carambole", dbItem: "Star Fruit or Carambola, raw", level: "très élevé" },
 
+  // Élargissement laitiers/boissons 2026-08-20. La plupart des entrées
+  // OHF de ces catégories (laits/yaourts végétaux à base d'amande,
+  // cajou, noisette, soja) sont déjà couvertes par les mots-clés de
+  // fruits à coque ci-dessus — seuls les 3 ingrédients ci-dessous
+  // n'avaient pas d'équivalent déjà présent.
+  { keyword: "lait d'avoine", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
+  { keyword: "lait d avoine", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
+  { keyword: "eau de coco", dbItem: "Coconut Water", level: "élevé" },
+  { keyword: "the mate", dbItem: "Tea, Herbal, Mate", level: "élevé" },
+
   // Synonymes néerlandais 2026-08-20 : de nombreux produits sur Open Food
   // Facts pour le marché belge sont étiquetés uniquement en néerlandais
   // (ex: "Kurkuma" plutôt que "curcuma"). Traductions non revues par un
@@ -225,6 +235,10 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "guave", dbItem: "Guava", level: "très élevé" },
   { keyword: "sinaasappel", pluralOverride: "sinaasappelen", dbItem: "Oranges, fresh, variety", level: "élevé" },
   { keyword: "granaatappel", pluralOverride: "granaatappels", dbItem: "Pomegranate, seed and juice sacs", level: "très élevé" },
+
+  // Synonymes néerlandais pour l'élargissement laitiers/boissons ci-dessus.
+  { keyword: "havermelk", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
+  { keyword: "kokoswater", dbItem: "Coconut Water", level: "élevé" },
 ];
 
 function normalize(text: string): string {

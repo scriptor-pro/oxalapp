@@ -208,4 +208,22 @@ describe("matchIngredients", () => {
 
     expect(result.level).toBe("très élevé");
   });
+
+  it("detects lait d'avoine as élevé", () => {
+    const result = matchIngredients("Lait d'avoine, eau, sel");
+
+    expect(result.level).toBe("élevé");
+  });
+
+  it("detects eau de coco as élevé", () => {
+    const result = matchIngredients("Eau de coco, sucre de canne");
+
+    expect(result.level).toBe("élevé");
+  });
+
+  it("detects the mate as élevé", () => {
+    const result = matchIngredients("Thé mate, arôme naturel");
+
+    expect(result.level).toBe("élevé");
+  });
 });
