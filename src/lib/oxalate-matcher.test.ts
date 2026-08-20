@@ -108,4 +108,34 @@ describe("matchIngredients", () => {
       result.matchedIngredients.some((m) => m.ingredientText === "anis")
     ).toBe(true);
   });
+
+  it("detects Dutch-labeled kurkuma as très élevé", () => {
+    const result = matchIngredients("Kurkuma");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects Dutch-labeled spinazie (spinach) as très élevé", () => {
+    const result = matchIngredients("Spinazie, water, zout");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects Dutch plural hazelnoten (-noot/-noten stem change)", () => {
+    const result = matchIngredients("Hazelnoten, suiker");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects Dutch plural walnoten (-noot/-noten stem change)", () => {
+    const result = matchIngredients("Walnoten");
+
+    expect(result.level).toBe("élevé");
+  });
+
+  it("detects Dutch plural linzen (-e/-en stem change)", () => {
+    const result = matchIngredients("Groene linzen, water, zout");
+
+    expect(result.level).toBe("élevé");
+  });
 });

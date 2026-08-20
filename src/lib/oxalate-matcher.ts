@@ -16,6 +16,11 @@ interface KnownIngredient {
   keyword: string; // matched as a normalized substring
   dbItem: string;
   level: OxalateLevel;
+  // Set when the keyword's plural isn't a simple trailing "s" (e.g. Dutch
+  // stem-change plurals like "hazelnoot" -> "hazelnoten", "linze" ->
+  // "linzen"). When present, this exact form is matched instead of
+  // appending "s?" to the keyword.
+  pluralOverride?: string;
 }
 
 // Curated high-signal keywords. Sourced from CLAUDE.md's list of known
@@ -81,6 +86,55 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "noix de grenoble", dbItem: "Nuts, Walnuts", level: "élevé" },
   { keyword: "ble en grains", dbItem: "Grains, Wheat berries", level: "élevé" },
   { keyword: "ble concasse", dbItem: "Grains, Wheat berries", level: "élevé" },
+
+  // Synonymes néerlandais 2026-08-20 : de nombreux produits sur Open Food
+  // Facts pour le marché belge sont étiquetés uniquement en néerlandais
+  // (ex: "Kurkuma" plutôt que "curcuma"). Traductions non revues par un
+  // locuteur natif — entrées omises quand le traducteur n'était pas
+  // confiant plutôt que de risquer une correspondance fausse (voir
+  // discussion en session : piment de la Jamaïque, myrte citronné,
+  // haricots frits, noix de soja et blé concassé n'ont pas de synonyme NL
+  // ici pour cette raison).
+  { keyword: "spinazie", dbItem: "Spinach", level: "très élevé" },
+  { keyword: "rabarber", dbItem: "Rhubarb, stewed or canned", level: "très élevé" },
+  { keyword: "amandel", dbItem: "Almonds", level: "très élevé" },
+  { keyword: "tarwezemelen", dbItem: "Wheat Bran", level: "très élevé" },
+  { keyword: "biet", dbItem: "Beets, boiled, steamed or pickled", level: "très élevé" },
+  { keyword: "zoete aardappel", dbItem: "Sweet Potato, Orange", level: "très élevé" },
+  { keyword: "zwarte thee", dbItem: "Tea, Black", level: "très élevé" },
+  { keyword: "groene thee", dbItem: "Tea, Green", level: "élevé" },
+  { keyword: "anijs", dbItem: "Anise", level: "élevé" },
+  { keyword: "basilicum", dbItem: "Basil, Sweet, Fresh", level: "élevé" },
+  { keyword: "paranoot", pluralOverride: "paranoten", dbItem: "Brazil Nuts", level: "très élevé" },
+  { keyword: "boekweit", dbItem: "Cereals, Buckwheat", level: "très élevé" },
+  { keyword: "cashewnoot", pluralOverride: "cashewnoten", dbItem: "Nuts, Cashew", level: "très élevé" },
+  { keyword: "selderijzaad", dbItem: "Celery Seeds", level: "très élevé" },
+  { keyword: "kastanje", dbItem: "Chestnut, roasted", level: "élevé" },
+  { keyword: "chilipoeder", dbItem: "Chili Powder", level: "élevé" },
+  { keyword: "kaneel", dbItem: "Cinnamon, ground", level: "très élevé" },
+  { keyword: "kruidnagel", dbItem: "Cloves, dried, ground", level: "très élevé" },
+  { keyword: "korianderzaad", dbItem: "Coriander seed, dried", level: "élevé" },
+  { keyword: "komijn", dbItem: "Cumin, ground", level: "élevé" },
+  { keyword: "kerrie", dbItem: "Curry Powder", level: "élevé" },
+  { keyword: "venkelzaad", dbItem: "Fennel seed, dried", level: "élevé" },
+  { keyword: "gember", dbItem: "Ginger, Ground", level: "élevé" },
+  { keyword: "hazelnoot", pluralOverride: "hazelnoten", dbItem: "Hazelnut or filberts, Raw", level: "très élevé" },
+  { keyword: "citroenschil", dbItem: "Lemon Peel", level: "élevé" },
+  { keyword: "linze", pluralOverride: "linzen", dbItem: "Legumes, Lentils, variety", level: "élevé" },
+  { keyword: "macadamianoot", pluralOverride: "macadamianoten", dbItem: "Nuts, Macadamia", level: "élevé" },
+  { keyword: "gierst", dbItem: "Grains, Millet", level: "très élevé" },
+  { keyword: "sinaasappelschil", dbItem: "Orange Peel", level: "élevé" },
+  { keyword: "oregano", dbItem: "Oregano, ground", level: "élevé" },
+  { keyword: "pindakaas", dbItem: "Peanut Butter", level: "très élevé" },
+  { keyword: "pinda", dbItem: "Peanuts, roasted", level: "très élevé" },
+  { keyword: "pecannoot", pluralOverride: "pecannoten", dbItem: "Pecans raw or roasted", level: "élevé" },
+  { keyword: "pijnboompit", dbItem: "Nuts, Pine, raw or roasted", level: "très élevé" },
+  { keyword: "pistachenoot", pluralOverride: "pistachenoten", dbItem: "Nuts, Pistachio", level: "élevé" },
+  { keyword: "bonenkruid", dbItem: "Savory, ground", level: "élevé" },
+  { keyword: "tempeh", dbItem: "Legumes, Tempeh", level: "très élevé" },
+  { keyword: "kurkuma", dbItem: "Turmeric", level: "très élevé" },
+  { keyword: "walnoot", pluralOverride: "walnoten", dbItem: "Nuts, Walnuts", level: "élevé" },
+  { keyword: "tarwekorrels", dbItem: "Grains, Wheat berries", level: "élevé" },
 ];
 
 function normalize(text: string): string {
@@ -101,12 +155,18 @@ export function matchIngredients(ingredientsText: string): MatchResult {
 
   for (const known of KNOWN_INGREDIENTS) {
     const normalizedKeyword = normalize(known.keyword);
-    const escapedKeyword = normalizedKeyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    // Trailing "s?" tolerates simple French plurals (amande/amandes,
-    // lentille/lentilles) while \b on both ends still blocks the keyword
-    // from matching as a mere substring of an unrelated word (anis inside
-    // "organismes").
-    const keywordPattern = new RegExp(`\\b${escapedKeyword}s?\\b`);
+    const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapedKeyword = escapeRegex(normalizedKeyword);
+    // Trailing "s?" tolerates simple French/English plurals
+    // (amande/amandes, lentille/lentilles) while \b on both ends still
+    // blocks the keyword from matching as a mere substring of an
+    // unrelated word (anis inside "organismes"). Dutch stem-change
+    // plurals (hazelnoot/hazelnoten) don't fit this pattern, hence
+    // pluralOverride for an exact alternate form instead.
+    const pluralAlternative = known.pluralOverride
+      ? `|\\b${escapeRegex(normalize(known.pluralOverride))}\\b`
+      : "";
+    const keywordPattern = new RegExp(`\\b${escapedKeyword}s?\\b${pluralAlternative}`);
     if (keywordPattern.test(normalized)) {
       matched.push({
         ingredientText: known.keyword,
