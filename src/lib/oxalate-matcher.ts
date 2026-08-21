@@ -12,7 +12,7 @@ export interface MatchResult {
   matchedIngredients: MatchedIngredient[];
 }
 
-interface KnownIngredient {
+export interface KnownIngredient {
   keyword: string; // matched as a normalized substring
   dbItem: string;
   level: OxalateLevel;
@@ -29,7 +29,7 @@ interface KnownIngredient {
 // mg/portion — see docs/superpowers/specs/2026-07-30-oxalate-scoring-recalibration-design.md).
 // Deliberately excludes short/generic PDF item names (e.g. "Salt") that
 // would false-positive against unrelated ingredient text.
-const KNOWN_INGREDIENTS: KnownIngredient[] = [
+export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "cacao", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé" },
   { keyword: "cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé" },
   { keyword: "epinard", dbItem: "Spinach", level: "très élevé" },
@@ -241,7 +241,7 @@ const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "kokoswater", dbItem: "Coconut Water", level: "élevé" },
 ];
 
-function normalize(text: string): string {
+export function normalize(text: string): string {
   return text
     .toLowerCase()
     .normalize("NFD")

@@ -5,6 +5,7 @@ import { ScannerView } from "./components/ScannerView";
 import { ResultView } from "./components/ResultView";
 import { HistoryView } from "./components/HistoryView";
 import { ResetPasswordView } from "./components/ResetPasswordView";
+import { FoodSearchView } from "./components/FoodSearchView";
 
 type Tab = "scan" | "history";
 
@@ -78,6 +79,8 @@ export function App() {
               <button className="scan-button" onClick={() => setScanning(true)}>
                 Scanner un produit
               </button>
+              <p className="home-or">ou</p>
+              <FoodSearchView />
             </div>
           ))}
 

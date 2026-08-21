@@ -39,6 +39,14 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
+  it("shows a food name search field on the home screen", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+
+    render(<App />);
+
+    expect(screen.getByLabelText(/nom de l'aliment/i)).toBeInTheDocument();
+  });
+
   it("activates the camera view only after the scan button is clicked", () => {
     (pb.authStore as unknown as { isValid: boolean }).isValid = true;
 
