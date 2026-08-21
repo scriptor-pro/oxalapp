@@ -475,10 +475,21 @@ p {
   stroke-width: 1.6;
 }
 
-.logout-button {
+.account-bar {
   position: fixed;
   top: 1rem;
   right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.account-name {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.logout-button {
   background: none;
   border: none;
   color: var(--text-muted);

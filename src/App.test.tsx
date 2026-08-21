@@ -6,7 +6,7 @@ import { pb } from "./lib/pocketbase";
 
 vi.mock("./lib/pocketbase", () => ({
   pb: {
-    authStore: { isValid: false, model: null, onChange: vi.fn(() => () => {}), clear: vi.fn() },
+    authStore: { isValid: false, record: null, onChange: vi.fn(() => () => {}), clear: vi.fn() },
     collection: vi.fn(),
   },
 }));
@@ -80,6 +80,30 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /se déconnecter/i }));
 
     expect(pb.authStore.clear).toHaveBeenCalled();
+  });
+
+  it("shows the user's name next to the logout button when set", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+    (pb.authStore as unknown as { record: { name: string; email: string } }).record = {
+      name: "Alice",
+      email: "alice@example.com",
+    };
+
+    render(<App />);
+
+    expect(screen.getByText("Alice")).toBeInTheDocument();
+  });
+
+  it("falls back to the user's email when no name is set", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+    (pb.authStore as unknown as { record: { name: string; email: string } }).record = {
+      name: "",
+      email: "alice@example.com",
+    };
+
+    render(<App />);
+
+    expect(screen.getByText("alice@example.com")).toBeInTheDocument();
   });
 
   it("shows the reset-password screen when a reset-token query param is present", () => {

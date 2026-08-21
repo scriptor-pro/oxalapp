@@ -48,9 +48,14 @@ export function App() {
 
   return (
     <div className="app-shell">
-      <button className="logout-button" onClick={() => pb.authStore.clear()}>
-        Se déconnecter
-      </button>
+      <div className="account-bar">
+        <span className="account-name">
+          {pb.authStore.record?.name || pb.authStore.record?.email}
+        </span>
+        <button className="logout-button" onClick={() => pb.authStore.clear()}>
+          Se déconnecter
+        </button>
+      </div>
 
       <main className="app-main">
         {tab === "scan" &&

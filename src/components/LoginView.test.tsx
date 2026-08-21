@@ -79,12 +79,53 @@ describe("LoginView", () => {
     fireEvent.click(screen.getByRole("button", { name: /^s'inscrire$/i }));
 
     await waitFor(() => expect(onAuthenticated).toHaveBeenCalled());
-    expect(create).toHaveBeenCalledWith({
-      email: "new@example.com",
-      password: "password123",
-      passwordConfirm: "password123",
-    });
+    expect(create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "new@example.com",
+        password: "password123",
+        passwordConfirm: "password123",
+      })
+    );
     expect(authWithPassword).toHaveBeenCalledWith("new@example.com", "password123");
+  });
+
+  it("shows a name field only in signup mode", () => {
+    render(<LoginView onAuthenticated={vi.fn()} />);
+
+    expect(screen.queryByLabelText(/nom/i)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /créer un compte/i }));
+
+    expect(screen.getByLabelText(/nom/i)).toBeInTheDocument();
+  });
+
+  it("creates a new account with the entered name", async () => {
+    const create = vi.fn().mockResolvedValue({});
+    const authWithPassword = vi.fn().mockResolvedValue({});
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create,
+      authWithPassword,
+    });
+
+    render(<LoginView onAuthenticated={vi.fn()} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /créer un compte/i }));
+    fireEvent.change(screen.getByLabelText(/nom/i), {
+      target: { value: "Alice" },
+    });
+    fireEvent.change(screen.getByLabelText(/email/i), {
+      target: { value: "alice@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText(/mot de passe/i), {
+      target: { value: "password123" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /^s'inscrire$/i }));
+
+    await waitFor(() =>
+      expect(create).toHaveBeenCalledWith(
+        expect.objectContaining({ name: "Alice" })
+      )
+    );
   });
 
   it("shows the forgot-password link on the login screen", () => {

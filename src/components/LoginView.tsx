@@ -8,6 +8,7 @@ interface LoginViewProps {
 
 export function LoginView({ onAuthenticated }: LoginViewProps) {
   const [mode, setMode] = useState<"login" | "signup" | "forgot-password">("login");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -20,6 +21,7 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
     try {
       if (mode === "signup") {
         await pb.collection("users").create({
+          name,
           email,
           password,
           passwordConfirm: password,
@@ -43,6 +45,25 @@ export function LoginView({ onAuthenticated }: LoginViewProps) {
     <div className="screen-content login-form">
       <h1>oxalapp</h1>
       <form onSubmit={handleSubmit}>
+        {mode === "signup" && (
+          <div className="field">
+            <label htmlFor="name" className="field-label">Nom</label>
+            <input
+              id="name"
+              type="text"
+              className="field-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              minLength={name.length > 0 ? 4 : undefined}
+            />
+            {name.length > 0 && (
+              <p className={name.length >= 4 ? "field-hint field-hint-valid" : "field-hint"}>
+                {name.length >= 4 ? "✓ " : ""}Minimum 4 caractères.
+              </p>
+            )}
+          </div>
+        )}
+
         <div className="field">
           <label htmlFor="email" className="field-label">Email</label>
           <input
