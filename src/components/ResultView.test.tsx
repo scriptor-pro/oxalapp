@@ -9,7 +9,7 @@ vi.mock("../lib/off-client");
 vi.mock("../lib/pocketbase", () => ({
   pb: {
     collection: vi.fn(),
-    authStore: { model: { id: "user123" } },
+    authStore: { record: { id: "user123" } },
   },
 }));
 

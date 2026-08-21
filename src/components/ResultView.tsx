@@ -51,7 +51,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
   }) {
     try {
       await pb.collection("scans").create({
-        user: pb.authStore.model?.id,
+        user: pb.authStore.record?.id,
         favorite: false,
         ...data,
       });

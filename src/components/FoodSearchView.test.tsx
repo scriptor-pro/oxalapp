@@ -6,7 +6,7 @@ import { pb } from "../lib/pocketbase";
 
 vi.mock("../lib/pocketbase", () => ({
   pb: {
-    authStore: { model: { id: "user1" } },
+    authStore: { record: { id: "user1" } },
     collection: vi.fn(),
   },
 }));
@@ -70,6 +70,7 @@ describe("FoodSearchView", () => {
 
     expect(create).toHaveBeenCalledWith(
       expect.objectContaining({
+        user: "user1",
         productName: "épinard",
         level: "très élevé",
         source: "saisie_manuelle",

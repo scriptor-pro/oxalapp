@@ -15,7 +15,7 @@ export function FoodSearchView() {
     setSyncError(false);
     try {
       await pb.collection("scans").create({
-        user: pb.authStore.model?.id,
+        user: pb.authStore.record?.id,
         ean: "",
         productName: name,
         level: searchResult.level,
