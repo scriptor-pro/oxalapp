@@ -21,6 +21,10 @@ export interface KnownIngredient {
   // "linzen"). When present, this exact form is matched instead of
   // appending "s?" to the keyword.
   pluralOverride?: string;
+  // Words that must NOT immediately follow the keyword for a match to
+  // count (e.g. "potato" alone shouldn't match "potato starch"/"potato
+  // flour", which OHF rates far lower than whole potato).
+  excludeFollowedBy?: string[];
 }
 
 // Curated high-signal keywords. Sourced from CLAUDE.md's list of known
@@ -239,6 +243,101 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   // Synonymes néerlandais pour l'élargissement laitiers/boissons ci-dessus.
   { keyword: "havermelk", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
   { keyword: "kokoswater", dbItem: "Coconut Water", level: "élevé" },
+
+  // Synonymes anglais 2026-08-21 : plusieurs produits sur Open Food Facts
+  // (notamment des marques italiennes/scandinaves/internationales vendues
+  // en Belgique) n'ont d'ingrédients qu'en anglais, sans équivalent FR/NL.
+  // Même méthode que les passes NL précédentes : traduction directe des
+  // mots-clés FR déjà présents, en omettant les entrées où la traduction
+  // anglaise serait un mot trop générique hors contexte alimentaire (ex:
+  // "curry" existe déjà identique en anglais donc pas de doublon; "mate"
+  // seul collide avec "mate" = ami/partenaire, gardé en tant que "yerba
+  // mate" pour rester spécifique). "cocoa" et "oregano" existent déjà tels
+  // quels dans le bloc français ci-dessus.
+  { keyword: "spinach", dbItem: "Spinach", level: "très élevé" },
+  { keyword: "rhubarb", dbItem: "Rhubarb, stewed or canned", level: "très élevé" },
+  { keyword: "almond", dbItem: "Almonds", level: "très élevé" },
+  { keyword: "wheat bran", dbItem: "Wheat Bran", level: "très élevé" },
+  { keyword: "beet", pluralOverride: "beets", dbItem: "Beets, boiled, steamed or pickled", level: "très élevé" },
+  { keyword: "sweet potato", dbItem: "Sweet Potato, Orange", level: "très élevé" },
+  { keyword: "black tea", dbItem: "Tea, Black", level: "très élevé" },
+  { keyword: "green tea", dbItem: "Tea, Green", level: "élevé" },
+  { keyword: "allspice", dbItem: "Allspice", level: "élevé" },
+  { keyword: "anise", dbItem: "Anise", level: "élevé" },
+  { keyword: "basil", dbItem: "Basil, Sweet, Fresh", level: "élevé" },
+  { keyword: "brazil nut", pluralOverride: "brazil nuts", dbItem: "Brazil Nuts", level: "très élevé" },
+  { keyword: "buckwheat", dbItem: "Cereals, Buckwheat", level: "très élevé" },
+  { keyword: "cashew", dbItem: "Nuts, Cashew", level: "très élevé" },
+  { keyword: "celery seed", pluralOverride: "celery seeds", dbItem: "Celery Seeds", level: "très élevé" },
+  { keyword: "chestnut", dbItem: "Chestnut, roasted", level: "élevé" },
+  { keyword: "chili powder", dbItem: "Chili Powder", level: "élevé" },
+  { keyword: "cinnamon", dbItem: "Cinnamon, ground", level: "très élevé" },
+  { keyword: "clove", pluralOverride: "cloves", dbItem: "Cloves, dried, ground", level: "très élevé" },
+  { keyword: "coriander seed", pluralOverride: "coriander seeds", dbItem: "Coriander seed, dried", level: "élevé" },
+  { keyword: "cumin", dbItem: "Cumin, ground", level: "élevé" },
+  { keyword: "edamame", dbItem: "Legumes, Edamame", level: "élevé" },
+  { keyword: "fennel seed", pluralOverride: "fennel seeds", dbItem: "Fennel seed, dried", level: "élevé" },
+  { keyword: "ginger", dbItem: "Ginger, Ground", level: "élevé" },
+  { keyword: "hazelnut", dbItem: "Hazelnut or filberts, Raw", level: "très élevé" },
+  { keyword: "lemon myrtle", dbItem: "Lemon Myrtle, dried, ground", level: "très élevé" },
+  { keyword: "lemon peel", dbItem: "Lemon Peel", level: "élevé" },
+  { keyword: "lemon zest", dbItem: "Lemon Peel", level: "élevé" },
+  { keyword: "lentil", pluralOverride: "lentils", dbItem: "Legumes, Lentils, variety", level: "élevé" },
+  { keyword: "macadamia", dbItem: "Nuts, Macadamia", level: "élevé" },
+  { keyword: "millet", dbItem: "Grains, Millet", level: "très élevé" },
+  { keyword: "orange peel", dbItem: "Orange Peel", level: "élevé" },
+  { keyword: "orange zest", dbItem: "Orange Peel", level: "élevé" },
+  { keyword: "peanut butter", dbItem: "Peanut Butter", level: "très élevé" },
+  { keyword: "peanut", pluralOverride: "peanuts", dbItem: "Peanuts, roasted", level: "très élevé" },
+  { keyword: "pecan", pluralOverride: "pecans", dbItem: "Pecans raw or roasted", level: "élevé" },
+  { keyword: "pine nut", pluralOverride: "pine nuts", dbItem: "Nuts, Pine, raw or roasted", level: "très élevé" },
+  { keyword: "pistachio", dbItem: "Nuts, Pistachio", level: "élevé" },
+  { keyword: "refried beans", dbItem: "Legumes, Refried beans", level: "très élevé" },
+  { keyword: "savory", dbItem: "Savory, ground", level: "élevé" },
+  { keyword: "soynut", pluralOverride: "soynuts", dbItem: "Nuts, Soynuts", level: "élevé" },
+  { keyword: "tempeh", dbItem: "Legumes, Tempeh", level: "très élevé" },
+  { keyword: "turmeric", dbItem: "Turmeric", level: "très élevé" },
+  { keyword: "walnut", pluralOverride: "walnuts", dbItem: "Nuts, Walnuts", level: "élevé" },
+  { keyword: "wheat berries", dbItem: "Grains, Wheat berries", level: "élevé" },
+  { keyword: "dried algae", dbItem: "Algae, dried", level: "très élevé" },
+  { keyword: "artichoke", dbItem: "Artichoke, boiled", level: "élevé" },
+  { keyword: "bamboo shoot", pluralOverride: "bamboo shoots", dbItem: "Bamboo shoots", level: "très élevé" },
+  { keyword: "bitter gourd", dbItem: "Bitter Gourd, Fresh", level: "très élevé" },
+  { keyword: "brussel sprout", pluralOverride: "brussel sprouts", dbItem: "Brussel Sprouts, raw", level: "élevé" },
+  { keyword: "brussels sprout", pluralOverride: "brussels sprouts", dbItem: "Brussel Sprouts, raw", level: "élevé" },
+  { keyword: "nopal", dbItem: "Cactus, Nopal, Raw", level: "très élevé" },
+  { keyword: "carrot", pluralOverride: "carrots", dbItem: "Carrots, raw", level: "très élevé" },
+  { keyword: "celery", dbItem: "Celery, raw, stem only, diced", level: "très élevé" },
+  { keyword: "dandelion greens", dbItem: "Dandelion greens, red rib, raw or boiled", level: "élevé" },
+  { keyword: "eggplant", dbItem: "Eggplant, raw, boiled, baked or roasted", level: "très élevé" },
+  { keyword: "fennel", dbItem: "Fennel, boiled", level: "élevé" },
+  { keyword: "hearts of palm", dbItem: "Hearts of Palm, whole", level: "très élevé" },
+  { keyword: "leek", pluralOverride: "leeks", dbItem: "Leeks, raw", level: "élevé" },
+  { keyword: "okra", dbItem: "Okra, Boiled, simmered", level: "très élevé" },
+  { keyword: "parsnip", pluralOverride: "parsnips", dbItem: "Parsnips, boiled", level: "élevé" },
+  { keyword: "potato", pluralOverride: "potatoes", dbItem: "Potato, White, deep fried", level: "très élevé", excludeFollowedBy: ["starch", "flour", "protein"] },
+  { keyword: "purslane", dbItem: "Purslane, leaves", level: "très élevé" },
+  { keyword: "sorrel", dbItem: "Sorrel, raw", level: "très élevé" },
+  { keyword: "tomato", pluralOverride: "tomatoes", dbItem: "Tomato, Variety, All Colors, Raw", level: "élevé" },
+  { keyword: "yam", dbItem: "Yam, flesh only, baked", level: "très élevé" },
+  { keyword: "apricot", pluralOverride: "apricots", dbItem: "Apricots, Fresh", level: "élevé" },
+  { keyword: "blueberry", pluralOverride: "blueberries", dbItem: "Berries, Blueberries, fresh or frozen", level: "très élevé" },
+  { keyword: "cranberry", pluralOverride: "cranberries", dbItem: "Berries, Cranberries", level: "élevé" },
+  { keyword: "elderberry", pluralOverride: "elderberries", dbItem: "Berries, Elderberries, raw, black", level: "très élevé" },
+  { keyword: "raspberry", pluralOverride: "raspberries", dbItem: "Berries, Raspberries, raw", level: "élevé" },
+  { keyword: "strawberry", pluralOverride: "strawberries", dbItem: "Berries, Strawberries, canned", level: "élevé" },
+  { keyword: "black currant", pluralOverride: "black currants", dbItem: "Currants, Black, raw", level: "élevé" },
+  { keyword: "red currant", pluralOverride: "red currants", dbItem: "Currants, Red, raw", level: "élevé" },
+  { keyword: "fig", pluralOverride: "figs", dbItem: "Figs, fresh", level: "élevé" },
+  { keyword: "guava", dbItem: "Guava", level: "très élevé" },
+  { keyword: "kiwi", dbItem: "Kiwi, fresh, raw", level: "très élevé" },
+  { keyword: "pomegranate", dbItem: "Pomegranate, seed and juice sacs", level: "très élevé" },
+  { keyword: "prune", pluralOverride: "prunes", dbItem: "Prunes, pitted", level: "très élevé" },
+  { keyword: "star fruit", dbItem: "Star Fruit or Carambola, raw", level: "très élevé" },
+  { keyword: "carambola", dbItem: "Star Fruit or Carambola, raw", level: "très élevé" },
+  { keyword: "oat milk", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
+  { keyword: "coconut water", dbItem: "Coconut Water", level: "élevé" },
+  { keyword: "yerba mate", dbItem: "Tea, Herbal, Mate", level: "élevé" },
 ];
 
 export function normalize(text: string): string {
@@ -270,7 +369,14 @@ export function matchIngredients(ingredientsText: string): MatchResult {
     const pluralAlternative = known.pluralOverride
       ? `|\\b${escapeRegex(normalize(known.pluralOverride))}\\b`
       : "";
-    const keywordPattern = new RegExp(`\\b${escapedKeyword}s?\\b${pluralAlternative}`);
+    // Negative lookahead so a keyword doesn't match when immediately
+    // followed by a word that changes the ingredient into something OHF
+    // rates very differently (e.g. "potato" alone is très élevé, but
+    // "potato starch"/"potato flour" are faible).
+    const exclusionLookahead = known.excludeFollowedBy?.length
+      ? `(?! (?:${known.excludeFollowedBy.map((w) => escapeRegex(normalize(w))).join("|")})\\b)`
+      : "";
+    const keywordPattern = new RegExp(`\\b${escapedKeyword}${exclusionLookahead}s?\\b${pluralAlternative}`);
     if (keywordPattern.test(normalized)) {
       matched.push({
         ingredientText: known.keyword,

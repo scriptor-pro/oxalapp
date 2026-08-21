@@ -226,4 +226,66 @@ describe("matchIngredients", () => {
 
     expect(result.level).toBe("élevé");
   });
+
+  it("detects English-labeled spinach as très élevé", () => {
+    const result = matchIngredients("Spinach, water, salt");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects English-labeled cinnamon as très élevé", () => {
+    const result = matchIngredients("Wheat flour, cinnamon, sugar");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects English-labeled turmeric as très élevé", () => {
+    const result = matchIngredients("Turmeric, black pepper, sunflower oil");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects English-labeled potato as très élevé", () => {
+    const result = matchIngredients("Potatoes, sunflower oil, salt");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("does not flag potato starch as high-oxalate (OHF rates potato starch as faible, unlike whole potato)", () => {
+    const result = matchIngredients("Water, potato starch, salt");
+
+    expect(result.level).toBe("non déterminable");
+  });
+
+  it("does not flag potato flour as high-oxalate", () => {
+    const result = matchIngredients("Water, potato flour, salt");
+
+    expect(result.level).toBe("non déterminable");
+  });
+
+  it("does not flag potato protein as high-oxalate (not in the OHF database)", () => {
+    const result = matchIngredients("Water, potato protein, salt");
+
+    expect(result.level).toBe("non déterminable");
+  });
+
+  it("does not false-positive on the Boursin Vegan example that started this investigation", () => {
+    const result = matchIngredients(
+      "water, coconut oil (22%), potato starch, inulin, sunflower oil, garlic, herbs (1,7%), salt, potato protein, white pepper, preservative (potassium sorbate), thickener (xanthan gum), natural flavouring, may contain traces of milk"
+    );
+
+    expect(result.level).toBe("non déterminable");
+  });
+
+  it("detects English-labeled almond as très élevé", () => {
+    const result = matchIngredients("Roasted almonds, salt");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects English-labeled tomato as élevé", () => {
+    const result = matchIngredients("Tomato sauce, salt, sugar");
+
+    expect(result.level).toBe("élevé");
+  });
 });
