@@ -33,6 +33,7 @@ pocketbase/pocketbase
 mailpit/
 .cert/
 .superpowers/
+.claude/worktrees/
 
 # Android (Capacitor) build artifacts
 android/app/build/
