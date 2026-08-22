@@ -4,6 +4,17 @@ import { matchIngredients, type MatchResult } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { LevelBadge } from "./LevelBadge";
 
+export type ScanFailureReason = "no-ingredients" | "no-match";
+
+export function categorizeFailure(
+  result: MatchResult,
+  product: OffProduct
+): ScanFailureReason | null {
+  if (result.level !== "non déterminable") return null;
+  if (!product.ingredientsText.trim()) return "no-ingredients";
+  return "no-match";
+}
+
 interface ResultViewProps {
   ean: string;
   onBack: () => void;
@@ -132,6 +143,25 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
             .
           </p>
         )}
+        {(() => {
+          const failureReason = categorizeFailure(state.result, state.product);
+          if (failureReason === "no-match") {
+            return (
+              <p className="ingredient-line">
+                Aucun ingrédient à risque connu détecté dans la liste fournie.
+              </p>
+            );
+          }
+          if (failureReason === "no-ingredients") {
+            return (
+              <p className="ingredient-line">
+                Liste d'ingrédients non disponible sur Open Food Facts pour
+                ce produit.
+              </p>
+            );
+          }
+          return null;
+        })()}
         <p className="disclaimer">
           Estimation indicative — les valeurs d'oxalate varient selon la
           variété, le sol, la cuisson, etc. Ce niveau reflète la présence

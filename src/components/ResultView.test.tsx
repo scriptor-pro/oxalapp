@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
-import { ResultView } from "./ResultView";
+import { ResultView, categorizeFailure } from "./ResultView";
 import { getProductByBarcode } from "../lib/off-client";
 import { pb } from "../lib/pocketbase";
 
@@ -12,6 +12,74 @@ vi.mock("../lib/pocketbase", () => ({
     authStore: { record: { id: "user123" } },
   },
 }));
+
+describe("categorizeFailure", () => {
+  it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
+    const result = categorizeFailure(
+      { level: "non déterminable", matchedIngredients: [] },
+      { productName: "Gnocchi", ingredientsText: "", imageUrl: null }
+    );
+    expect(result).toBe("no-ingredients");
+  });
+
+  it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
+    const result = categorizeFailure(
+      { level: "non déterminable", matchedIngredients: [] },
+      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null }
+    );
+    expect(result).toBe("no-ingredients");
+  });
+
+  it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
+    const result = categorizeFailure(
+      { level: "non déterminable", matchedIngredients: [] },
+      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null }
+    );
+    expect(result).toBe("no-match");
+  });
+
+  it("returns null when the level is not non déterminable", () => {
+    const result = categorizeFailure(
+      { level: "élevé", matchedIngredients: [] },
+      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null }
+    );
+    expect(result).toBeNull();
+  });
+});
+
+describe("ResultView failure messaging", () => {
+  it("shows a no-ingredients message with a contribute-photo button when OFF has no ingredients text", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+    });
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/non déterminable/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /photographier les ingrédients/i })
+    ).toBeInTheDocument();
+  });
+
+  it("shows a no-match message without a contribute-photo button when ingredients text exists but nothing matched", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Boursin Vegan",
+      ingredientsText: "water, coconut oil, salt",
+      imageUrl: null,
+    });
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(/aucun ingrédient à risque connu détecté/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /photographier les ingrédients/i })
+    ).not.toBeInTheDocument();
+  });
+});
 
 describe("ResultView", () => {
   beforeEach(() => {
