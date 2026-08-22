@@ -61,7 +61,7 @@ describe("ResultView failure messaging", () => {
 
     expect(await screen.findByText(/non déterminable/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /photographier les ingrédients/i })
+      screen.getByLabelText(/photographier les ingrédients/i)
     ).toBeInTheDocument();
   });
 
@@ -78,7 +78,7 @@ describe("ResultView failure messaging", () => {
       await screen.findByText(/aucun ingrédient à risque connu détecté/i)
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: /photographier les ingrédients/i })
+      screen.queryByLabelText(/photographier les ingrédients/i)
     ).not.toBeInTheDocument();
   });
 });

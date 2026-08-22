@@ -171,11 +171,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
                   Liste d'ingrédients non disponible sur Open Food Facts
                   pour ce produit.
                 </p>
-                <label
-                  htmlFor="ingredients-photo"
-                  className="text-button"
-                  role="button"
-                >
+                <label htmlFor="ingredients-photo" className="text-button">
                   Photographier les ingrédients
                   <input
                     id="ingredients-photo"
