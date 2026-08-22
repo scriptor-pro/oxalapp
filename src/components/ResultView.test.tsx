@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/vitest";
 import { ResultView, categorizeFailure } from "./ResultView";
 import { getProductByBarcode } from "../lib/off-client";
 import { pb } from "../lib/pocketbase";
+import { uploadIngredientsPhoto } from "../lib/off-contribute";
 
 vi.mock("../lib/off-client");
 vi.mock("../lib/pocketbase", () => ({
@@ -12,6 +13,7 @@ vi.mock("../lib/pocketbase", () => ({
     authStore: { record: { id: "user123" } },
   },
 }));
+vi.mock("../lib/off-contribute");
 
 describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
@@ -78,6 +80,53 @@ describe("ResultView failure messaging", () => {
     expect(
       screen.queryByRole("button", { name: /photographier les ingrédients/i })
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("ResultView photo contribution", () => {
+  it("uploads the selected photo and shows a confirmation message on success", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+    });
+    (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    const fileInput = await screen.findByLabelText(/photographier les ingrédients/i);
+    const file = new File(["fake-bytes"], "photo.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [file] } });
+
+    await waitFor(() =>
+      expect(uploadIngredientsPhoto).toHaveBeenCalledWith(
+        "1234567890123",
+        file,
+        "fr"
+      )
+    );
+    expect(
+      await screen.findByText(/merci, transmis à open food facts/i)
+    ).toBeInTheDocument();
+  });
+
+  it("shows a failure message when the photo upload fails", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+    });
+    (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(false);
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    const fileInput = await screen.findByLabelText(/photographier les ingrédients/i);
+    const file = new File(["fake-bytes"], "photo.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [file] } });
+
+    expect(
+      await screen.findByText(/échec de l'envoi de la photo/i)
+    ).toBeInTheDocument();
   });
 });
 

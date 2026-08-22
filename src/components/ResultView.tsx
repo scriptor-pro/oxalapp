@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { getProductByBarcode, type OffProduct } from "../lib/off-client";
+import { uploadIngredientsPhoto } from "../lib/off-contribute";
 import { matchIngredients, type MatchResult } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { LevelBadge } from "./LevelBadge";
@@ -30,6 +31,9 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
   const [syncError, setSyncError] = useState(false);
   const [manualName, setManualName] = useState("");
   const [manualIngredients, setManualIngredients] = useState("");
+  const [photoUploadState, setPhotoUploadState] = useState<
+    "idle" | "uploading" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     let cancelled = false;
@@ -85,6 +89,14 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
       level: result.level,
       source: "saisie_manuelle",
     });
+  }
+
+  async function handlePhotoSelected(e: FormEvent<HTMLInputElement>) {
+    const file = e.currentTarget.files?.[0];
+    if (!file) return;
+    setPhotoUploadState("uploading");
+    const success = await uploadIngredientsPhoto(ean, file, "fr");
+    setPhotoUploadState(success ? "success" : "error");
   }
 
   if (state.status === "loading") {
@@ -154,10 +166,38 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
           }
           if (failureReason === "no-ingredients") {
             return (
-              <p className="ingredient-line">
-                Liste d'ingrédients non disponible sur Open Food Facts pour
-                ce produit.
-              </p>
+              <div className="ingredient-line">
+                <p>
+                  Liste d'ingrédients non disponible sur Open Food Facts
+                  pour ce produit.
+                </p>
+                <label
+                  htmlFor="ingredients-photo"
+                  className="text-button"
+                  role="button"
+                >
+                  Photographier les ingrédients
+                  <input
+                    id="ingredients-photo"
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    style={{ display: "none" }}
+                    onChange={handlePhotoSelected}
+                  />
+                </label>
+                {photoUploadState === "success" && (
+                  <p className="ingredient-line">
+                    Merci, transmis à Open Food Facts — la liste
+                    d'ingrédients sera disponible après traitement.
+                  </p>
+                )}
+                {photoUploadState === "error" && (
+                  <p className="sync-error">
+                    Échec de l'envoi de la photo. Réessayez plus tard.
+                  </p>
+                )}
+              </div>
             );
           }
           return null;
