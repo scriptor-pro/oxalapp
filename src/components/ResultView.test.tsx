@@ -5,6 +5,7 @@ import { ResultView, categorizeFailure } from "./ResultView";
 import { getProductByBarcode } from "../lib/off-client";
 import { pb } from "../lib/pocketbase";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
+import { lookupProductName } from "../lib/upcitemdb-client";
 
 vi.mock("../lib/off-client");
 vi.mock("../lib/pocketbase", () => ({
@@ -14,6 +15,7 @@ vi.mock("../lib/pocketbase", () => ({
   },
 }));
 vi.mock("../lib/off-contribute");
+vi.mock("../lib/upcitemdb-client");
 
 describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
@@ -136,6 +138,7 @@ describe("ResultView", () => {
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       create: vi.fn().mockResolvedValue({ id: "scan1" }),
     });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
   });
 
   it("shows the oxalate level when the product is found on Open Food Facts", async () => {
@@ -266,5 +269,33 @@ describe("ResultView", () => {
 
     expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
     expect(await screen.findByText(/synchronisation/i)).toBeInTheDocument();
+  });
+});
+
+describe("ResultView UPCitemdb fallback", () => {
+  it("pre-fills the product name field when UPCitemdb finds a name", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(
+      "Gnocchi di Patate 500g"
+    );
+
+    render(<ResultView ean="8001234567890" onBack={vi.fn()} />);
+
+    await screen.findByText(/produit non trouvé/i);
+
+    expect(screen.getByLabelText(/nom du produit/i)).toHaveValue(
+      "Gnocchi di Patate 500g"
+    );
+  });
+
+  it("leaves the product name field empty when UPCitemdb finds nothing", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    await screen.findByText(/produit non trouvé/i);
+
+    expect(screen.getByLabelText(/nom du produit/i)).toHaveValue("");
   });
 });

@@ -3,6 +3,7 @@ import { getProductByBarcode, type OffProduct } from "../lib/off-client";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
 import { matchIngredients, type MatchResult } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
+import { lookupProductName } from "../lib/upcitemdb-client";
 import { LevelBadge } from "./LevelBadge";
 
 export type ScanFailureReason = "no-ingredients" | "no-match";
@@ -41,6 +42,10 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
       if (cancelled) return;
       if (!product) {
         setState({ status: "not-found" });
+        lookupProductName(ean).then((name) => {
+          if (cancelled || !name) return;
+          setManualName(name);
+        });
         return;
       }
       const result = matchIngredients(product.ingredientsText);
