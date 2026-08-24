@@ -5,11 +5,14 @@ interface ScannerViewProps {
   onScanned: (ean: string) => void;
 }
 
+const DETECTED_FEEDBACK_DELAY_MS = 400;
+
 export function ScannerView({ onScanned }: ScannerViewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [permissionError, setPermissionError] = useState(false);
   const [manualEan, setManualEan] = useState("");
   const [manualError, setManualError] = useState(false);
+  const [detectedEan, setDetectedEan] = useState<string | null>(null);
 
   function handleManualSubmit(e: FormEvent) {
     e.preventDefault();
@@ -32,7 +35,8 @@ export function ScannerView({ onScanned }: ScannerViewProps) {
         videoRef.current!,
         (result) => {
           if (result && !cancelled) {
-            onScanned(result.getText());
+            controls?.stop();
+            setDetectedEan(result.getText());
           }
         }
       )
@@ -54,6 +58,13 @@ export function ScannerView({ onScanned }: ScannerViewProps) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!detectedEan) return;
+    const timer = setTimeout(() => onScanned(detectedEan), DETECTED_FEEDBACK_DELAY_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detectedEan]);
 
   const manualEntryForm = (
     <form className="manual-form" onSubmit={handleManualSubmit}>
@@ -90,13 +101,22 @@ export function ScannerView({ onScanned }: ScannerViewProps) {
     );
   }
 
+  const detected = detectedEan !== null;
+
   return (
     <div className="screen-content scan-view">
       <div className="viewfinder">
         <video ref={videoRef} className="viewfinder-video" />
-        <div className="viewfinder-frame" aria-hidden="true" />
+        <div
+          className={detected ? "viewfinder-frame viewfinder-frame-detected" : "viewfinder-frame"}
+          aria-hidden="true"
+        >
+          {detected && <span className="viewfinder-check" aria-hidden="true">✓</span>}
+        </div>
       </div>
-      <p className="scan-hint">Visez le code-barres du produit.</p>
+      <p className="scan-hint" aria-live="polite">
+        {detected ? "Code-barres correctement détecté" : "Visez le code-barres du produit."}
+      </p>
       {manualEntryForm}
     </div>
   );

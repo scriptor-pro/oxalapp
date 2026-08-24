@@ -20,7 +20,8 @@ describe("ScannerView", () => {
     vi.clearAllMocks();
   });
 
-  it("calls onScanned with the detected EAN", async () => {
+  it("shows a detected confirmation before calling onScanned", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
     const onScanned = vi.fn();
     mockDecodeFromVideoDevice.mockImplementation(
       async (_deviceId, _videoElement, callback) => {
@@ -30,7 +31,15 @@ describe("ScannerView", () => {
 
     render(<ScannerView onScanned={onScanned} />);
 
-    await waitFor(() => expect(onScanned).toHaveBeenCalledWith("3017620422003"));
+    expect(
+      await screen.findByText(/code-barres correctement détecté/i)
+    ).toBeInTheDocument();
+    expect(onScanned).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(400);
+
+    expect(onScanned).toHaveBeenCalledWith("3017620422003");
+    vi.useRealTimers();
   });
 
   it("shows a permission error message when the camera is unavailable", async () => {
