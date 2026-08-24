@@ -21,7 +21,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "", imageUrl: null }
+      { productName: "Gnocchi", ingredientsText: "", imageUrl: null, lang: null }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -29,7 +29,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null }
+      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null, lang: null }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -37,7 +37,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null }
+      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null, lang: null }
     );
     expect(result).toBe("no-match");
   });
@@ -45,7 +45,7 @@ describe("categorizeFailure", () => {
   it("returns null when the level is not non déterminable", () => {
     const result = categorizeFailure(
       { level: "élevé", matchedIngredients: [] },
-      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null }
+      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null, lang: null }
     );
     expect(result).toBeNull();
   });
@@ -110,6 +110,30 @@ describe("ResultView photo contribution", () => {
     expect(
       await screen.findByText(/merci, transmis à open food facts/i)
     ).toBeInTheDocument();
+  });
+
+  it("uploads the photo with the product's own language when Open Food Facts provides one", async () => {
+    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: "nl",
+    });
+    (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    const fileInput = await screen.findByLabelText(/photographier les ingrédients/i);
+    const file = new File(["fake-bytes"], "photo.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [file] } });
+
+    await waitFor(() =>
+      expect(uploadIngredientsPhoto).toHaveBeenCalledWith(
+        "1234567890123",
+        file,
+        "nl"
+      )
+    );
   });
 
   it("shows a failure message when the photo upload fails", async () => {

@@ -2,6 +2,7 @@ export interface OffProduct {
   productName: string;
   ingredientsText: string;
   imageUrl: string | null;
+  lang: string | null;
 }
 
 interface OffApiResponse {
@@ -10,6 +11,7 @@ interface OffApiResponse {
     product_name?: string;
     ingredients_text?: string;
     image_url?: string;
+    lang?: string;
   };
 }
 
@@ -39,5 +41,6 @@ export async function getProductByBarcode(
     productName: data.product.product_name ?? "",
     ingredientsText: data.product.ingredients_text ?? "",
     imageUrl: data.product.image_url ?? null,
+    lang: data.product.lang ?? null,
   };
 }

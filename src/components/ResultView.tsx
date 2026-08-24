@@ -85,7 +85,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     const result = matchIngredients(manualIngredients);
     setState({
       status: "found",
-      product: { productName: manualName, ingredientsText: manualIngredients, imageUrl: null },
+      product: { productName: manualName, ingredientsText: manualIngredients, imageUrl: null, lang: null },
       result,
     });
     await saveScan({
@@ -99,8 +99,9 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
   async function handlePhotoSelected(e: FormEvent<HTMLInputElement>) {
     const file = e.currentTarget.files?.[0];
     if (!file) return;
+    const lang = state.status === "found" ? state.product.lang ?? "fr" : "fr";
     setPhotoUploadState("uploading");
-    const success = await uploadIngredientsPhoto(ean, file, "fr");
+    const success = await uploadIngredientsPhoto(ean, file, lang);
     setPhotoUploadState(success ? "success" : "error");
   }
 
