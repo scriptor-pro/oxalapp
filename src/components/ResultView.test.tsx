@@ -2,12 +2,12 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { ResultView, categorizeFailure } from "./ResultView";
-import { getProductByBarcode } from "../lib/off-client";
+import { resolveProduct } from "../lib/product-resolver";
 import { pb } from "../lib/pocketbase";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
 import { lookupProductName } from "../lib/upcitemdb-client";
 
-vi.mock("../lib/off-client");
+vi.mock("../lib/product-resolver");
 vi.mock("../lib/pocketbase", () => ({
   pb: {
     collection: vi.fn(),
@@ -21,7 +21,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "", imageUrl: null, lang: null }
+      { ingredientsText: "" }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -29,7 +29,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null, lang: null }
+      { ingredientsText: "   " }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -37,7 +37,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null, lang: null }
+      { ingredientsText: "water, coconut oil, salt" }
     );
     expect(result).toBe("no-match");
   });
@@ -45,7 +45,7 @@ describe("categorizeFailure", () => {
   it("returns null when the level is not non déterminable", () => {
     const result = categorizeFailure(
       { level: "élevé", matchedIngredients: [] },
-      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null, lang: null }
+      { ingredientsText: "cacao" }
     );
     expect(result).toBeNull();
   });
@@ -53,10 +53,12 @@ describe("categorizeFailure", () => {
 
 describe("ResultView failure messaging", () => {
   it("shows a no-ingredients message with a contribute-photo button when OFF has no ingredients text", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -68,10 +70,12 @@ describe("ResultView failure messaging", () => {
   });
 
   it("shows a no-match message without a contribute-photo button when ingredients text exists but nothing matched", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Boursin Vegan",
       ingredientsText: "water, coconut oil, salt",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -87,10 +91,12 @@ describe("ResultView failure messaging", () => {
 
 describe("ResultView photo contribution", () => {
   it("uploads the selected photo and shows a confirmation message on success", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -113,11 +119,12 @@ describe("ResultView photo contribution", () => {
   });
 
   it("uploads the photo with the product's own language when Open Food Facts provides one", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
       lang: "nl",
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -137,10 +144,12 @@ describe("ResultView photo contribution", () => {
   });
 
   it("shows a failure message when the photo upload fails", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(false);
 
@@ -166,10 +175,12 @@ describe("ResultView", () => {
   });
 
   it("shows the oxalate level when the product is found on Open Food Facts", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",
       ingredientsText: "Sucre, huile de palme, noisettes, cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -179,10 +190,12 @@ describe("ResultView", () => {
   });
 
   it("shows a methodological caveat for ingredient-keyword-based results", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",
       ingredientsText: "Sucre, huile de palme, noisettes, cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -195,10 +208,12 @@ describe("ResultView", () => {
   });
 
   it("saves the scan to PocketBase after a successful match", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",
       ingredientsText: "cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     const create = vi.fn().mockResolvedValue({ id: "scan1" });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({ create });
@@ -219,7 +234,7 @@ describe("ResultView", () => {
   });
 
   it("shows manual entry form when the product is not found", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
 
     render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
 
@@ -228,7 +243,7 @@ describe("ResultView", () => {
   });
 
   it("matches manually entered ingredients and saves with source saisie_manuelle", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
     const create = vi.fn().mockResolvedValue({ id: "scan1" });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({ create });
 
@@ -256,10 +271,12 @@ describe("ResultView", () => {
   });
 
   it("renders matched ingredients that share the same dbItem without a duplicate-key warning", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Chocolat bilingue",
       ingredientsText: "Cacao / Cocoa 70%",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
@@ -280,10 +297,12 @@ describe("ResultView", () => {
   });
 
   it("still displays the result when saving to PocketBase fails", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue({
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       productName: "Nutella",
       ingredientsText: "cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       create: vi.fn().mockRejectedValue(new Error("network error")),
@@ -298,7 +317,7 @@ describe("ResultView", () => {
 
 describe("ResultView UPCitemdb fallback", () => {
   it("pre-fills the product name field when UPCitemdb finds a name", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
     (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(
       "Gnocchi di Patate 500g"
     );
@@ -313,7 +332,7 @@ describe("ResultView UPCitemdb fallback", () => {
   });
 
   it("leaves the product name field empty when UPCitemdb finds nothing", async () => {
-    (getProductByBarcode as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
     (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
 
     render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
@@ -321,5 +340,80 @@ describe("ResultView UPCitemdb fallback", () => {
     await screen.findByText(/produit non trouvé/i);
 
     expect(screen.getByLabelText(/nom du produit/i)).toHaveValue("");
+  });
+});
+
+describe("ResultView proportion-aware matching", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create: vi.fn().mockResolvedValue({ id: "scan1" }),
+    });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  it("keeps a high level and shows the percentage for a dominant risky ingredient", async () => {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Épinards à la crème",
+      ingredientsText: "Épinards 55%, crème 20%, sel",
+      structuredIngredients: [
+        { text: "Épinards", percentEstimate: 55 },
+        { text: "crème", percentEstimate: 20 },
+        { text: "sel", percentEstimate: 5 },
+      ],
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
+    expect(screen.getByText(/epinard.*55%/i)).toBeInTheDocument();
+  });
+
+  it("shows a reduced-contribution note for a low-proportion risky ingredient", async () => {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Biscuit noisettes",
+      ingredientsText: "Farine de blé, noisettes 0.8%, sucre",
+      structuredIngredients: [
+        { text: "Farine de blé", percentEstimate: 70 },
+        { text: "noisettes", percentEstimate: 0.8 },
+        { text: "sucre", percentEstimate: 20 },
+      ],
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/faible/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/noisette.*0[.,]8%.*contribution réduite/i)
+    ).toBeInTheDocument();
+  });
+
+  it("falls back to plain-text matching when Open Food Facts has no structured ingredients", async () => {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Nutella",
+      ingredientsText: "Sucre, huile de palme, noisettes, cacao",
+      structuredIngredients: [],
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
+    // No percentage shown when there was nothing to weight against.
+    expect(screen.queryByText(/%/)).not.toBeInTheDocument();
   });
 });
