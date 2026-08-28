@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { getProductByBarcode, type OffProduct } from "../lib/off-client";
+import { resolveProduct, type ResolvedProduct } from "../lib/product-resolver";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
-import { matchIngredients, type MatchResult } from "../lib/oxalate-matcher";
+import { matchIngredients, matchStructuredIngredients, type MatchResult } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { lookupProductName } from "../lib/upcitemdb-client";
 import { LevelBadge } from "./LevelBadge";
@@ -10,7 +10,7 @@ export type ScanFailureReason = "no-ingredients" | "no-match";
 
 export function categorizeFailure(
   result: MatchResult,
-  product: OffProduct
+  product: { ingredientsText: string }
 ): ScanFailureReason | null {
   if (result.level !== "non déterminable") return null;
   if (!product.ingredientsText.trim()) return "no-ingredients";
@@ -24,7 +24,7 @@ interface ResultViewProps {
 
 type LoadState =
   | { status: "loading" }
-  | { status: "found"; product: OffProduct; result: MatchResult }
+  | { status: "found"; product: ResolvedProduct; result: MatchResult }
   | { status: "not-found" };
 
 export function ResultView({ ean, onBack }: ResultViewProps) {
@@ -38,7 +38,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
 
   useEffect(() => {
     let cancelled = false;
-    getProductByBarcode(ean).then((product) => {
+    resolveProduct(ean).then((product) => {
       if (cancelled) return;
       if (!product) {
         setState({ status: "not-found" });
@@ -48,7 +48,10 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
         });
         return;
       }
-      const result = matchIngredients(product.ingredientsText);
+      const result =
+        product.structuredIngredients.length > 0
+          ? matchStructuredIngredients(product.structuredIngredients)
+          : matchIngredients(product.ingredientsText);
       setState({ status: "found", product, result });
       saveScan({
         ean,
@@ -85,7 +88,16 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     const result = matchIngredients(manualIngredients);
     setState({
       status: "found",
-      product: { productName: manualName, ingredientsText: manualIngredients, imageUrl: null, lang: null, structuredIngredients: [] },
+      product: {
+        gtin: ean,
+        rawCode: ean,
+        productName: manualName,
+        ingredientsText: manualIngredients,
+        structuredIngredients: [],
+        imageUrl: null,
+        lang: null,
+        sources: ["saisie_manuelle"],
+      },
       result,
     });
     await saveScan({
@@ -155,6 +167,10 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
             {state.result.matchedIngredients.map((m, index) => (
               <strong key={index}>
                 {m.ingredientText}
+                {m.percentEstimate !== undefined &&
+                  ` (${m.percentEstimate.toString().replace(".", ",")}%${
+                    m.levelBeforeAdjustment ? ", contribution réduite" : ""
+                  })`}
                 {index < state.result.matchedIngredients.length - 1 ? ", " : ""}
               </strong>
             ))}
