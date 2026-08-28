@@ -85,7 +85,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     const result = matchIngredients(manualIngredients);
     setState({
       status: "found",
-      product: { productName: manualName, ingredientsText: manualIngredients, imageUrl: null, lang: null },
+      product: { productName: manualName, ingredientsText: manualIngredients, imageUrl: null, lang: null, structuredIngredients: [] },
       result,
     });
     await saveScan({

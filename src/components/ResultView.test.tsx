@@ -21,7 +21,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "", imageUrl: null, lang: null }
+      { productName: "Gnocchi", ingredientsText: "", imageUrl: null, lang: null, structuredIngredients: [] }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -29,7 +29,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null, lang: null }
+      { productName: "Gnocchi", ingredientsText: "   ", imageUrl: null, lang: null, structuredIngredients: [] }
     );
     expect(result).toBe("no-ingredients");
   });
@@ -37,7 +37,7 @@ describe("categorizeFailure", () => {
   it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
     const result = categorizeFailure(
       { level: "non déterminable", matchedIngredients: [] },
-      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null, lang: null }
+      { productName: "Boursin Vegan", ingredientsText: "water, coconut oil, salt", imageUrl: null, lang: null, structuredIngredients: [] }
     );
     expect(result).toBe("no-match");
   });
@@ -45,7 +45,7 @@ describe("categorizeFailure", () => {
   it("returns null when the level is not non déterminable", () => {
     const result = categorizeFailure(
       { level: "élevé", matchedIngredients: [] },
-      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null, lang: null }
+      { productName: "Nutella", ingredientsText: "cacao", imageUrl: null, lang: null, structuredIngredients: [] }
     );
     expect(result).toBeNull();
   });
@@ -57,6 +57,8 @@ describe("ResultView failure messaging", () => {
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -72,6 +74,8 @@ describe("ResultView failure messaging", () => {
       productName: "Boursin Vegan",
       ingredientsText: "water, coconut oil, salt",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -91,6 +95,8 @@ describe("ResultView photo contribution", () => {
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -118,6 +124,7 @@ describe("ResultView photo contribution", () => {
       ingredientsText: "",
       imageUrl: null,
       lang: "nl",
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -141,6 +148,8 @@ describe("ResultView photo contribution", () => {
       productName: "Gnocchi",
       ingredientsText: "",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(false);
 
@@ -170,6 +179,8 @@ describe("ResultView", () => {
       productName: "Nutella",
       ingredientsText: "Sucre, huile de palme, noisettes, cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -183,6 +194,8 @@ describe("ResultView", () => {
       productName: "Nutella",
       ingredientsText: "Sucre, huile de palme, noisettes, cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -199,6 +212,8 @@ describe("ResultView", () => {
       productName: "Nutella",
       ingredientsText: "cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     const create = vi.fn().mockResolvedValue({ id: "scan1" });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({ create });
@@ -260,6 +275,8 @@ describe("ResultView", () => {
       productName: "Chocolat bilingue",
       ingredientsText: "Cacao / Cocoa 70%",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
 
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
@@ -284,6 +301,8 @@ describe("ResultView", () => {
       productName: "Nutella",
       ingredientsText: "cacao",
       imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
     });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       create: vi.fn().mockRejectedValue(new Error("network error")),
