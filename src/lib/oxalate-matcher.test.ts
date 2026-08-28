@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { matchIngredients } from "./oxalate-matcher";
+import { matchIngredients, matchStructuredIngredients } from "./oxalate-matcher";
 
 describe("matchIngredients", () => {
   it("returns très élevé when ingredients include cocoa", () => {
@@ -287,5 +287,101 @@ describe("matchIngredients", () => {
     const result = matchIngredients("Tomato sauce, salt, sugar");
 
     expect(result.level).toBe("élevé");
+  });
+});
+
+describe("matchStructuredIngredients", () => {
+  it("keeps the level unchanged when the matched ingredient's percentEstimate is >= 10", () => {
+    const result = matchStructuredIngredients([
+      { text: "Épinards", percentEstimate: 55 },
+      { text: "crème", percentEstimate: 20 },
+      { text: "sel", percentEstimate: 5 },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+    const spinach = result.matchedIngredients.find((m) =>
+      m.ingredientText.includes("epinard")
+    );
+    expect(spinach?.level).toBe("très élevé");
+    expect(spinach?.levelBeforeAdjustment).toBeUndefined();
+    expect(spinach?.percentEstimate).toBe(55);
+  });
+
+  it("degrades the level by one tier when percentEstimate is between 2 and 10", () => {
+    const result = matchStructuredIngredients([
+      { text: "Farine", percentEstimate: 80 },
+      { text: "noisettes", percentEstimate: 5 },
+      { text: "sucre", percentEstimate: 15 },
+    ]);
+
+    const hazelnut = result.matchedIngredients.find((m) =>
+      m.ingredientText.includes("noisette")
+    );
+    // noisette is "très élevé" pre-adjustment (see KNOWN_INGREDIENTS)
+    expect(hazelnut?.levelBeforeAdjustment).toBe("très élevé");
+    expect(hazelnut?.level).toBe("élevé");
+    expect(hazelnut?.percentEstimate).toBe(5);
+  });
+
+  it("degrades the level by two tiers, floored at faible, when percentEstimate is below 2", () => {
+    const result = matchStructuredIngredients([
+      { text: "Farine de blé", percentEstimate: 70 },
+      { text: "eau", percentEstimate: 20 },
+      { text: "noisettes", percentEstimate: 0.8 },
+    ]);
+
+    const hazelnut = result.matchedIngredients.find((m) =>
+      m.ingredientText.includes("noisette")
+    );
+    expect(hazelnut?.levelBeforeAdjustment).toBe("très élevé");
+    expect(hazelnut?.level).toBe("faible");
+    expect(hazelnut?.percentEstimate).toBe(0.8);
+  });
+
+  it("does not lower an already-faible level below faible (floor, not wraparound)", () => {
+    // "anis" is rated élevé; at <2% it degrades two tiers, which floors at
+    // faible rather than going negative/undefined.
+    const result = matchStructuredIngredients([
+      { text: "anis", percentEstimate: 0.5 },
+    ]);
+
+    expect(result.matchedIngredients[0].level).toBe("faible");
+  });
+
+  it("leaves the level unadjusted when percentEstimate is null (unknown proportion)", () => {
+    const result = matchStructuredIngredients([
+      { text: "cacao", percentEstimate: null },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+    expect(result.matchedIngredients[0].levelBeforeAdjustment).toBeUndefined();
+    expect(result.matchedIngredients[0].percentEstimate).toBeUndefined();
+  });
+
+  it("computes the overall level as the max of post-adjustment levels", () => {
+    // Both critical cases from the same product: spinach at 55% (stays très
+    // élevé) must dominate hazelnut at 0.8% (degraded to faible).
+    const result = matchStructuredIngredients([
+      { text: "Épinards", percentEstimate: 55 },
+      { text: "noisettes", percentEstimate: 0.8 },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("returns non déterminable for an empty structured ingredients list", () => {
+    const result = matchStructuredIngredients([]);
+    expect(result.level).toBe("non déterminable");
+    expect(result.matchedIngredients).toEqual([]);
+  });
+
+  it("skips structured entries whose text matches no known ingredient", () => {
+    const result = matchStructuredIngredients([
+      { text: "eau", percentEstimate: 90 },
+      { text: "sel", percentEstimate: 10 },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.matchedIngredients).toEqual([]);
   });
 });

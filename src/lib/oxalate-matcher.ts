@@ -1,3 +1,5 @@
+import type { StructuredIngredient } from "./off-client";
+
 export type OxalateLevel = "faible" | "modéré" | "élevé" | "très élevé";
 export type MatchLevel = OxalateLevel | "non déterminable";
 
@@ -5,6 +7,8 @@ export interface MatchedIngredient {
   ingredientText: string;
   dbItem: string;
   level: OxalateLevel;
+  percentEstimate?: number;
+  levelBeforeAdjustment?: OxalateLevel;
 }
 
 export interface MatchResult {
@@ -340,6 +344,31 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "yerba mate", dbItem: "Tea, Herbal, Mate", level: "élevé" },
 ];
 
+const LEVEL_RANK: Record<OxalateLevel, number> = {
+  "faible": 0,
+  "modéré": 1,
+  "élevé": 2,
+  "très élevé": 3,
+};
+
+const LEVELS_BY_RANK: OxalateLevel[] = ["faible", "modéré", "élevé", "très élevé"];
+
+// Proportion-based degradation: an ingredient's raw OHF-derived level
+// assumes it's the dominant component. When Open Food Facts tells us the
+// ingredient is actually a small fraction of the product, its contribution
+// to overall oxalate content is proportionally smaller, so the level is
+// stepped down. Thresholds per the plan: >=10% no change, 2-10% one tier
+// down, <2% floored straight to "faible" regardless of starting tier (a
+// trace-level ingredient's oxalate contribution is negligible no matter
+// how concentrated the ingredient itself is).
+function degradeByProportion(level: OxalateLevel, percent: number): OxalateLevel {
+  if (percent >= 10) return level;
+  if (percent < 2) return "faible";
+  const currentRank = LEVEL_RANK[level];
+  const newRank = Math.max(0, currentRank - 1);
+  return LEVELS_BY_RANK[newRank];
+}
+
 export function normalize(text: string): string {
   return text
     .toLowerCase()
@@ -347,13 +376,7 @@ export function normalize(text: string): string {
     .replace(/[̀-ͯ]/g, ""); // strip accents
 }
 
-export function matchIngredients(ingredientsText: string): MatchResult {
-  const trimmed = ingredientsText.trim();
-  if (!trimmed) {
-    return { level: "non déterminable", matchedIngredients: [] };
-  }
-
-  const normalized = normalize(trimmed);
+function matchKnownIngredientsInText(normalized: string): MatchedIngredient[] {
   const matched: MatchedIngredient[] = [];
 
   for (const known of KNOWN_INGREDIENTS) {
@@ -386,11 +409,15 @@ export function matchIngredients(ingredientsText: string): MatchResult {
     }
   }
 
-  // Drop a match whose keyword is a substring of another match's keyword
-  // (e.g. "fenouil" inside "graines de fenouil") so a single mention of
-  // the more specific ingredient doesn't render as two duplicate bullets
-  // in ResultView for what is really one occurrence in the text.
-  const deduped = matched.filter(
+  return matched;
+}
+
+// Drop a match whose keyword is a substring of another match's keyword
+// (e.g. "fenouil" inside "graines de fenouil") so a single mention of
+// the more specific ingredient doesn't render as two duplicate bullets
+// in ResultView for what is really one occurrence in the text.
+function dedupeMatches(matched: MatchedIngredient[]): MatchedIngredient[] {
+  return matched.filter(
     (m) =>
       !matched.some(
         (other) =>
@@ -398,21 +425,55 @@ export function matchIngredients(ingredientsText: string): MatchResult {
           normalize(other.ingredientText).includes(normalize(m.ingredientText))
       )
   );
+}
 
+function aggregateResult(deduped: MatchedIngredient[]): MatchResult {
   if (deduped.length === 0) {
     return { level: "non déterminable", matchedIngredients: [] };
   }
 
-  const levelRank: Record<OxalateLevel, number> = {
-    "faible": 0,
-    "modéré": 1,
-    "élevé": 2,
-    "très élevé": 3,
-  };
-
   const highest = deduped.reduce((max, m) =>
-    levelRank[m.level] > levelRank[max.level] ? m : max
+    LEVEL_RANK[m.level] > LEVEL_RANK[max.level] ? m : max
   );
 
   return { level: highest.level, matchedIngredients: deduped };
+}
+
+export function matchIngredients(ingredientsText: string): MatchResult {
+  const trimmed = ingredientsText.trim();
+  if (!trimmed) {
+    return { level: "non déterminable", matchedIngredients: [] };
+  }
+
+  const normalized = normalize(trimmed);
+  const matched = matchKnownIngredientsInText(normalized);
+  const deduped = dedupeMatches(matched);
+
+  return aggregateResult(deduped);
+}
+
+export function matchStructuredIngredients(
+  structuredIngredients: StructuredIngredient[]
+): MatchResult {
+  const allMatches: MatchedIngredient[] = [];
+
+  for (const ingredient of structuredIngredients) {
+    const normalized = normalize(ingredient.text);
+    const matches = matchKnownIngredientsInText(normalized);
+    for (const match of matches) {
+      if (ingredient.percentEstimate === null) {
+        allMatches.push(match);
+        continue;
+      }
+      const adjustedLevel = degradeByProportion(match.level, ingredient.percentEstimate);
+      allMatches.push({
+        ...match,
+        level: adjustedLevel,
+        percentEstimate: ingredient.percentEstimate,
+        ...(adjustedLevel !== match.level ? { levelBeforeAdjustment: match.level } : {}),
+      });
+    }
+  }
+
+  return aggregateResult(dedupeMatches(allMatches));
 }
