@@ -28,6 +28,7 @@ dist-ssr
 *.pdf
 .venv/
 .env.local
+.env.production
 pocketbase/pb_data/
 pocketbase/pocketbase
 mailpit/
