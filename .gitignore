@@ -29,6 +29,7 @@ dist-ssr
 .venv/
 .env.local
 .env.production
+.usda_api_key
 pocketbase/pb_data/
 pocketbase/pocketbase
 mailpit/
