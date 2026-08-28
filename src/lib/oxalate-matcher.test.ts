@@ -384,4 +384,39 @@ describe("matchStructuredIngredients", () => {
     expect(result.level).toBe("non déterminable");
     expect(result.matchedIngredients).toEqual([]);
   });
+
+  it("does not eliminate two distinct structured entries whose keywords are in a substring relationship", () => {
+    // "cacao" and "beurre de cacao" are two separate Open Food Facts
+    // ingredient-list entries (common real-world pairing for chocolate
+    // products). Both independently contain the "cacao" keyword from
+    // KNOWN_INGREDIENTS. They must NOT be deduped against each other just
+    // because one entry's text contains the other's — that cross-entry
+    // dedup previously collapsed both matches to zero (bug reproduction).
+    const result = matchStructuredIngredients([
+      { text: "sucre", percentEstimate: 40 },
+      { text: "cacao", percentEstimate: 30 },
+      { text: "beurre de cacao", percentEstimate: 20 },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+    expect(result.matchedIngredients.length).toBe(2);
+    expect(
+      result.matchedIngredients.every((m) => m.ingredientText === "cacao")
+    ).toBe(true);
+    expect(
+      result.matchedIngredients.every(
+        (m) => m.dbItem === "Cocoa or Cacao Powder, Dark Chocolate"
+      )
+    ).toBe(true);
+    expect(result.matchedIngredients.map((m) => m.percentEstimate).sort()).toEqual([20, 30]);
+  });
+
+  it("still dedupes within a single structured entry's own overlapping keyword matches", () => {
+    const result = matchStructuredIngredients([
+      { text: "Graines de fenouil", percentEstimate: 15 },
+    ]);
+
+    expect(result.matchedIngredients).toHaveLength(1);
+    expect(result.matchedIngredients[0].ingredientText).toBe("graines de fenouil");
+  });
 });

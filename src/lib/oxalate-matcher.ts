@@ -459,7 +459,15 @@ export function matchStructuredIngredients(
 
   for (const ingredient of structuredIngredients) {
     const normalized = normalize(ingredient.text);
-    const matches = matchKnownIngredientsInText(normalized);
+    // Dedup within this entry's own matches only (e.g. "fenouil" inside
+    // "graines de fenouil" from the same entry's text) BEFORE mixing them
+    // into allMatches. Matches from different structured entries must not
+    // be deduped against each other: each entry is an independent
+    // ingredient-list item, so one entry's keyword being a substring of
+    // another entry's text (e.g. "cacao" vs. "beurre de cacao" as two
+    // separate OFF ingredients) is coincidental, not a duplicate detection
+    // of the same mention.
+    const matches = dedupeMatches(matchKnownIngredientsInText(normalized));
     for (const match of matches) {
       if (ingredient.percentEstimate === null) {
         allMatches.push(match);
@@ -475,5 +483,5 @@ export function matchStructuredIngredients(
     }
   }
 
-  return aggregateResult(dedupeMatches(allMatches));
+  return aggregateResult(allMatches);
 }
