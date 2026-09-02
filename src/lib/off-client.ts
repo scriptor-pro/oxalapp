@@ -1,6 +1,11 @@
 export interface StructuredIngredient {
   text: string;
   percentEstimate: number | null;
+  // Open Food Facts ingredient taxonomy id (e.g. "en:hazelnut"). Always
+  // "en:"-prefixed, independent of the product's own language — lets the
+  // matcher work on non-French/Dutch/English products. Absent when OFF
+  // couldn't resolve the ingredient text against its taxonomy.
+  offId?: string | null;
 }
 
 export interface OffProduct {
@@ -18,7 +23,7 @@ interface OffApiResponse {
     ingredients_text?: string;
     image_url?: string;
     lang?: string;
-    ingredients?: { text?: string; percent_estimate?: number }[];
+    ingredients?: { text?: string; percent_estimate?: number; id?: string }[];
   };
 }
 
@@ -49,6 +54,7 @@ export async function getProductByBarcode(
   ).map((ingredient) => ({
     text: ingredient.text ?? "",
     percentEstimate: ingredient.percent_estimate ?? null,
+    offId: ingredient.id ?? null,
   }));
 
   return {

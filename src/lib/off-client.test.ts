@@ -108,9 +108,9 @@ describe("getProductByBarcode", () => {
     const result = await getProductByBarcode("3017620422003");
 
     expect(result?.structuredIngredients).toEqual([
-      { text: "Épinards", percentEstimate: 55 },
-      { text: "crème", percentEstimate: 20 },
-      { text: "sel", percentEstimate: 5 },
+      { text: "Épinards", percentEstimate: 55, offId: null },
+      { text: "crème", percentEstimate: 20, offId: null },
+      { text: "sel", percentEstimate: 5, offId: null },
     ]);
   });
 
@@ -140,9 +140,9 @@ describe("getProductByBarcode", () => {
     const result = await getProductByBarcode("1234567890123");
 
     expect(result?.structuredIngredients).toEqual([
-      { text: "Farine", percentEstimate: null },
-      { text: "noisettes", percentEstimate: null },
-      { text: "sucre", percentEstimate: null },
+      { text: "Farine", percentEstimate: null, offId: null },
+      { text: "noisettes", percentEstimate: null, offId: null },
+      { text: "sucre", percentEstimate: null, offId: null },
     ]);
   });
 
@@ -166,5 +166,35 @@ describe("getProductByBarcode", () => {
     const result = await getProductByBarcode("1234567890123");
 
     expect(result?.structuredIngredients).toEqual([]);
+  });
+
+  it("exposes the ingredient's OFF taxonomy id (offId) when present", async () => {
+    const mockResponse = {
+      status: 1,
+      product: {
+        product_name: "Nutella",
+        ingredients_text: "Sucre, noisettes",
+        image_url: null,
+        lang: "fr",
+        ingredients: [
+          { text: "Sucre", percent_estimate: 52, id: "en:sugar" },
+          { text: "noisettes", percent_estimate: 13 },
+        ],
+      },
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve(mockResponse),
+      })
+    );
+
+    const result = await getProductByBarcode("3017620422003");
+
+    expect(result?.structuredIngredients).toEqual([
+      { text: "Sucre", percentEstimate: 52, offId: "en:sugar" },
+      { text: "noisettes", percentEstimate: 13, offId: null },
+    ]);
   });
 });

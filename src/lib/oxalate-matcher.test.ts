@@ -419,4 +419,41 @@ describe("matchStructuredIngredients", () => {
     expect(result.matchedIngredients).toHaveLength(1);
     expect(result.matchedIngredients[0].ingredientText).toBe("graines de fenouil");
   });
+
+  it("matches by OFF taxonomy id when the ingredient text is in an unsupported language", () => {
+    // "Haselnüsse" (German for hazelnuts) isn't in KNOWN_INGREDIENTS at
+    // all — only the offId lets this resolve instead of falling through
+    // to "non déterminable".
+    const result = matchStructuredIngredients([
+      { text: "Haselnüsse", percentEstimate: 20, offId: "en:hazelnut" },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+    expect(result.matchedIngredients[0].ingredientText).toBe("hazelnut");
+  });
+
+  it("applies proportion-based degradation to an offId match same as a text match", () => {
+    const result = matchStructuredIngredients([
+      { text: "Haselnüsse", percentEstimate: 0.5, offId: "en:hazelnut" },
+    ]);
+
+    expect(result.matchedIngredients[0].levelBeforeAdjustment).toBe("très élevé");
+    expect(result.matchedIngredients[0].level).toBe("faible");
+  });
+
+  it("falls back to text matching when offId is absent", () => {
+    const result = matchStructuredIngredients([
+      { text: "epinard", percentEstimate: 50 },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("falls back to text matching when offId doesn't map to a known ingredient", () => {
+    const result = matchStructuredIngredients([
+      { text: "epinard", percentEstimate: 50, offId: "en:some-unmapped-id" },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+  });
 });
