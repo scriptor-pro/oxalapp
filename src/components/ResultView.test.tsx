@@ -6,6 +6,8 @@ import { resolveProduct } from "../lib/product-resolver";
 import { pb } from "../lib/pocketbase";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
 import { lookupProductName } from "../lib/upcitemdb-client";
+import { Capacitor } from "@capacitor/core";
+import { recognizeIngredientsText } from "../lib/ocr-client";
 
 vi.mock("../lib/product-resolver");
 vi.mock("../lib/pocketbase", () => ({
@@ -16,6 +18,10 @@ vi.mock("../lib/pocketbase", () => ({
 }));
 vi.mock("../lib/off-contribute");
 vi.mock("../lib/upcitemdb-client");
+vi.mock("@capacitor/core", () => ({
+  Capacitor: { isNativePlatform: vi.fn(() => false) },
+}));
+vi.mock("../lib/ocr-client");
 
 describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
@@ -415,5 +421,141 @@ describe("ResultView proportion-aware matching", () => {
     expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
     // No percentage shown when there was nothing to weight against.
     expect(screen.queryByText(/%/)).not.toBeInTheDocument();
+  });
+});
+
+describe("ResultView OCR ingredient recognition", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create: vi.fn().mockResolvedValue({ id: "scan1" }),
+    });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  it("shows the OCR button instead of the OFF upload button for no-ingredients on native platforms", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
+    });
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(/photographier pour remplir/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText(/photographier les ingrédients/i)
+    ).not.toBeInTheDocument();
+  });
+
+  it("keeps the OFF upload button for no-ingredients on web", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(false);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
+    });
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByLabelText(/photographier les ingrédients/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/photographier pour remplir/i)
+    ).not.toBeInTheDocument();
+  });
+
+  it("pre-fills the product name from Open Food Facts for the no-ingredients form", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi di Patate",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
+    });
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    expect(await screen.findByLabelText(/nom du produit/i)).toHaveValue(
+      "Gnocchi di Patate"
+    );
+  });
+
+  it("fills the ingredients textarea with the OCR result when a photo is captured", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
+    });
+    (recognizeIngredientsText as ReturnType<typeof vi.fn>).mockResolvedValue(
+      "Farine de pomme de terre, sel"
+    );
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    const fileInput = await screen.findByLabelText(/photographier pour remplir/i);
+    const file = new File(["fake-bytes"], "label.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [file] } });
+
+    await waitFor(() =>
+      expect(screen.getByLabelText(/ingrédients/i)).toHaveValue(
+        "Farine de pomme de terre, sel"
+      )
+    );
+  });
+
+  it("leaves the ingredients textarea unchanged when OCR returns null", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      productName: "Gnocchi",
+      ingredientsText: "",
+      imageUrl: null,
+      lang: null,
+      structuredIngredients: [],
+    });
+    (recognizeIngredientsText as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    const fileInput = await screen.findByLabelText(/photographier pour remplir/i);
+    const file = new File(["fake-bytes"], "label.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [file] } });
+
+    await waitFor(() => expect(recognizeIngredientsText).toHaveBeenCalled());
+    expect(screen.getByLabelText(/ingrédients/i)).toHaveValue("");
+  });
+
+  it("shows the OCR button in the not-found form on native platforms, hidden on web", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    await screen.findByText(/produit non trouvé/i);
+    expect(screen.getByLabelText(/photographier pour remplir/i)).toBeInTheDocument();
+  });
+
+  it("hides the OCR button in the not-found form on web", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(false);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    await screen.findByText(/produit non trouvé/i);
+    expect(
+      screen.queryByLabelText(/photographier pour remplir/i)
+    ).not.toBeInTheDocument();
   });
 });

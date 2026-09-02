@@ -1,10 +1,13 @@
 import { useEffect, useState, type FormEvent } from "react";
+import { Capacitor } from "@capacitor/core";
 import { resolveProduct, type ResolvedProduct } from "../lib/product-resolver";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
+import { recognizeIngredientsText } from "../lib/ocr-client";
 import { matchIngredients, matchStructuredIngredients, type MatchResult } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { lookupProductName } from "../lib/upcitemdb-client";
 import { LevelBadge } from "./LevelBadge";
+import { ManualIngredientsForm } from "./ManualIngredientsForm";
 
 export type ScanFailureReason = "no-ingredients" | "no-match";
 
@@ -28,6 +31,7 @@ type LoadState =
   | { status: "not-found" };
 
 export function ResultView({ ean, onBack }: ResultViewProps) {
+  const isNativePlatform = Capacitor.isNativePlatform();
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const [syncError, setSyncError] = useState(false);
   const [manualName, setManualName] = useState("");
@@ -53,6 +57,9 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
           ? matchStructuredIngredients(product.structuredIngredients)
           : matchIngredients(product.ingredientsText);
       setState({ status: "found", product, result });
+      if (categorizeFailure(result, product) === "no-ingredients") {
+        setManualName(product.productName);
+      }
       saveScan({
         ean,
         productName: product.productName,
@@ -117,6 +124,13 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     setPhotoUploadState(success ? "success" : "error");
   }
 
+  async function handleOcrPhotoSelected(file: File) {
+    const text = await recognizeIngredientsText(file);
+    if (text) {
+      setManualIngredients(text);
+    }
+  }
+
   if (state.status === "loading") {
     return (
       <div className="screen-content">
@@ -129,27 +143,15 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     return (
       <div className="screen-content">
         <p>Produit non trouvé sur Open Food Facts.</p>
-        <form className="manual-form" onSubmit={handleManualSubmit}>
-          <div className="field">
-            <label htmlFor="manual-name" className="field-label">Nom du produit</label>
-            <input
-              id="manual-name"
-              className="field-input"
-              value={manualName}
-              onChange={(e) => setManualName(e.target.value)}
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="manual-ingredients" className="field-label">Ingrédients</label>
-            <textarea
-              id="manual-ingredients"
-              className="field-input"
-              value={manualIngredients}
-              onChange={(e) => setManualIngredients(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="primary-button">Valider</button>
-        </form>
+        <ManualIngredientsForm
+          name={manualName}
+          onNameChange={setManualName}
+          ingredients={manualIngredients}
+          onIngredientsChange={setManualIngredients}
+          onSubmit={handleManualSubmit}
+          showOcrButton={isNativePlatform}
+          onPhotoSelected={handleOcrPhotoSelected}
+        />
         <button className="text-button" onClick={onBack}>Retour</button>
       </div>
     );
@@ -193,27 +195,41 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
                   Liste d'ingrédients non disponible sur Open Food Facts
                   pour ce produit.
                 </p>
-                <label htmlFor="ingredients-photo" className="text-button">
-                  Photographier les ingrédients
-                  <input
-                    id="ingredients-photo"
-                    type="file"
-                    accept="image/*"
-                    capture="environment"
-                    style={{ display: "none" }}
-                    onChange={handlePhotoSelected}
+                {isNativePlatform ? (
+                  <ManualIngredientsForm
+                    name={manualName}
+                    onNameChange={setManualName}
+                    ingredients={manualIngredients}
+                    onIngredientsChange={setManualIngredients}
+                    onSubmit={handleManualSubmit}
+                    showOcrButton={true}
+                    onPhotoSelected={handleOcrPhotoSelected}
                   />
-                </label>
-                {photoUploadState === "success" && (
-                  <p className="ingredient-line">
-                    Merci, transmis à Open Food Facts — la liste
-                    d'ingrédients sera disponible après traitement.
-                  </p>
-                )}
-                {photoUploadState === "error" && (
-                  <p className="sync-error">
-                    Échec de l'envoi de la photo. Réessayez plus tard.
-                  </p>
+                ) : (
+                  <>
+                    <label htmlFor="ingredients-photo" className="text-button">
+                      Photographier les ingrédients
+                      <input
+                        id="ingredients-photo"
+                        type="file"
+                        accept="image/*"
+                        capture="environment"
+                        style={{ display: "none" }}
+                        onChange={handlePhotoSelected}
+                      />
+                    </label>
+                    {photoUploadState === "success" && (
+                      <p className="ingredient-line">
+                        Merci, transmis à Open Food Facts — la liste
+                        d'ingrédients sera disponible après traitement.
+                      </p>
+                    )}
+                    {photoUploadState === "error" && (
+                      <p className="sync-error">
+                        Échec de l'envoi de la photo. Réessayez plus tard.
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
             );
