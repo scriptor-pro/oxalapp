@@ -180,10 +180,13 @@ nouvelles dépendances pour générer les modules Gradle natifs).
 - **Taille d'app** : `@capacitor-mlkit/text-recognition` embarque par
   défaut les modèles des 5 scripts supportés (latin, chinois, devanagari,
   japonais, coréen), sans option documentée pour n'inclure que le latin
-  — plusieurs Mo ajoutés à l'APK au-delà du nécessaire. Acceptable pour
-  cet usage (APK side-loadé sur un appareil de test, pas de distribution
-  Play Store avec contrainte de taille), mais un compromis assumé plutôt
-  qu'une optimisation.
+  — mesuré après implémentation : APK debug passé d'environ 15-25 Mo
+  (baseline `docs/superpowers/specs/2026-08-18-android-apk-design.md`) à
+  48,0 Mo, soit +25-30 Mo, nettement plus que l'estimation initiale
+  ("plusieurs Mo") de ce document. Acceptable pour cet usage (APK
+  side-loadé sur un appareil de test, pas de distribution Play Store
+  avec contrainte de taille), mais un compromis assumé plus coûteux que
+  prévu plutôt qu'une optimisation.
 - **Perte de la contribution communautaire OFF pour `no-ingredients` sur
   natif** : quand l'OCR local est disponible, la photo n'est plus envoyée
   à Open Food Facts. Les futurs scans de ce même produit — par cet
