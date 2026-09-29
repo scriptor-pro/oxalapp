@@ -348,6 +348,40 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "oat milk", offId: "en:oat-milk", dbItem: "Milk, plant-based, Oat milk", level: "élevé" },
   { keyword: "coconut water", offId: "en:coconut-water", dbItem: "Coconut Water", level: "élevé" },
   { keyword: "yerba mate", offId: "en:mate", dbItem: "Tea, Herbal, Mate", level: "élevé" },
+
+  // Élargissement 2026-09-29 : ingrédients génériques fréquents dans les
+  // produits transformés (céréales/graines de petit-déjeuner, compléments,
+  // pains spéciaux) repérés dans oxalate-database.json mais absents des
+  // mots-clés jusqu'ici. Marques et plats préparés (ex: "McCormick",
+  // "Wendy's Chili") volontairement exclus, cohérent avec la méthode déjà
+  // suivie ci-dessus. Sésame classé "modéré" (pas "très élevé") car
+  // l'immense majorité du sésame utilisé en agroalimentaire transformé est
+  // décortiqué ("faible", 146 mg/100g) plutôt qu'entier ("très élevé", 3800
+  // mg/100g) — voir docs/recherche/2026-09-13-synthese-recommandations.md
+  // §2.2 ; "modéré" reste une estimation prudente entre les deux extrêmes
+  // plutôt qu'un pari sur l'un ou l'autre.
+  { keyword: "sesame", offId: "en:sesame-seeds", dbItem: "Seeds, Sesame, toasted", level: "modéré" },
+  { keyword: "quinoa", offId: "en:quinoa", dbItem: "Grain, Quinoa, cooked", level: "très élevé" },
+  // Pas de noeud générique "amaranth seed/grain" dans la taxonomie OFF
+  // (seulement des variétés de feuilles/farine) — mot-clé texte seul.
+  { keyword: "amarante", dbItem: "Grain, Amaranth, uncooked", level: "très élevé" },
+  { keyword: "amaranth", dbItem: "Grain, Amaranth, uncooked", level: "très élevé" },
+  { keyword: "teff", offId: "en:teff", dbItem: "Flour, Teff, Brown", level: "très élevé" },
+  { keyword: "graines de pavot", offId: "en:poppyseed", dbItem: "Seeds, Poppy", level: "très élevé" },
+  { keyword: "poppy seed", offId: "en:poppyseed", pluralOverride: "poppy seeds", dbItem: "Seeds, Poppy", level: "très élevé" },
+  { keyword: "chardon marie", dbItem: "Milk Thistle, Seed", level: "très élevé" },
+  { keyword: "milk thistle", dbItem: "Milk Thistle, Seed", level: "très élevé" },
+  // Pas de noeud "moringa" (feuille/plante) dans la taxonomie OFF — mot-clé
+  // texte seul.
+  { keyword: "moringa", dbItem: "Moringa, Leaf Powder", level: "élevé" },
+  { keyword: "dulse", dbItem: "Seaweed, Dulse flakes", level: "élevé" },
+  { keyword: "nori", offId: "en:nori", dbItem: "Seaweed, Nori, dry roasted", level: "élevé" },
+  { keyword: "graines de tournesol", offId: "en:sunflower-seed", dbItem: "Seeds, Sunflower, raw or roasted", level: "élevé" },
+  { keyword: "sunflower seed", offId: "en:sunflower-seed", pluralOverride: "sunflower seeds", dbItem: "Seeds, Sunflower, raw or roasted", level: "élevé" },
+  { keyword: "zonnebloempit", offId: "en:sunflower-seed", pluralOverride: "zonnebloempitten", dbItem: "Seeds, Sunflower, raw or roasted", level: "élevé" },
+  { keyword: "sesamzaad", offId: "en:sesame-seeds", dbItem: "Seeds, Sesame, toasted", level: "modéré" },
+  { keyword: "papaverzaad", offId: "en:poppyseed", dbItem: "Seeds, Poppy", level: "très élevé" },
+  { keyword: "melkdistel", dbItem: "Milk Thistle, Seed", level: "très élevé" },
 ];
 
 const LEVEL_RANK: Record<OxalateLevel, number> = {
@@ -379,7 +413,8 @@ export function normalize(text: string): string {
   return text
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, ""); // strip accents
+    .replace(/[̀-ͯ]/g, "") // strip accents
+    .replace(/-/g, " "); // treat hyphens as spaces (e.g. "chardon-marie")
 }
 
 function matchKnownIngredientsInText(normalized: string): MatchedIngredient[] {

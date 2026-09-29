@@ -456,4 +456,28 @@ describe("matchStructuredIngredients", () => {
 
     expect(result.level).toBe("très élevé");
   });
+
+  it("detects quinoa as très élevé", () => {
+    const result = matchIngredients("Quinoa, eau, sel");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects sesame as modéré", () => {
+    const result = matchIngredients("Farine de blé, graines de sésame, sel");
+
+    expect(result.level).toBe("modéré");
+  });
+
+  it("detects milk thistle (chardon-marie) as très élevé", () => {
+    const result = matchIngredients("Extrait de chardon-marie, eau");
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("detects nori as élevé", () => {
+    const result = matchIngredients("Riz, algue nori, vinaigre");
+
+    expect(result.level).toBe("élevé");
+  });
 });
