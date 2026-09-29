@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { recognizeIngredientsText } from "./ocr-client";
+import { recognizeIngredientsText, extractIngredientsText } from "./ocr-client";
 import { Capacitor } from "@capacitor/core";
 import { Filesystem } from "@capacitor/filesystem";
 import { TextRecognition } from "@capacitor-mlkit/text-recognition";
+import type { TextBlock } from "@capacitor-mlkit/text-recognition";
 
 vi.mock("@capacitor/core", () => ({
   Capacitor: { isNativePlatform: vi.fn() },
@@ -124,5 +125,79 @@ describe("recognizeIngredientsText", () => {
     await recognizeIngredientsText(fakePhoto());
 
     expect(Filesystem.deleteFile).toHaveBeenCalled();
+  });
+
+  it("uses a caller-provided temp file path when given", async () => {
+    (TextRecognition.processImage as ReturnType<typeof vi.fn>).mockResolvedValue({
+      text: "texte",
+      blocks: [],
+    });
+
+    await recognizeIngredientsText(fakePhoto(), {
+      tempFilePath: "oxalapp-ocr-capture.jpg",
+    });
+
+    expect(Filesystem.writeFile).toHaveBeenCalledWith(
+      expect.objectContaining({ path: "oxalapp-ocr-capture.jpg" })
+    );
+    expect(Filesystem.deleteFile).toHaveBeenCalledWith(
+      expect.objectContaining({ path: "oxalapp-ocr-capture.jpg" })
+    );
+  });
+
+  it("passes only the block after an Ingredients: label to the caller, dropping unrelated blocks", async () => {
+    (TextRecognition.processImage as ReturnType<typeof vi.fn>).mockResolvedValue({
+      text: "Bouteille Marque X\nIngrédients : eau, sucre, cacao.\nValeurs nutritionnelles pour 100ml...",
+      blocks: [
+        block("Bouteille Marque X"),
+        block("Ingrédients : eau, sucre, cacao."),
+        block("Valeurs nutritionnelles pour 100ml..."),
+      ],
+    });
+
+    const result = await recognizeIngredientsText(fakePhoto());
+
+    expect(result).toBe("eau, sucre, cacao.");
+  });
+});
+
+function block(text: string): TextBlock {
+  return { text, lines: [] };
+}
+
+describe("extractIngredientsText", () => {
+  it("keeps only the text after the label within the matching block", () => {
+    const result = extractIngredientsText("irrelevant full text", [
+      block("Nom du produit"),
+      block("INGRÉDIENTS: farine, sucre, sel"),
+    ]);
+
+    expect(result).toBe("farine, sucre, sel");
+  });
+
+  it("matches the label without accents or a colon", () => {
+    const result = extractIngredientsText("irrelevant", [
+      block("Ingredients eau, sel"),
+    ]);
+
+    expect(result).toBe("eau, sel");
+  });
+
+  it("falls back to the full recognized text when no block has the label", () => {
+    const result = extractIngredientsText("eau, sucre, cacao", [
+      block("Marque"),
+      block("eau, sucre, cacao"),
+    ]);
+
+    expect(result).toBe("eau, sucre, cacao");
+  });
+
+  it("falls back to the full text when the label is the last thing in its block", () => {
+    const result = extractIngredientsText("Ingrédients :\neau, sel", [
+      block("Ingrédients :"),
+      block("eau, sel"),
+    ]);
+
+    expect(result).toBe("Ingrédients :\neau, sel");
   });
 });

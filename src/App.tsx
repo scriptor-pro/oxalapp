@@ -6,6 +6,7 @@ import { ResultView } from "./components/ResultView";
 import { HistoryView } from "./components/HistoryView";
 import { ResetPasswordView } from "./components/ResetPasswordView";
 import { FoodSearchView } from "./components/FoodSearchView";
+import { IngredientsOcrView } from "./components/IngredientsOcrView";
 
 type Tab = "scan" | "history";
 
@@ -14,6 +15,7 @@ export function App() {
   const [tab, setTab] = useState<Tab>("scan");
   const [scanning, setScanning] = useState(false);
   const [scannedEan, setScannedEan] = useState<string | null>(null);
+  const [ocrMode, setOcrMode] = useState(false);
   const [resetToken, setResetToken] = useState<string | null>(() =>
     new URLSearchParams(window.location.search).get("reset-token")
   );
@@ -69,6 +71,8 @@ export function App() {
             />
           ) : scanning ? (
             <ScannerView onScanned={setScannedEan} />
+          ) : ocrMode ? (
+            <IngredientsOcrView onBack={() => setOcrMode(false)} />
           ) : (
             <div className="screen-content home-screen">
               <svg className="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -83,6 +87,12 @@ export function App() {
               </p>
               <button className="scan-button" onClick={() => setScanning(true)}>
                 Scanner un produit
+              </button>
+              <button
+                className="scan-button scan-button-secondary"
+                onClick={() => setOcrMode(true)}
+              >
+                Analyser des ingrédients (photo)
               </button>
               <p className="home-or">ou</p>
               <FoodSearchView />
@@ -99,6 +109,7 @@ export function App() {
             setTab("scan");
             setScannedEan(null);
             setScanning(false);
+            setOcrMode(false);
           }}
         >
           <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2" /><circle cx="12" cy="13" r="3" /></svg>

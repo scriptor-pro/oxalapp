@@ -7,7 +7,7 @@ export interface ManualIngredientsFormProps {
   onIngredientsChange: (value: string) => void;
   onSubmit: (e: FormEvent) => void;
   showOcrButton: boolean;
-  onPhotoSelected: (file: File) => void;
+  onPhotoSelected?: (file: File) => void;
 }
 
 export function ManualIngredientsForm({
@@ -22,7 +22,7 @@ export function ManualIngredientsForm({
   function handleFileChange(e: FormEvent<HTMLInputElement>) {
     const file = e.currentTarget.files?.[0];
     if (file) {
-      onPhotoSelected(file);
+      onPhotoSelected?.(file);
     }
   }
 

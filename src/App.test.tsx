@@ -47,8 +47,18 @@ describe("App", () => {
     expect(screen.getByLabelText(/nom de l'aliment/i)).toBeInTheDocument();
   });
 
-  it("activates the camera view only after the scan button is clicked", () => {
+  it("activates the camera view only after the scan button is clicked", async () => {
     (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: {
+        getUserMedia: vi.fn().mockResolvedValue({
+          getVideoTracks: () => [{ getCapabilities: () => ({}), stop: vi.fn() }],
+          getTracks: () => [{ stop: vi.fn() }],
+        }),
+      },
+    });
+    HTMLMediaElement.prototype.play = vi.fn().mockResolvedValue(undefined);
 
     render(<App />);
 
@@ -56,7 +66,7 @@ describe("App", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /scanner un produit/i }));
 
-    expect(screen.getByText(/visez le code-barres/i)).toBeInTheDocument();
+    expect(await screen.findByText(/visez le code-barres/i)).toBeInTheDocument();
   });
 
   it("switches to the history tab when clicked", () => {
