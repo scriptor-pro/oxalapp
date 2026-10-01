@@ -24,6 +24,9 @@ export interface KnownIngredient {
   // count (e.g. "potato" alone shouldn't match "potato starch"/"potato
   // flour", which OHF rates far lower than whole potato).
   excludeFollowedBy?: string[];
+  // Words that must NOT immediately precede the keyword (e.g. "beurre de"
+  // before "cacao", "white" before "chocolate").
+  excludePrecededBy?: string[];
 }
 
 // Curated high-signal keywords. Sourced from CLAUDE.md's list of known
@@ -33,8 +36,8 @@ export interface KnownIngredient {
 // Deliberately excludes short/generic PDF item names (e.g. "Salt") that
 // would false-positive against unrelated ingredient text.
 export const KNOWN_INGREDIENTS: KnownIngredient[] = [
-  { keyword: "cacao", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé" },
-  { keyword: "cocoa", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé" },
+  { keyword: "cacao", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludePrecededBy: ["beurre de"] },
+  { keyword: "cocoa", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludeFollowedBy: ["butter"] },
   { keyword: "epinard", offId: "en:spinach", dbItem: "Spinach", level: "très élevé" },
   { keyword: "rhubarbe", offId: "en:rhubarb", dbItem: "Rhubarb, stewed or canned", level: "très élevé" },
   { keyword: "amande", offId: "en:almond", dbItem: "Almonds", level: "très élevé" },
@@ -371,4 +374,31 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "sesamzaad", offId: "en:sesame-seeds", dbItem: "Seeds, Sesame, toasted", level: "modéré" },
   { keyword: "papaverzaad", offId: "en:poppyseed", dbItem: "Seeds, Poppy", level: "très élevé" },
   { keyword: "melkdistel", dbItem: "Milk Thistle, Seed", level: "très élevé" },
+
+  // Blé en trois paliers par 100 g et chocolat (spec
+  // docs/superpowers/specs/2026-10-01-ble-chocolat-design.md). Pas
+  // d'offId : la reconnaissance par identifiant passe par
+  // src/data/risky-oxalate-ingredients.json. Jamais « blé » seul.
+  { keyword: "farine de ble", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "farine de froment", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "semoule de ble", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "semoule de ble dur", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "ble dur", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "tarwebloem", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "wheat flour", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "durum wheat semolina", dbItem: "blé raffiné", level: "modéré" },
+  { keyword: "farine de ble complet", dbItem: "blé complet", level: "élevé" },
+  { keyword: "farine de ble complete", dbItem: "blé complet", level: "élevé" },
+  { keyword: "farine complete de ble", dbItem: "blé complet", level: "élevé" },
+  { keyword: "farine complete", dbItem: "blé complet", level: "élevé" },
+  { keyword: "ble complet", dbItem: "blé complet", level: "élevé" },
+  { keyword: "flocons de ble", dbItem: "blé complet", level: "élevé" },
+  { keyword: "germe de ble", dbItem: "blé complet", level: "élevé" },
+  { keyword: "volkoren tarwemeel", dbItem: "blé complet", level: "élevé" },
+  { keyword: "whole wheat flour", dbItem: "blé complet", level: "élevé" },
+  { keyword: "wholemeal flour", dbItem: "blé complet", level: "élevé" },
+  { keyword: "wheat germ", dbItem: "blé complet", level: "élevé" },
+  { keyword: "chocolat", dbItem: "chocolat", level: "très élevé", excludeFollowedBy: ["blanc"], excludePrecededBy: ["arome"] },
+  { keyword: "chocolade", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["witte"] },
+  { keyword: "chocolate", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["white"], excludeFollowedBy: ["flavour", "flavouring", "flavor"] },
 ];

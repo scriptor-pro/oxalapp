@@ -386,28 +386,19 @@ describe("matchStructuredIngredients", () => {
   });
 
   it("does not eliminate two distinct structured entries whose keywords are in a substring relationship", () => {
-    // "cacao" and "beurre de cacao" are two separate Open Food Facts
-    // ingredient-list entries (common real-world pairing for chocolate
-    // products). Both independently contain the "cacao" keyword from
-    // KNOWN_INGREDIENTS. They must NOT be deduped against each other just
-    // because one entry's text contains the other's — that cross-entry
-    // dedup previously collapsed both matches to zero (bug reproduction).
+    // « cacao » et « pâte de cacao » sont deux entrées OFF distinctes qui
+    // contiennent toutes deux le mot-clé « cacao » : elles ne doivent pas
+    // se dédoublonner entre elles (bug corrigé en 4012466). « beurre de
+    // cacao », exclu depuis 2026-10-01, ne sert plus d'exemple.
     const result = matchStructuredIngredients([
       { text: "sucre", percentEstimate: 40 },
       { text: "cacao", percentEstimate: 30 },
-      { text: "beurre de cacao", percentEstimate: 20 },
+      { text: "pâte de cacao", percentEstimate: 20 },
     ]);
 
     expect(result.level).toBe("très élevé");
     expect(result.matchedIngredients.length).toBe(2);
-    expect(
-      result.matchedIngredients.every((m) => m.ingredientText === "cacao")
-    ).toBe(true);
-    expect(
-      result.matchedIngredients.every(
-        (m) => m.dbItem === "Cocoa or Cacao Powder, Dark Chocolate"
-      )
-    ).toBe(true);
+    expect(result.matchedIngredients.every((m) => m.ingredientText === "cacao")).toBe(true);
     expect(result.matchedIngredients.map((m) => m.percentEstimate).sort()).toEqual([20, 30]);
   });
 
@@ -497,13 +488,13 @@ describe("matchStructuredIngredients — monde fermé (spec 2026-10-01)", () => 
 
   it("reste non déterminable et liste l'inconnu présent à 2 % ou plus", () => {
     const result = matchStructuredIngredients([
-      { text: "Farine de BLÉ", percentEstimate: 50.15, offId: "en:wheat-flour" },
+      { text: "Farine de seigle", percentEstimate: 50.15, offId: "en:rye-flour" },
       { text: "sucre", percentEstimate: 37.47, offId: "en:sugar" },
     ]);
 
     expect(result.level).toBe("non déterminable");
     expect(result.unknownIngredients).toEqual([
-      { text: "Farine de BLÉ", offId: "en:wheat-flour", percentEstimate: 50.15 },
+      { text: "Farine de seigle", offId: "en:rye-flour", percentEstimate: 50.15 },
     ]);
   });
 
@@ -544,17 +535,17 @@ describe("matchStructuredIngredients — monde fermé (spec 2026-10-01)", () => 
   it("garde un niveau élevé comme minimum malgré un inconnu significatif", () => {
     const result = matchStructuredIngredients([
       { text: "lentilles", percentEstimate: 20, offId: "en:lentils" },
-      { text: "farine de blé", percentEstimate: 40, offId: "en:wheat-flour" },
+      { text: "Farine de seigle", percentEstimate: 40, offId: "en:rye-flour" },
       { text: "eau", percentEstimate: 40, offId: "en:water" },
     ]);
 
     expect(result.level).toBe("élevé");
-    expect(result.unknownIngredients.map((u) => u.offId)).toEqual(["en:wheat-flour"]);
+    expect(result.unknownIngredients.map((u) => u.offId)).toEqual(["en:rye-flour"]);
   });
 
   it("ne conclut plus faible quand une trace d'ingrédient à risque masque un inconnu majeur (règle A)", () => {
     const result = matchStructuredIngredients([
-      { text: "Farine de blé", percentEstimate: 60, offId: "en:wheat-flour" },
+      { text: "Farine de seigle", percentEstimate: 60, offId: "en:rye-flour" },
       { text: "sucre", percentEstimate: 39.2, offId: "en:sugar" },
       { text: "noisettes", percentEstimate: 0.8, offId: "en:hazelnut" },
     ]);
@@ -695,5 +686,48 @@ describe("texte d'affichage des ingrédients à risque (labelText)", () => {
 
     expect(result.matchedIngredients[0].labelText).toBeUndefined();
     expect(result.matchedIngredients[0].ingredientText).toBe("epinard");
+  });
+});
+
+describe("blé et chocolat dans le texte brut (spec 2026-10-01-ble-chocolat)", () => {
+  it("classe la farine de blé raffinée modéré et la farine complète élevé", () => {
+    expect(matchIngredients("farine de blé, sucre").level).toBe("modéré");
+    expect(matchIngredients("Farine de blé complet, sucre").level).toBe("élevé");
+    expect(matchIngredients("farine de blé complète, sel").level).toBe("élevé");
+    expect(matchIngredients("Semoule de blé dur, eau").level).toBe("modéré");
+    expect(matchIngredients("Whole wheat flour, salt").level).toBe("élevé");
+  });
+
+  it("ne retient que le mot-clé le plus précis pour la farine complète", () => {
+    const result = matchIngredients("Farine de blé complet, sucre");
+    expect(result.matchedIngredients).toHaveLength(1);
+    expect(result.matchedIngredients[0].labelText).toBe("Farine de blé complet");
+  });
+
+  it("ne reconnaît jamais « blé » seul", () => {
+    expect(matchIngredients("blé, sucre").level).toBe("non déterminable");
+  });
+
+  it("classe le chocolat très élevé en français, néerlandais et anglais", () => {
+    expect(matchIngredients("sucre, pépites de chocolat, farine").level).toBe("très élevé");
+    expect(matchIngredients("chocolat au lait 30%, sucre").level).toBe("très élevé");
+    expect(matchIngredients("melkchocolade, suiker").level).toBe("non déterminable");
+    expect(matchIngredients("pure chocolade, suiker").level).toBe("très élevé");
+    expect(matchIngredients("dark chocolate, sugar").level).toBe("très élevé");
+  });
+
+  it("n'alerte pas sur le chocolat blanc, le beurre de cacao ni un arôme", () => {
+    expect(matchIngredients("chocolat blanc, sucre").level).toBe("non déterminable");
+    expect(matchIngredients("white chocolate, sugar").level).toBe("non déterminable");
+    expect(matchIngredients("witte chocolade, suiker").level).toBe("non déterminable");
+    expect(matchIngredients("sucre, beurre de cacao, lait").level).toBe("non déterminable");
+    expect(matchIngredients("sugar, cocoa butter, milk").level).toBe("non déterminable");
+    expect(matchIngredients("eau, arôme chocolat").level).toBe("non déterminable");
+  });
+
+  it("reconnaît toujours la pâte de cacao à côté du beurre de cacao", () => {
+    const result = matchIngredients("sucre, pâte de cacao, beurre de cacao");
+    expect(result.level).toBe("très élevé");
+    expect(result.matchedIngredients.map((m) => m.labelText)).toEqual(["cacao"]);
   });
 });

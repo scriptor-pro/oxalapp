@@ -124,7 +124,14 @@ function matchKnownIngredientsInText(text: string): MatchedIngredient[] {
     const exclusionLookahead = known.excludeFollowedBy?.length
       ? `(?! (?:${known.excludeFollowedBy.map((w) => escapeRegex(normalize(w))).join("|")})\\b)`
       : "";
-    const keywordPattern = new RegExp(`\\b${escapedKeyword}${exclusionLookahead}s?\\b${pluralAlternative}`);
+    // Lookbehind négatif : le mot-clé ne compte pas s'il suit l'un de ces
+    // mots (« beurre de cacao », « white chocolate », « arôme chocolat »).
+    const exclusionLookbehind = known.excludePrecededBy?.length
+      ? `(?<!(?:${known.excludePrecededBy.map((w) => escapeRegex(normalize(w))).join("|")}) )`
+      : "";
+    const keywordPattern = new RegExp(
+      `${exclusionLookbehind}(?:\\b${escapedKeyword}${exclusionLookahead}s?\\b${pluralAlternative})`
+    );
     const match = keywordPattern.exec(normalized);
     if (match) {
       matched.push({
