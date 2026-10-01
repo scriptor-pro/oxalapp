@@ -83,6 +83,17 @@ describe("IngredientsOcrView", () => {
     expect(screen.getByText("cacao")).toBeInTheDocument();
   });
 
+  it("names risky ingredients as typed, accents and plurals included", async () => {
+    render(<IngredientsOcrView onBack={vi.fn()} />);
+
+    fireEvent.change(screen.getByLabelText("Ingrédients"), {
+      target: { value: "Épinards, sucre" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /valider/i }));
+
+    expect(await screen.findByText("Épinards", { selector: "strong" })).toBeInTheDocument();
+  });
+
   it("saves the estimate to history with an empty EAN and manual source", async () => {
     render(<IngredientsOcrView onBack={vi.fn()} />);
 

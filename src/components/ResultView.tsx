@@ -26,8 +26,14 @@ export function categorizeFailure(
   return "no-match";
 }
 
-// « Farine de BLÉ (50%), arôme de malt » : pourcentage arrondi à l'entier
-// (une estimation OFF ne justifie pas de décimale), omis s'il est inconnu.
+// Pourcentage estimé par OFF, sans fausse précision : une décimale sous
+// 10 % (« 0,8 »), l'entier au-delà (« 57 »), « <0,1 » pour une trace.
+function formatPercent(percent: number): string {
+  if (percent < 0.1) return "<0,1";
+  return percent.toLocaleString("fr-FR", { maximumFractionDigits: percent < 10 ? 1 : 0 });
+}
+
+// « Farine de BLÉ (50%), arôme de malt » : pourcentage omis s'il est inconnu.
 // Un même ingrédient listé deux fois par OFF n'est nommé qu'une fois.
 function formatUnknownIngredients(unknowns: UnknownIngredient[]): string {
   const seen = new Set<string>();
@@ -41,8 +47,7 @@ function formatUnknownIngredients(unknowns: UnknownIngredient[]): string {
       labels.push(name);
       continue;
     }
-    const percent = unknown.percentEstimate < 1 ? "<1" : String(Math.round(unknown.percentEstimate));
-    labels.push(`${name} (${percent}%)`);
+    labels.push(`${name} (${formatPercent(unknown.percentEstimate)}%)`);
   }
   return labels.join(", ");
 }
@@ -195,9 +200,9 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
             Ingrédients à risque détectés :{" "}
             {state.result.matchedIngredients.map((m, index) => (
               <strong key={index}>
-                {m.ingredientText}
+                {m.labelText ?? m.ingredientText}
                 {m.percentEstimate !== undefined &&
-                  ` (${m.percentEstimate.toString().replace(".", ",")}%${
+                  ` (${formatPercent(m.percentEstimate)}%${
                     m.levelBeforeAdjustment ? ", contribution réduite" : ""
                   })`}
                 {index < state.result.matchedIngredients.length - 1 ? ", " : ""}

@@ -9,7 +9,11 @@ export type { KnownIngredient, OxalateLevel };
 export type MatchLevel = OxalateLevel | "non déterminable";
 
 export interface MatchedIngredient {
-  ingredientText: string;
+  ingredientText: string; // mot-clé interne de KNOWN_INGREDIENTS (normalisé, parfois anglais)
+  // Nom à afficher, tel qu'il figure sur l'étiquette ou dans la saisie
+  // (accents, pluriel, langue du produit). Absent quand on ne peut pas le
+  // retrouver : l'affichage retombe alors sur ingredientText.
+  labelText?: string;
   dbItem: string;
   level: OxalateLevel;
   percentEstimate?: number;
@@ -90,8 +94,15 @@ export function normalize(text: string): string {
     .replace(/-/g, " "); // treat hyphens as spaces (e.g. "chardon-marie")
 }
 
-function matchKnownIngredientsInText(normalized: string): MatchedIngredient[] {
+function matchKnownIngredientsInText(text: string): MatchedIngredient[] {
   const matched: MatchedIngredient[] = [];
+  const normalized = normalize(text);
+  // normalize() garde la longueur d'un texte latin en NFC (un caractère
+  // accentué devient une lettre nue) : les positions trouvées dans le texte
+  // normalisé valent alors dans l'original, ce qui permet d'afficher le
+  // passage tel qu'écrit. Sinon (écritures qui se décomposent autrement),
+  // pas de passage plutôt qu'un passage décalé.
+  const positionsAligned = normalized.length === text.length;
 
   for (const known of KNOWN_INGREDIENTS) {
     const normalizedKeyword = normalize(known.keyword);
@@ -114,9 +125,13 @@ function matchKnownIngredientsInText(normalized: string): MatchedIngredient[] {
       ? `(?! (?:${known.excludeFollowedBy.map((w) => escapeRegex(normalize(w))).join("|")})\\b)`
       : "";
     const keywordPattern = new RegExp(`\\b${escapedKeyword}${exclusionLookahead}s?\\b${pluralAlternative}`);
-    if (keywordPattern.test(normalized)) {
+    const match = keywordPattern.exec(normalized);
+    if (match) {
       matched.push({
         ingredientText: known.keyword,
+        ...(positionsAligned
+          ? { labelText: text.slice(match.index, match.index + match[0].length) }
+          : {}),
         dbItem: known.dbItem,
         level: known.level,
       });
@@ -184,8 +199,7 @@ export function matchIngredients(ingredientsText: string): MatchResult {
     return { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] };
   }
 
-  const normalized = normalize(trimmed);
-  const matched = matchKnownIngredientsInText(normalized);
+  const matched = matchKnownIngredientsInText(trimmed);
   const deduped = dedupeMatches(matched);
 
   return aggregateResult(deduped);
@@ -202,15 +216,21 @@ type StructuredClassification =
 function classifyStructuredIngredient(
   ingredient: StructuredIngredient
 ): StructuredClassification {
+  // Une entrée structurée est un ingrédient de l'étiquette : on affiche son
+  // texte entier (« pâte de cacao »), sauf quand plusieurs mots-clés y sont
+  // reconnus (« noisettes et amandes »), où chaque passage reste distinct.
+  const labelText = ingredient.text.trim() || undefined;
   const idMatch = matchKnownIngredientByOffId(ingredient.offId);
-  if (idMatch) return { kind: "risky", matches: [idMatch] };
+  if (idMatch) {
+    return { kind: "risky", matches: [labelText ? { ...idMatch, labelText } : idMatch] };
+  }
   if (isLowOxalateId(ingredient.offId)) return { kind: "low" };
-  const textMatches = dedupeMatches(
-    matchKnownIngredientsInText(normalize(ingredient.text))
-  );
-  return textMatches.length > 0
-    ? { kind: "risky", matches: textMatches }
-    : { kind: "unknown" };
+  const textMatches = dedupeMatches(matchKnownIngredientsInText(ingredient.text));
+  if (textMatches.length === 0) return { kind: "unknown" };
+  if (textMatches.length === 1 && labelText) {
+    return { kind: "risky", matches: [{ ...textMatches[0], labelText }] };
+  }
+  return { kind: "risky", matches: textMatches };
 }
 
 export function matchStructuredIngredients(

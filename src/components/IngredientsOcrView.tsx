@@ -243,7 +243,7 @@ export function IngredientsOcrView({ onBack }: IngredientsOcrViewProps) {
               Ingrédients à risque détectés :{" "}
               {result.matchedIngredients.map((m, index) => (
                 <strong key={index}>
-                  {m.ingredientText}
+                  {m.labelText ?? m.ingredientText}
                   {index < result.matchedIngredients.length - 1 ? ", " : ""}
                 </strong>
               ))}

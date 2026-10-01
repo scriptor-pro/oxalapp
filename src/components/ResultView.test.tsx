@@ -324,8 +324,9 @@ describe("ResultView", () => {
 
     await screen.findByText(/très élevé/i);
 
-    expect(screen.getByText(/cacao/)).toBeInTheDocument();
-    expect(screen.getByText(/cocoa/)).toBeInTheDocument();
+    // Noms affichés tels qu'écrits sur l'étiquette (majuscule comprise).
+    expect(screen.getByText(/Cacao/)).toBeInTheDocument();
+    expect(screen.getByText(/Cocoa/)).toBeInTheDocument();
 
     const keyWarning = consoleError.mock.calls.some((args) =>
       String(args[0]).includes("key")
@@ -411,7 +412,7 @@ describe("ResultView proportion-aware matching", () => {
     render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
 
     expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
-    expect(screen.getByText(/epinard.*55%/i)).toBeInTheDocument();
+    expect(screen.getByText(/Épinards \(55%\)/)).toBeInTheDocument();
   });
 
   it("shows a reduced-contribution note for a low-proportion risky ingredient", async () => {
@@ -778,5 +779,68 @@ describe("ResultView data attribution", () => {
 
     expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
     expect(screen.queryByText(ATTRIBUTION)).not.toBeInTheDocument();
+  });
+});
+
+describe("ResultView risky ingredient display", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create: vi.fn().mockResolvedValue({ id: "scan1" }),
+    });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  function mockStructuredProduct(
+    structuredIngredients: { text: string; percentEstimate: number | null; offId?: string | null }[]
+  ) {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Produit test",
+      ingredientsText: structuredIngredients.map((i) => i.text).join(", "),
+      structuredIngredients,
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+  }
+
+  it("names a risky ingredient as written on the label, not by the internal English keyword", async () => {
+    mockStructuredProduct([
+      { text: "noisettes", percentEstimate: 57.1428571428571, offId: "en:hazelnut" },
+      { text: "sucre", percentEstimate: 42.8571428571429, offId: "en:sugar" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText("noisettes (57%)")).toBeInTheDocument();
+    expect(screen.queryByText(/hazelnut/i)).not.toBeInTheDocument();
+  });
+
+  it("rounds risky ingredient percentages and shows traces as <0,1%", async () => {
+    mockStructuredProduct([
+      { text: "sucre", percentEstimate: 99.715, offId: "en:sugar" },
+      { text: "cacao", percentEstimate: 0.284999999999997, offId: "en:cocoa" },
+      { text: "cannelle", percentEstimate: 0, offId: "en:cinnamon" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/cacao \(0,3%, contribution réduite\)/)).toBeInTheDocument();
+    expect(screen.getByText(/cannelle \(<0,1%, contribution réduite\)/)).toBeInTheDocument();
+  });
+
+  it("formats unknown ingredient percentages the same way", async () => {
+    mockStructuredProduct([
+      { text: "sucre", percentEstimate: 90.5, offId: "en:sugar" },
+      { text: "préparation spéciale", percentEstimate: 9.5, offId: null },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText("Ingrédients non reconnus : préparation spéciale (9,5%).")
+    ).toBeInTheDocument();
   });
 });
