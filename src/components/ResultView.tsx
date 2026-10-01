@@ -3,13 +3,18 @@ import { Capacitor } from "@capacitor/core";
 import { resolveProduct, type ResolvedProduct } from "../lib/product-resolver";
 import { uploadIngredientsPhoto } from "../lib/off-contribute";
 import { recognizeIngredientsText } from "../lib/ocr-client";
-import { matchIngredients, matchStructuredIngredients, type MatchResult } from "../lib/oxalate-matcher";
+import {
+  matchIngredients,
+  matchStructuredIngredients,
+  type MatchResult,
+  type UnknownIngredient,
+} from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { lookupProductName } from "../lib/upcitemdb-client";
 import { LevelBadge } from "./LevelBadge";
 import { ManualIngredientsForm } from "./ManualIngredientsForm";
 
-export type ScanFailureReason = "no-ingredients" | "no-match";
+export type ScanFailureReason = "no-ingredients" | "unknown-ingredients" | "no-match";
 
 export function categorizeFailure(
   result: MatchResult,
@@ -17,7 +22,29 @@ export function categorizeFailure(
 ): ScanFailureReason | null {
   if (result.level !== "non déterminable") return null;
   if (!product.ingredientsText.trim()) return "no-ingredients";
+  if (result.unknownIngredients.length > 0) return "unknown-ingredients";
   return "no-match";
+}
+
+// « Farine de BLÉ (50%), arôme de malt » : pourcentage arrondi à l'entier
+// (une estimation OFF ne justifie pas de décimale), omis s'il est inconnu.
+// Un même ingrédient listé deux fois par OFF n'est nommé qu'une fois.
+function formatUnknownIngredients(unknowns: UnknownIngredient[]): string {
+  const seen = new Set<string>();
+  const labels: string[] = [];
+  for (const unknown of unknowns) {
+    const name = unknown.text.trim() || unknown.offId || "ingrédient sans nom";
+    const key = name.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    if (unknown.percentEstimate === null) {
+      labels.push(name);
+      continue;
+    }
+    const percent = unknown.percentEstimate < 1 ? "<1" : String(Math.round(unknown.percentEstimate));
+    labels.push(`${name} (${percent}%)`);
+  }
+  return labels.join(", ");
 }
 
 interface ResultViewProps {
@@ -179,8 +206,22 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
             .
           </p>
         )}
+        {state.result.level === "faible" && (
+          <p className="ingredient-line">
+            Tous les ingrédients présents à 2 % ou plus sont reconnus comme
+            pauvres en oxalate.
+          </p>
+        )}
         {(() => {
           const failureReason = categorizeFailure(state.result, state.product);
+          if (failureReason === "unknown-ingredients") {
+            return (
+              <p className="ingredient-line">
+                Ingrédients non reconnus :{" "}
+                {formatUnknownIngredients(state.result.unknownIngredients)}.
+              </p>
+            );
+          }
           if (failureReason === "no-match") {
             return (
               <p className="ingredient-line">
@@ -238,9 +279,8 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
         })()}
         <p className="disclaimer">
           Estimation indicative — les valeurs d'oxalate varient selon la
-          variété, le sol, la cuisson, etc. Ce niveau reflète la présence
-          d'un ingrédient connu pour sa teneur en oxalate, pas une
-          quantité mesurée dans ce produit précis.
+          variété, le sol, la cuisson, etc. Ce niveau est déduit de la liste
+          d'ingrédients, pas d'une quantité mesurée dans ce produit précis.
         </p>
         {syncError && <p className="sync-error">Échec de synchronisation avec l'historique.</p>}
       </div>
