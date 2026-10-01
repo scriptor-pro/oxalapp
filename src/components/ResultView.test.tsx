@@ -444,9 +444,9 @@ describe("ResultView proportion-aware matching", () => {
       gtin: "00000000000000",
       rawCode: "0000000000000",
       productName: "Biscuit noisettes",
-      ingredientsText: "Farine de blé, noisettes 0.8%, sucre",
+      ingredientsText: "Farine de seigle, noisettes 0.8%, sucre",
       structuredIngredients: [
-        { text: "Farine de blé", percentEstimate: 70, offId: "en:wheat-flour" },
+        { text: "Farine de seigle", percentEstimate: 70, offId: "en:rye-flour" },
         { text: "noisettes", percentEstimate: 0.8 },
         { text: "sucre", percentEstimate: 29.2, offId: "en:sugar" },
       ],
@@ -459,7 +459,7 @@ describe("ResultView proportion-aware matching", () => {
 
     expect(await screen.findByText(/non déterminable/i)).toBeInTheDocument();
     expect(screen.getByText(/noisette.*0[.,]8%.*contribution réduite/i)).toBeInTheDocument();
-    expect(screen.getByText("Ingrédients non reconnus : Farine de blé (70%).")).toBeInTheDocument();
+    expect(screen.getByText("Ingrédients non reconnus : Farine de seigle (70%).")).toBeInTheDocument();
   });
 
   it("falls back to plain-text matching when Open Food Facts has no structured ingredients", async () => {
@@ -664,7 +664,7 @@ describe("ResultView closed-world explanations", () => {
 
   it("lists unknown ingredients with rounded percentages and omits unknown proportions", async () => {
     mockStructuredProduct([
-      { text: "Farine de BLÉ", percentEstimate: 50.15, offId: "en:wheat-flour" },
+      { text: "Farine de SEIGLE", percentEstimate: 50.15, offId: "en:rye-flour" },
       { text: "sucre", percentEstimate: 37.47, offId: "en:sugar" },
       { text: "arôme de malt", percentEstimate: null, offId: null },
     ]);
@@ -672,7 +672,7 @@ describe("ResultView closed-world explanations", () => {
     render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
 
     expect(
-      await screen.findByText("Ingrédients non reconnus : Farine de BLÉ (50%), arôme de malt.")
+      await screen.findByText("Ingrédients non reconnus : Farine de SEIGLE (50%), arôme de malt.")
     ).toBeInTheDocument();
     expect(screen.queryByText(/aucun ingrédient à risque connu/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/tous les ingrédients présents/i)).not.toBeInTheDocument();

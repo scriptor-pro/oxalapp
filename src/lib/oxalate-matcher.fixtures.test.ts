@@ -12,7 +12,7 @@ const EXPECTED: Record<string, { level: MatchLevel; unknownTexts: string[] }> = 
   "3228021170039": { level: "faible", unknownTexts: [] }, // PRESIDENT Camembert
   "4056489141877": { level: "faible", unknownTexts: [] }, // Huile d'olive vierge extra
   "4056489406679": { level: "faible", unknownTexts: [] }, // Boisson lactée saveur chocolat
-  "5410126806069": { level: "non déterminable", unknownTexts: ["Farine de BLÉ"] }, // Lotus Biscoff
+  "5410126806069": { level: "modéré", unknownTexts: [] }, // Lotus Biscoff : farine de blé raffinée
   "4056489471264": { level: "non déterminable", unknownTexts: ["Kakaomasse", "fettarmes Kakaopulver"] }, // Edelbitter 90 %
 };
 
