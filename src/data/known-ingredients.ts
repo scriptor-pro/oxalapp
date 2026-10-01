@@ -29,6 +29,16 @@ export interface KnownIngredient {
   excludePrecededBy?: string[];
 }
 
+// Un arôme de chocolat ou de cacao n'apporte pas d'oxalate notable : ces
+// mots, juste avant ou juste après le mot-clé, annulent l'alerte
+// (« arôme naturel de cacao », « cocoa flavouring », « chocolade-aroma »).
+const FLAVOURING_BEFORE = [
+  "arome", "aromes", "arome de", "aromes de",
+  "arome naturel", "arome naturel de", "aromes naturels", "aromes naturels de",
+  "aroma",
+];
+const FLAVOURING_AFTER = ["aroma", "flavour", "flavouring", "flavor", "flavoring"];
+
 // Curated high-signal keywords. Sourced from CLAUDE.md's list of known
 // risk ingredients, reclassified per the Mayo Clinic Oxalate Diet
 // Handbook thresholds (faible<5/modéré5-8/élevé8-25/très élevé>25
@@ -36,8 +46,8 @@ export interface KnownIngredient {
 // Deliberately excludes short/generic PDF item names (e.g. "Salt") that
 // would false-positive against unrelated ingredient text.
 export const KNOWN_INGREDIENTS: KnownIngredient[] = [
-  { keyword: "cacao", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludePrecededBy: ["beurre de"] },
-  { keyword: "cocoa", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludeFollowedBy: ["butter"] },
+  { keyword: "cacao", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludePrecededBy: ["beurre de", ...FLAVOURING_BEFORE], excludeFollowedBy: FLAVOURING_AFTER },
+  { keyword: "cocoa", offId: "en:cocoa", dbItem: "Cocoa or Cacao Powder, Dark Chocolate", level: "très élevé", excludeFollowedBy: ["butter", ...FLAVOURING_AFTER] },
   { keyword: "epinard", offId: "en:spinach", dbItem: "Spinach", level: "très élevé" },
   { keyword: "rhubarbe", offId: "en:rhubarb", dbItem: "Rhubarb, stewed or canned", level: "très élevé" },
   { keyword: "amande", offId: "en:almond", dbItem: "Almonds", level: "très élevé" },
@@ -398,7 +408,7 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "whole wheat flour", dbItem: "blé complet", level: "élevé" },
   { keyword: "wholemeal flour", dbItem: "blé complet", level: "élevé" },
   { keyword: "wheat germ", dbItem: "blé complet", level: "élevé" },
-  { keyword: "chocolat", dbItem: "chocolat", level: "très élevé", excludeFollowedBy: ["blanc"], excludePrecededBy: ["arome"] },
-  { keyword: "chocolade", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["witte"] },
-  { keyword: "chocolate", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["white"], excludeFollowedBy: ["flavour", "flavouring", "flavor"] },
+  { keyword: "chocolat", dbItem: "chocolat", level: "très élevé", excludeFollowedBy: ["blanc"], excludePrecededBy: FLAVOURING_BEFORE },
+  { keyword: "chocolade", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["witte", ...FLAVOURING_BEFORE], excludeFollowedBy: FLAVOURING_AFTER },
+  { keyword: "chocolate", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["white"], excludeFollowedBy: FLAVOURING_AFTER },
 ];

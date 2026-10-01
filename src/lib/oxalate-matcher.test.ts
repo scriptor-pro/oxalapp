@@ -725,6 +725,34 @@ describe("blé et chocolat dans le texte brut (spec 2026-10-01-ble-chocolat)", (
     expect(matchIngredients("eau, arôme chocolat").level).toBe("non déterminable");
   });
 
+  it("n'alerte sur aucune forme d'arôme de chocolat ou de cacao", () => {
+    for (const text of [
+      "eau, arôme de chocolat",
+      "eau, arôme naturel de chocolat",
+      "eau, arômes naturels de chocolat",
+      "eau, arôme naturel chocolat",
+      "eau, arôme cacao",
+      "eau, arôme de cacao",
+      "eau, arôme naturel de cacao",
+      "water, natural cocoa flavouring",
+      "water, cocoa flavour",
+      "water, chocolate aroma",
+      "water, cocoa aroma",
+      "water, aroma chocolade",
+      "water, natuurlijk chocolade-aroma",
+      "water, cacao-aroma",
+    ]) {
+      expect(matchIngredients(text).level, text).toBe("non déterminable");
+    }
+  });
+
+  it("reconnaît toujours le chocolat et le cacao réels à côté d'un arôme", () => {
+    expect(matchIngredients("sucre, cacao maigre en poudre, arôme").level).toBe("très élevé");
+    expect(matchIngredients("sucre, arôme, chocolat noir").level).toBe("très élevé");
+    expect(matchIngredients("arôme de chocolat, pépites de chocolat").level).toBe("très élevé");
+    expect(matchIngredients("sugar, cocoa powder, flavouring").level).toBe("très élevé");
+  });
+
   it("reconnaît toujours la pâte de cacao à côté du beurre de cacao", () => {
     const result = matchIngredients("sucre, pâte de cacao, beurre de cacao");
     expect(result.level).toBe("très élevé");
