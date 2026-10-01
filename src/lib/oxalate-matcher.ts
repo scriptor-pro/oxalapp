@@ -232,8 +232,9 @@ type StructuredClassification =
   | { kind: "unknown" };
 
 // Ordre : identifiant à risque connu, identifiant faible, identifiant à
-// risque hérité de la taxonomie, puis mots-clés du texte. L'identifiant OFF fait foi avant le texte : « beurre de cacao »
-// (en:cocoa-butter) est faible même si son texte contient « cacao ».
+// risque hérité de la taxonomie, puis mots-clés du texte. L'identifiant OFF
+// fait foi avant le texte : « beurre de cacao » (en:cocoa-butter) est
+// faible même si son texte contient « cacao ».
 function classifyStructuredIngredient(
   ingredient: StructuredIngredient
 ): StructuredClassification {

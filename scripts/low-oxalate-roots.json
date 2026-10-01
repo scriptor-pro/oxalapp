@@ -60,7 +60,8 @@
     { "id": "en:maltodextrin", "kind": "forme-raffinée", "justification": "hydrolysat d'amidon purifié ; Corn, Cornstarch ; Corn Syrup, Dark or Light" },
     { "id": "en:starch", "kind": "forme-raffinée", "justification": "Corn, Cornstarch ; Flour, Potato Starch, Bob's Red Mill" },
     { "id": "en:flavouring", "kind": "forme-raffinée", "justification": "Herbs and Spices, Vanilla Extract, pure, McCormick ; Herbs and Spices, Lemon Extract, pure ; Herbs and Spices, Almond Extract, McCormick" },
-    { "id": "en:white-chocolate", "kind": "ohf", "justification": "Candy, White Chocolate, bar or chips (8 mg/100 g)" }
+    { "id": "en:white-chocolate", "kind": "ohf", "justification": "Candy, White Chocolate, bar or chips (8 mg/100 g)" },
+    { "id": "en:white-chocolate-powder", "kind": "ohf", "justification": "rangé par OFF sous en:chocolate et non sous en:white-chocolate ; Candy, White Chocolate, bar or chips (8 mg/100 g)" }
   ],
   "forceLow": [
     { "id": "en:orange-juice", "justification": "Juice, Orange, (OHF faible) — l'orange entière (en:orange) est élevé" },
