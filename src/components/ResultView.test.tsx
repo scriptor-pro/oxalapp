@@ -89,6 +89,7 @@ describe("ResultView failure messaging", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -106,6 +107,7 @@ describe("ResultView failure messaging", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -127,6 +129,7 @@ describe("ResultView photo contribution", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -155,6 +158,7 @@ describe("ResultView photo contribution", () => {
       imageUrl: null,
       lang: "nl",
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(true);
 
@@ -180,6 +184,7 @@ describe("ResultView photo contribution", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (uploadIngredientsPhoto as ReturnType<typeof vi.fn>).mockResolvedValue(false);
 
@@ -211,6 +216,7 @@ describe("ResultView", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -226,6 +232,7 @@ describe("ResultView", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="3017620422003" onBack={vi.fn()} />);
@@ -244,6 +251,7 @@ describe("ResultView", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     const create = vi.fn().mockResolvedValue({ id: "scan1" });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({ create });
@@ -307,6 +315,7 @@ describe("ResultView", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
@@ -333,6 +342,7 @@ describe("ResultView", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       create: vi.fn().mockRejectedValue(new Error("network error")),
@@ -488,6 +498,7 @@ describe("ResultView OCR ingredient recognition", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -508,6 +519,7 @@ describe("ResultView OCR ingredient recognition", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -528,6 +540,7 @@ describe("ResultView OCR ingredient recognition", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
@@ -545,6 +558,7 @@ describe("ResultView OCR ingredient recognition", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (recognizeIngredientsText as ReturnType<typeof vi.fn>).mockResolvedValue(
       "Farine de pomme de terre, sel"
@@ -571,6 +585,7 @@ describe("ResultView OCR ingredient recognition", () => {
       imageUrl: null,
       lang: null,
       structuredIngredients: [],
+      sources: ["open_food_facts"],
     });
     (recognizeIngredientsText as ReturnType<typeof vi.fn>).mockResolvedValue(null);
 
@@ -703,5 +718,65 @@ describe("ResultView closed-world explanations", () => {
     expect(
       await screen.findByText(/aucun ingrédient à risque connu détecté/i)
     ).toBeInTheDocument();
+  });
+});
+
+describe("ResultView data attribution", () => {
+  const ATTRIBUTION = "Données produit : Open Food Facts, licence ODbL.";
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create: vi.fn().mockResolvedValue({ id: "scan1" }),
+    });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  function mockProductFrom(sources: string[]) {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Nutella",
+      ingredientsText: "Sucre, huile de palme, noisettes, cacao",
+      structuredIngredients: [],
+      imageUrl: null,
+      lang: "fr",
+      sources,
+    });
+  }
+
+  it("credits Open Food Facts under ODbL when the product data comes from Open Food Facts", async () => {
+    mockProductFrom(["open_food_facts"]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(ATTRIBUTION)).toBeInTheDocument();
+  });
+
+  it("does not credit Open Food Facts for a product found on USDA FoodData Central", async () => {
+    mockProductFrom(["usda"]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
+    expect(screen.queryByText(ATTRIBUTION)).not.toBeInTheDocument();
+  });
+
+  it("does not credit Open Food Facts for manually entered ingredients", async () => {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    await screen.findByText(/produit non trouvé/i);
+    fireEvent.change(screen.getByLabelText(/nom du produit/i), {
+      target: { value: "Produit maison" },
+    });
+    fireEvent.change(screen.getByLabelText(/ingrédients/i), {
+      target: { value: "épinards, sucre" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /valider/i }));
+
+    expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
+    expect(screen.queryByText(ATTRIBUTION)).not.toBeInTheDocument();
   });
 });

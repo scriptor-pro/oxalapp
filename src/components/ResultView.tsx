@@ -282,6 +282,11 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
           variété, le sol, la cuisson, etc. Ce niveau est déduit de la liste
           d'ingrédients, pas d'une quantité mesurée dans ce produit précis.
         </p>
+        {/* Attribution exigée par la licence ODbL d'Open Food Facts, d'où
+            viennent les données produit et la table des ingrédients faibles. */}
+        {state.product.sources.includes("open_food_facts") && (
+          <p className="data-source">Données produit : Open Food Facts, licence ODbL.</p>
+        )}
         {syncError && <p className="sync-error">Échec de synchronisation avec l'historique.</p>}
       </div>
       <button className="text-button" onClick={onBack}>Retour</button>
