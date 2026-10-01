@@ -657,3 +657,43 @@ describe("matchStructuredIngredients — monde fermé (spec 2026-10-01)", () => 
     expect(matchIngredients("épinards").unknownIngredients).toEqual([]);
   });
 });
+
+describe("texte d'affichage des ingrédients à risque (labelText)", () => {
+  it("garde le texte de l'étiquette pour une correspondance par identifiant OFF", () => {
+    const result = matchStructuredIngredients([
+      { text: "Haselnüsse", percentEstimate: 20, offId: "en:hazelnut" },
+    ]);
+
+    expect(result.matchedIngredients[0].labelText).toBe("Haselnüsse");
+    expect(result.matchedIngredients[0].ingredientText).toBe("hazelnut");
+  });
+
+  it("garde l'entrée d'étiquette entière quand un seul mot-clé y est reconnu", () => {
+    const result = matchStructuredIngredients([
+      { text: "pâte de cacao", percentEstimate: 60, offId: "en:cocoa-paste" },
+    ]);
+
+    expect(result.matchedIngredients[0].labelText).toBe("pâte de cacao");
+  });
+
+  it("garde le passage exact de chaque mot-clé quand une entrée en contient plusieurs", () => {
+    const result = matchStructuredIngredients([
+      { text: "noisettes et amandes", percentEstimate: 30, offId: null },
+    ]);
+
+    expect(result.matchedIngredients.map((m) => m.labelText).sort()).toEqual(["amandes", "noisettes"]);
+  });
+
+  it("garde le passage original, accents et pluriel compris, dans un texte brut", () => {
+    const result = matchIngredients("Farine de blé, Épinards, sucre");
+
+    expect(result.matchedIngredients[0].labelText).toBe("Épinards");
+  });
+
+  it("n'invente pas de passage quand la normalisation change la longueur du texte", () => {
+    const result = matchIngredients("가 épinards");
+
+    expect(result.matchedIngredients[0].labelText).toBeUndefined();
+    expect(result.matchedIngredients[0].ingredientText).toBe("epinard");
+  });
+});
