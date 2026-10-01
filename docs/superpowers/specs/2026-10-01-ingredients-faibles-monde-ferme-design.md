@@ -22,8 +22,8 @@ Ce document couvre les **étapes 4 et 5** de cet audit :
 - **Étape 5** : ignorer les ingrédients inconnus présents à moins de 2 %.
 
 Un prototype hors dépôt, appliqué au même échantillon avec exactement les
-règles de ce document (familles du volet 1.1, règle de conflit 1.2,
-garde-fou 2.2), mesure **57 % → 42 %** de « non déterminable » (83/200).
+règles de ce document (familles du volet 1.1, règles 1.2, additifs 1.4,
+garde-fou 2.2), mesure **57 % → 41 %** de « non déterminable » (82/200).
 Les inconnus restants sont surtout du blé, de l'avoine, du chocolat et du
 cacao, hors périmètre ici. Ce gain suppose que la reconnaissance des
 ingrédients faibles hérite de la hiérarchie des ingrédients d'OFF. Une liste d'identifiants tapée à la main
@@ -113,9 +113,14 @@ générateur, qui échoue sur un identifiant absent de la hiérarchie :
 
 | Type | Familles |
 |---|---|
-| `ohf` | produits laitiers (`en:dairy`), œuf, viande, poisson ; pomme, poire, raisin, citron, citron vert, ananas, pêche, prune, cerise, melon, jus de pamplemousse ; oignon, ail, échalote, chou, chou-fleur, champignon, laitue, petit pois, brocoli ; café, vinaigre, miel |
-| `neutre` | eau, sel, minéraux, vitamines, levure, ferments, ferments lactiques, présure, alcool, caféine ; émulsifiant, acidifiant, colorant, épaississant, stabilisant, conservateur, antioxydant, correcteur d'acidité, poudre à lever, édulcorant, gélifiant |
-| `forme-raffinée` | huiles et graisses (`en:oil-and-fat`), sucres ajoutés (`en:added-sugar`), glucose, fructose, dextrose, amidon, arôme |
+| `ohf` | produits laitiers (`en:dairy`), protéines de lait, œuf, poisson ; pomme, poire, raisin, citron, citron vert, ananas, pêche, prune, cerise, melon ; jus de pomme, de citron, de pamplemousse ; oignon, ail, échalote, chou, chou-fleur, champignon, laitue, petit pois, brocoli ; café, vinaigre, miel, extrait de vanille |
+| `neutre` | eau, sel, minéraux, vitamines, levure, ferments, ferments lactiques, présure, alcool, caféine ; émulsifiant, acidifiant, colorant, épaississant, stabilisant, conservateur, antioxydant, correcteur d'acidité, poudre à lever, édulcorant, gélifiant ; codes E (1.4) |
+| `forme-raffinée` | huiles et graisses (`en:oil-and-fat`), sucres ajoutés (`en:added-sugar`), glucose, fructose, dextrose, lactose, maltodextrine, amidon, arôme |
+
+**La viande n'est pas une famille faible.** L'entrée OHF « Meats and
+Poultry, Variety including sausage and liver » est classée **modéré**
+(5 mg par portion). Les produits carnés restent donc « non déterminable »
+tant que la table ne gère que le niveau faible.
 
 On prend les familles larges (`en:dairy`, `en:oil-and-fat`,
 `en:added-sugar`) parce que la hiérarchie OFF est irrégulière. Par exemple,
@@ -145,20 +150,44 @@ Les jus faibles dont le fruit n'est pas à risque n'ont pas besoin de
 (`en:wheat-starch`) est rangé sous `en:starch` seulement, sans `en:wheat` :
 pas besoin de `forceLow`.
 
-Les entrées de `exclude` seront ajoutées à la relecture du rapport du
-générateur (voir 1.3).
+Liste initiale de `exclude`, issue de la relecture des descendants pendant
+la préparation du plan :
+
+- masse de cacao rangée sous le beurre de cacao
+  (`en:cocoa-mass-and-cocoa-butter` et sa variante bio) ;
+- raisins secs et pépins de raisin, absents d'OHF (`en:raisin`,
+  `en:sultana`, `en:grape-seed`, `fr:farine-de-pepins-de-raisin`) ;
+- jus de raisin rouge, « modéré » selon OHF (`en:red-grape-juice`,
+  `en:concord-grape-juice`, `en:muscadine-grape-juice`) ;
+- groseilles rangées sous le raisin (`en:raw-red-and-whitecurrants`) ;
+- pois mange-tout, « très élevé » selon OHF (`en:sugar-snap-peas`,
+  `en:snow-pea`, `en:edible-podded-pea`), et gesse (`en:grass-pea`) ;
+- composés qui contiennent un aliment à risque sans le déclarer comme
+  parent : `en:cinnamon-apple`, `en:candied-lemon-zest`,
+  `en:chocolate-liqueur`, `en:milk-chocolate-with-sweetener`,
+  `en:red-yeast-rice`, `en:sugar-beet-syrup` ;
+- `en:e162` (1.4).
+
+D'autres entrées peuvent s'ajouter à la relecture du rapport du générateur
+(voir 1.3).
 
 ### 1.2 Règles de calcul
 
-Un identifiant de la hiérarchie est **faible** si, et seulement si :
+Les règles s'appliquent dans cet ordre :
 
-1. il est une famille de `roots` ou l'un de ses descendants ;
-2. **et** ni lui ni aucun de ses ancêtres n'est un identifiant à risque
-   (`offId` d'une entrée de `KNOWN_INGREDIENTS`) ;
-3. **et** ni lui ni aucun de ses ancêtres n'est dans `exclude`.
-
-Exception : un identifiant de `forceLow`, ou un de ses descendants, est
-faible quoi qu'il arrive, sauf s'il est lui-même un `offId` à risque.
+1. **`exclude` l'emporte sur tout** : un identifiant de `exclude`, ou l'un
+   de ses descendants, n'est jamais faible. Exemple :
+   `en:cocoa-mass-and-cocoa-butter` est rangé sous `en:cocoa-butter`
+   (`forceLow`) mais contient de la masse de cacao.
+2. **`forceLow`** : un descendant (ou lui-même) d'un identifiant `F` de
+   `forceLow` est faible si ses seuls ancêtres à risque sont aussi des
+   ancêtres de `F`, et s'il n'est pas lui-même un `offId` à risque.
+   `forceLow` ne pardonne donc que les ancêtres à risque au-dessus de `F`.
+   Par exemple, un « jus d'orange et carotte » rangé sous `en:orange-juice`
+   resterait exclu à cause de la carotte.
+3. **Familles (`roots`)** : un descendant (ou lui-même) d'une famille est
+   faible si ni lui ni aucun de ses ancêtres n'est un identifiant à risque
+   (`offId` d'une entrée de `KNOWN_INGREDIENTS`).
 
 **L'ingrédient à risque l'emporte par défaut.** Une règle générale « la
 forme raffinée l'emporte » a été écartée : dans la hiérarchie OFF,
@@ -204,21 +233,41 @@ Format de `src/data/low-oxalate-ingredients.json` :
     "license": "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
     "generator": "scripts/generate-low-oxalate-ingredients.ts"
   },
-  "roots": { "en:milk": { "kind": "ohf", "justification": "…" } },
-  "ids": { "en:skimmed-milk-powder": "en:milk", "en:sea-salt": "en:salt" }
+  "families": {
+    "en:dairy": { "kind": "ohf", "justification": "…" },
+    "en:cocoa-butter": { "kind": "exception", "justification": "…" },
+    "additifs": { "kind": "neutre", "justification": "…" }
+  },
+  "ids": { "en:skimmed-milk-powder": "en:dairy", "en:e330": "additifs" }
 }
 ```
 
-Taille attendue : ~2 500 entrées (mesuré par le prototype), environ
-100 Ko avant compression et une vingtaine après.
+`ids` associe chaque identifiant faible à sa famille d'origine : une
+famille de `roots`, une entrée `forceLow` (type `exception`), ou la
+famille synthétique `additifs` (1.4). Les clés sont triées pour que les
+diffs restent lisibles.
+
+Taille attendue : ~3 000 entrées (mesuré par le prototype), environ
+130 Ko avant compression et 25 Ko environ après.
 
 ### 1.4 Additifs
 
-Les codes E (`en:e330`, `en:e500ii`, `en:e160c`, `en:e1422`…) sont reconnus
-par une expression régulière au moment du scan
-(`^en:e\d{3,4}[a-z]?(?:i{1,3}|iv|v|vi)?$`) et traités comme `neutre`.
-Exception : `en:e162` (rouge de betterave, extrait d'un aliment très riche
-en oxalate), qui reste inconnu.
+La hiérarchie OFF contient environ 700 codes E (`en:e330`, `en:e500ii`,
+`en:e160c`…), avec des descendants qui ne s'écrivent pas en code E (par
+exemple `en:soya-lecithin` sous `en:e322i`, lui-même sous `en:e322`). Le
+générateur ajoute donc automatiquement chaque identifiant qui correspond à
+`^en:e\d{3,4}[a-z]?(?:i{1,3}|iv|v|vi)?$` comme famille `neutre`. Ces
+identifiants et leurs descendants sont regroupés sous la famille
+synthétique `additifs`.
+
+Les règles 1.2 s'appliquent normalement. `en:e162` (rouge de betterave,
+extrait d'un aliment très riche en oxalate) est dans `exclude`. Les
+colorants issus de la carotte noire (`en:black-carrot-extract`…) sont
+écartés par leur ancêtre à risque `en:carrot`.
+
+Au moment du scan, il n'y a **pas** d'expression régulière : la table
+générée est la seule source. Un nouveau code E inconnu de la table
+retombe en « inconnu », sans danger.
 
 ### 1.5 Licence
 
@@ -251,8 +300,8 @@ Pour chaque ingrédient structuré :
 2. **Classement**, dans cet ordre :
    1. `offId` d'un ingrédient à risque connu : comportement actuel, avec la
       rétrogradation selon la proportion (`degradeByProportion`).
-   2. `offId` présent dans `low-oxalate-ingredients.json`, ou code E
-      reconnu (1.4) : **reconnu faible**.
+   2. `offId` présent dans `low-oxalate-ingredients.json` (codes E
+      compris, 1.4) : **reconnu faible**.
    3. Mots-clés à risque dans le texte : comportement actuel.
    4. Sinon : **inconnu**.
 
@@ -364,7 +413,7 @@ export interface MatchResult {
   - un `percentEstimate` à −359 est traité comme `null` ;
   - `en:cocoa-butter` donne « faible » ; « pâte de cacao » sans identifiant
     connu donne « très élevé » ;
-  - les codes E sont faibles, sauf `en:e162` qui reste inconnu ;
+  - les codes E de la table sont faibles, `en:e162` reste inconnu ;
   - `matchIngredients` renvoie `unknownIngredients: []` et garde son
     comportement.
 
