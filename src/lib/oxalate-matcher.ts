@@ -2,6 +2,7 @@ import type { StructuredIngredient } from "./off-client";
 import { KNOWN_INGREDIENTS } from "../data/known-ingredients";
 import type { KnownIngredient, OxalateLevel } from "../data/known-ingredients";
 import lowOxalateTable from "../data/low-oxalate-ingredients.json";
+import riskyOxalateTable from "../data/risky-oxalate-ingredients.json";
 
 export { KNOWN_INGREDIENTS };
 export type { KnownIngredient, OxalateLevel };
@@ -84,6 +85,19 @@ const LOW_OXALATE_IDS: Record<string, string> = lowOxalateTable.ids;
 
 function isLowOxalateId(offId: string | null | undefined): boolean {
   return !!offId && Object.hasOwn(LOW_OXALATE_IDS, offId);
+}
+
+// Ingrédients à risque hérités de la taxonomie OFF (blé en paliers,
+// chocolat, cacao), générés par scripts/generate-oxalate-tables.ts.
+const RISKY_INHERITED_IDS = riskyOxalateTable.ids as Record<
+  string,
+  { level: OxalateLevel; label: string; family: string }
+>;
+
+function matchInheritedRiskyId(offId: string | null | undefined): MatchedIngredient | null {
+  if (!offId || !Object.hasOwn(RISKY_INHERITED_IDS, offId)) return null;
+  const entry = RISKY_INHERITED_IDS[offId];
+  return { ingredientText: entry.label, dbItem: entry.label, level: entry.level };
 }
 
 export function normalize(text: string): string {
@@ -217,8 +231,8 @@ type StructuredClassification =
   | { kind: "low" }
   | { kind: "unknown" };
 
-// Ordre : identifiant à risque, identifiant faible, puis mots-clés du
-// texte. L'identifiant OFF fait foi avant le texte : « beurre de cacao »
+// Ordre : identifiant à risque connu, identifiant faible, identifiant à
+// risque hérité de la taxonomie, puis mots-clés du texte. L'identifiant OFF fait foi avant le texte : « beurre de cacao »
 // (en:cocoa-butter) est faible même si son texte contient « cacao ».
 function classifyStructuredIngredient(
   ingredient: StructuredIngredient
@@ -232,6 +246,10 @@ function classifyStructuredIngredient(
     return { kind: "risky", matches: [labelText ? { ...idMatch, labelText } : idMatch] };
   }
   if (isLowOxalateId(ingredient.offId)) return { kind: "low" };
+  const inherited = matchInheritedRiskyId(ingredient.offId);
+  if (inherited) {
+    return { kind: "risky", matches: [labelText ? { ...inherited, labelText } : inherited] };
+  }
   const textMatches = dedupeMatches(matchKnownIngredientsInText(ingredient.text));
   if (textMatches.length === 0) return { kind: "unknown" };
   if (textMatches.length === 1 && labelText) {

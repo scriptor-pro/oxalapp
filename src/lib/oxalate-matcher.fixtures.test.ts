@@ -2,18 +2,18 @@ import { describe, expect, it } from "vitest";
 import fixture from "./__fixtures__/off-products.json";
 import { matchStructuredIngredients, type MatchLevel } from "./oxalate-matcher";
 
-// Niveaux attendus avec la table du 2026-10-01 (voir la spec, volet 4.1).
-// Ces produits couvrent : tout faible (soda, fromage, huile, boisson
-// lactée), blé non reconnu (Lotus, ancien faux « faible ») et chocolat
-// noir dont le beurre de cacao est faible mais la masse de cacao, en
-// allemand, reste inconnue en attendant l'étape 3.
+// Niveaux attendus avec les tables du 2026-10-01 (chantiers ingrédients
+// faibles et blé/chocolat). Ces produits couvrent : tout faible (soda,
+// fromage, huile, boisson lactée), blé raffiné (Lotus) et chocolat noir
+// dont le beurre de cacao reste faible et la masse de cacao, en allemand,
+// est reconnue par son identifiant.
 const EXPECTED: Record<string, { level: MatchLevel; unknownTexts: string[] }> = {
   "5449000267412": { level: "faible", unknownTexts: [] }, // Coca-Cola goût original
   "3228021170039": { level: "faible", unknownTexts: [] }, // PRESIDENT Camembert
   "4056489141877": { level: "faible", unknownTexts: [] }, // Huile d'olive vierge extra
   "4056489406679": { level: "faible", unknownTexts: [] }, // Boisson lactée saveur chocolat
   "5410126806069": { level: "modéré", unknownTexts: [] }, // Lotus Biscoff : farine de blé raffinée
-  "4056489471264": { level: "non déterminable", unknownTexts: ["Kakaomasse", "fettarmes Kakaopulver"] }, // Edelbitter 90 %
+  "4056489471264": { level: "très élevé", unknownTexts: [] }, // Edelbitter 90 % : pâte et poudre de cacao
 };
 
 describe("matchStructuredIngredients sur des produits réels d'Open Food Facts", () => {

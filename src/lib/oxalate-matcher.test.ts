@@ -731,3 +731,38 @@ describe("blé et chocolat dans le texte brut (spec 2026-10-01-ble-chocolat)", (
     expect(result.matchedIngredients.map((m) => m.labelText)).toEqual(["cacao"]);
   });
 });
+
+describe("blé et chocolat par identifiant OFF (table à risque héritée)", () => {
+  it("classe la farine blanche modéré, la complète élevé et les pâtes modéré", () => {
+    const flour = matchStructuredIngredients([{ text: "farine de blé", percentEstimate: 60, offId: "en:wheat-flour" }, { text: "sucre", percentEstimate: 40, offId: "en:sugar" }]);
+    const whole = matchStructuredIngredients([{ text: "farine complète", percentEstimate: 60, offId: "en:whole-wheat-flour" }, { text: "eau", percentEstimate: 40, offId: "en:water" }]);
+    const pasta = matchStructuredIngredients([{ text: "semoule de blé dur", percentEstimate: 100, offId: "en:durum-wheat-semolina" }]);
+    expect(flour.level).toBe("modéré");
+    expect(whole.level).toBe("élevé");
+    expect(pasta.level).toBe("modéré");
+    expect(flour.matchedIngredients[0].labelText).toBe("farine de blé");
+  });
+
+  it("classe les pépites de chocolat très élevé, et élevé à 5 %", () => {
+    const at15 = matchStructuredIngredients([{ text: "pépites de chocolat", percentEstimate: 15, offId: "en:chocolate-chunk" }, { text: "sucre", percentEstimate: 85, offId: "en:sugar" }]);
+    const at5 = matchStructuredIngredients([{ text: "pépites de chocolat", percentEstimate: 5, offId: "en:chocolate-chunk" }, { text: "sucre", percentEstimate: 95, offId: "en:sugar" }]);
+    expect(at15.level).toBe("très élevé");
+    expect(at5.level).toBe("élevé");
+  });
+
+  it("garde le beurre de cacao et le chocolat blanc faibles", () => {
+    const result = matchStructuredIngredients([
+      { text: "chocolat blanc", percentEstimate: 30, offId: "en:white-chocolate" },
+      { text: "beurre de cacao", percentEstimate: 20, offId: "en:cocoa-butter" },
+      { text: "sucre", percentEstimate: 50, offId: "en:sugar" },
+    ]);
+    expect(result.level).toBe("faible");
+    expect(result.matchedIngredients).toEqual([]);
+  });
+
+  it("reconnaît la pâte de cacao étiquetée en allemand par son identifiant", () => {
+    const result = matchStructuredIngredients([{ text: "Kakaomasse", percentEstimate: 60, offId: "en:cocoa-paste" }, { text: "Zucker", percentEstimate: 40, offId: "en:sugar" }]);
+    expect(result.level).toBe("très élevé");
+    expect(result.matchedIngredients[0].labelText).toBe("Kakaomasse");
+  });
+});
