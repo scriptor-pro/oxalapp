@@ -120,6 +120,22 @@ describe.runIf(process.env.OXA_AUDIT === "1")("audit « non déterminable »", (
       console.log(`Produits dont le niveau change (${changes.length}) :\n${changes.join("\n")}`);
     }
 
+    // Ce qui bloque encore : inconnus significatifs des produits non
+    // déterminables, par fréquence. Sert à choisir le prochain chantier.
+    const unknownCounts = new Map<string, number>();
+    for (const result of results.values()) {
+      if (result.level !== "non déterminable") continue;
+      for (const unknown of result.unknownIngredients) {
+        const key = unknown.offId ?? `texte : ${unknown.text}`;
+        unknownCounts.set(key, (unknownCounts.get(key) ?? 0) + 1);
+      }
+    }
+    const topUnknowns = [...unknownCounts]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 25)
+      .map(([key, count]) => `  ${key} : ${count}`);
+    console.log(`Inconnus les plus fréquents :\n${topUnknowns.join("\n")}`);
+
     expect(products.length).toBeGreaterThan(0);
   }, 600_000);
 });
