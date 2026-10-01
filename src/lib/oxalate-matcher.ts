@@ -1,6 +1,7 @@
 import type { StructuredIngredient } from "./off-client";
 import { KNOWN_INGREDIENTS } from "../data/known-ingredients";
 import type { KnownIngredient, OxalateLevel } from "../data/known-ingredients";
+import lowOxalateTable from "../data/low-oxalate-ingredients.json";
 
 export { KNOWN_INGREDIENTS };
 export type { KnownIngredient, OxalateLevel };
@@ -15,9 +16,19 @@ export interface MatchedIngredient {
   levelBeforeAdjustment?: OxalateLevel;
 }
 
+export interface UnknownIngredient {
+  text: string;
+  offId: string | null;
+  percentEstimate: number | null;
+}
+
 export interface MatchResult {
   level: MatchLevel;
   matchedIngredients: MatchedIngredient[];
+  // Ingrédients structurés ni à risque ni reconnus faibles, présents à 2 %
+  // ou plus (ou de proportion inconnue), dans l'ordre de la liste. Toujours
+  // vide pour le texte brut.
+  unknownIngredients: UnknownIngredient[];
 }
 
 const LEVEL_RANK: Record<OxalateLevel, number> = {
@@ -43,6 +54,32 @@ function degradeByProportion(level: OxalateLevel, percent: number): OxalateLevel
   const currentRank = LEVEL_RANK[level];
   const newRank = Math.max(0, currentRank - 1);
   return LEVELS_BY_RANK[newRank];
+}
+
+// Étape 5 (spec 2026-10-01) : un ingrédient inconnu présent à moins de ce
+// pourcentage est ignoré, de même qu'un ingrédient à risque sous 2 % est
+// déjà ramené à « faible » par degradeByProportion.
+const NEGLIGIBLE_PERCENT = 2;
+// Garde-fou : si les inconnus ignorés totalisent plus que ce pourcentage,
+// plus aucun n'est ignoré, pour que plusieurs petits inconnus ne finissent
+// pas par peser lourd.
+const MAX_IGNORED_PERCENT = 5;
+
+// Open Food Facts renvoie parfois des estimations absurdes (ex. -359 %) :
+// on les traite comme une proportion inconnue plutôt que comme une trace.
+function sanitizePercent(percent: number | null): number | null {
+  if (percent === null || !Number.isFinite(percent)) return null;
+  if (percent < 0 || percent > 100) return null;
+  return percent;
+}
+
+// Ingrédients pauvres en oxalate, générés à partir de la taxonomie OFF par
+// scripts/generate-low-oxalate-ingredients.ts (familles et exceptions dans
+// scripts/low-oxalate-roots.json).
+const LOW_OXALATE_IDS: Record<string, string> = lowOxalateTable.ids;
+
+function isLowOxalateId(offId: string | null | undefined): boolean {
+  return !!offId && Object.hasOwn(LOW_OXALATE_IDS, offId);
 }
 
 export function normalize(text: string): string {
@@ -126,22 +163,25 @@ function dedupeMatches(matched: MatchedIngredient[]): MatchedIngredient[] {
   );
 }
 
-function aggregateResult(deduped: MatchedIngredient[]): MatchResult {
-  if (deduped.length === 0) {
-    return { level: "non déterminable", matchedIngredients: [] };
-  }
-
-  const highest = deduped.reduce((max, m) =>
+function highestLevel(matches: MatchedIngredient[]): OxalateLevel | null {
+  if (matches.length === 0) return null;
+  return matches.reduce((max, m) =>
     LEVEL_RANK[m.level] > LEVEL_RANK[max.level] ? m : max
-  );
+  ).level;
+}
 
-  return { level: highest.level, matchedIngredients: deduped };
+function aggregateResult(deduped: MatchedIngredient[]): MatchResult {
+  return {
+    level: highestLevel(deduped) ?? "non déterminable",
+    matchedIngredients: deduped,
+    unknownIngredients: [],
+  };
 }
 
 export function matchIngredients(ingredientsText: string): MatchResult {
   const trimmed = ingredientsText.trim();
   if (!trimmed) {
-    return { level: "non déterminable", matchedIngredients: [] };
+    return { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] };
   }
 
   const normalized = normalize(trimmed);
@@ -151,36 +191,85 @@ export function matchIngredients(ingredientsText: string): MatchResult {
   return aggregateResult(deduped);
 }
 
+type StructuredClassification =
+  | { kind: "risky"; matches: MatchedIngredient[] }
+  | { kind: "low" }
+  | { kind: "unknown" };
+
+// Ordre : identifiant à risque, identifiant faible, puis mots-clés du
+// texte. L'identifiant OFF fait foi avant le texte : « beurre de cacao »
+// (en:cocoa-butter) est faible même si son texte contient « cacao ».
+function classifyStructuredIngredient(
+  ingredient: StructuredIngredient
+): StructuredClassification {
+  const idMatch = matchKnownIngredientByOffId(ingredient.offId);
+  if (idMatch) return { kind: "risky", matches: [idMatch] };
+  if (isLowOxalateId(ingredient.offId)) return { kind: "low" };
+  const textMatches = dedupeMatches(
+    matchKnownIngredientsInText(normalize(ingredient.text))
+  );
+  return textMatches.length > 0
+    ? { kind: "risky", matches: textMatches }
+    : { kind: "unknown" };
+}
+
 export function matchStructuredIngredients(
   structuredIngredients: StructuredIngredient[]
 ): MatchResult {
-  const allMatches: MatchedIngredient[] = [];
+  const riskyMatches: MatchedIngredient[] = [];
+  const unknowns: UnknownIngredient[] = [];
+  let recognizedCount = 0;
 
   for (const ingredient of structuredIngredients) {
-    // Prefer the OFF taxonomy id when available: it's language-independent
-    // (always "en:"-prefixed) and authoritative, so it wins over regex text
-    // matching, which only understands French/Dutch/English. Falls back to
-    // the text path when OFF didn't resolve an id, or it isn't one of ours.
-    const idMatch = matchKnownIngredientByOffId(ingredient.offId);
-    const matches = idMatch
-      ? [idMatch]
-      : dedupeMatches(
-          matchKnownIngredientsInText(normalize(ingredient.text))
-        );
-    for (const match of matches) {
-      if (ingredient.percentEstimate === null) {
-        allMatches.push(match);
+    const percent = sanitizePercent(ingredient.percentEstimate);
+    const classification = classifyStructuredIngredient(ingredient);
+    if (classification.kind === "unknown") {
+      unknowns.push({
+        text: ingredient.text,
+        offId: ingredient.offId ?? null,
+        percentEstimate: percent,
+      });
+      continue;
+    }
+    recognizedCount++;
+    if (classification.kind === "low") continue;
+    for (const match of classification.matches) {
+      if (percent === null) {
+        riskyMatches.push(match);
         continue;
       }
-      const adjustedLevel = degradeByProportion(match.level, ingredient.percentEstimate);
-      allMatches.push({
+      const adjustedLevel = degradeByProportion(match.level, percent);
+      riskyMatches.push({
         ...match,
         level: adjustedLevel,
-        percentEstimate: ingredient.percentEstimate,
+        percentEstimate: percent,
         ...(adjustedLevel !== match.level ? { levelBeforeAdjustment: match.level } : {}),
       });
     }
   }
 
-  return aggregateResult(allMatches);
+  const isNegligible = (unknown: UnknownIngredient) =>
+    unknown.percentEstimate !== null && unknown.percentEstimate < NEGLIGIBLE_PERCENT;
+  const ignoredPercent = unknowns
+    .filter(isNegligible)
+    .reduce((sum, unknown) => sum + (unknown.percentEstimate ?? 0), 0);
+  const unknownIngredients =
+    ignoredPercent > MAX_IGNORED_PERCENT
+      ? unknowns
+      : unknowns.filter((unknown) => !isNegligible(unknown));
+
+  // Règle stricte (spec 2026-10-01, décision A) : un niveau au-dessus de
+  // « faible » est un minimum que les inconnus ne pourraient qu'augmenter ;
+  // « faible » exige en revanche qu'aucun inconnu significatif ne reste.
+  const highest = highestLevel(riskyMatches);
+  let level: MatchLevel;
+  if (highest !== null && highest !== "faible") {
+    level = highest;
+  } else if (recognizedCount > 0 && unknownIngredients.length === 0) {
+    level = "faible";
+  } else {
+    level = "non déterminable";
+  }
+
+  return { level, matchedIngredients: riskyMatches, unknownIngredients };
 }

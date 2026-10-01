@@ -26,7 +26,7 @@ vi.mock("../lib/ocr-client");
 describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "" }
     );
     expect(result).toBe("no-ingredients");
@@ -34,7 +34,7 @@ describe("categorizeFailure", () => {
 
   it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "   " }
     );
     expect(result).toBe("no-ingredients");
@@ -42,7 +42,7 @@ describe("categorizeFailure", () => {
 
   it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "water, coconut oil, salt" }
     );
     expect(result).toBe("no-match");
@@ -50,7 +50,7 @@ describe("categorizeFailure", () => {
 
   it("returns null when the level is not non déterminable", () => {
     const result = categorizeFailure(
-      { level: "élevé", matchedIngredients: [] },
+      { level: "élevé", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "cacao" }
     );
     expect(result).toBeNull();
