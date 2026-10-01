@@ -186,6 +186,105 @@
           "percent_estimate": 2
         }
       ]
+    },
+    {
+      "code": "7622210421968",
+      "productName": "Véritable Petit Écolier Chocolat au Lait",
+      "ingredients": [
+        {
+          "id": "en:petit-beurre",
+          "text": "PETIT BEURRE",
+          "percent_estimate": 53.5,
+          "percent": 52
+        },
+        {
+          "id": "en:sugar",
+          "text": "sucre",
+          "percent_estimate": 16.47
+        },
+        {
+          "id": "en:butterfat",
+          "text": "BEURRE concentré",
+          "percent_estimate": 8.27,
+          "percent": 14
+        },
+        {
+          "id": "en:skimmed-milk-powder",
+          "text": "LAIT écrémé en poudre",
+          "percent_estimate": 5.07
+        },
+        {
+          "id": "en:e503",
+          "text": "carbonates d'ammonium",
+          "percent_estimate": 3.47
+        },
+        {
+          "id": "en:e500",
+          "text": "carbonates de sodium",
+          "percent_estimate": 2.54
+        },
+        {
+          "id": "en:e450",
+          "text": "diphosphates",
+          "percent_estimate": 1.96
+        },
+        {
+          "id": "en:salt",
+          "text": "sel",
+          "percent_estimate": 1.56
+        },
+        {
+          "id": "en:e330",
+          "text": "acide citrique",
+          "percent_estimate": 1.28
+        },
+        {
+          "id": "en:milk-chocolate",
+          "text": "Chocolat au LAIT",
+          "percent_estimate": 1.07,
+          "percent": 48
+        },
+        {
+          "id": "en:cocoa-butter",
+          "text": "beurre de cacao",
+          "percent_estimate": 0.91
+        },
+        {
+          "id": "en:cocoa-paste",
+          "text": "pâte de cacao",
+          "percent_estimate": 0.78
+        },
+        {
+          "id": "en:skimmed-milk-powder",
+          "text": "LAIT écrémé en poudre",
+          "percent_estimate": 0.68
+        },
+        {
+          "id": "en:whey-powder",
+          "text": "lactosérum en poudre",
+          "percent_estimate": 0.6
+        },
+        {
+          "id": "en:butterfat",
+          "text": "BEURRE concentré",
+          "percent_estimate": 0.54
+        },
+        {
+          "id": "en:soya-lecithin",
+          "text": "lécithines de SOJA",
+          "percent_estimate": 0.48
+        },
+        {
+          "id": "en:e476",
+          "text": "e476",
+          "percent_estimate": 0.43
+        },
+        {
+          "id": "en:flavouring",
+          "text": "arôme",
+          "percent_estimate": 0.39
+        }
+      ]
     }
   ]
 }

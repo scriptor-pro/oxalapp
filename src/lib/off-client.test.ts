@@ -114,6 +114,38 @@ describe("getProductByBarcode", () => {
     ]);
   });
 
+  it("copies the label-declared percent into percentDeclared, only when it is a number", async () => {
+    const mockResponse = {
+      status: 1,
+      product: {
+        product_name: "Petit Écolier",
+        ingredients_text: "PETIT BEURRE 52 %: …, Chocolat au LAIT 48%: …",
+        image_url: null,
+        lang: "fr",
+        ingredients: [
+          { text: "PETIT BEURRE", percent_estimate: 53.5, percent: 52, id: "en:petit-beurre" },
+          { text: "sucre", percent_estimate: 16.47, id: "en:sugar" },
+          { text: "Chocolat au LAIT", percent_estimate: 1.07, percent: 48, id: "en:milk-chocolate" },
+        ],
+      },
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve(mockResponse),
+      })
+    );
+
+    const result = await getProductByBarcode("7622210421968");
+
+    expect(result?.structuredIngredients).toEqual([
+      { text: "PETIT BEURRE", percentEstimate: 53.5, percentDeclared: 52, offId: "en:petit-beurre" },
+      { text: "sucre", percentEstimate: 16.47, offId: "en:sugar" },
+      { text: "Chocolat au LAIT", percentEstimate: 1.07, percentDeclared: 48, offId: "en:milk-chocolate" },
+    ]);
+  });
+
   it("treats a missing percent_estimate on a structured ingredient as null", async () => {
     const mockResponse = {
       status: 1,

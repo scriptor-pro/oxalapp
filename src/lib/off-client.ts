@@ -27,7 +27,7 @@ interface OffApiResponse {
     ingredients_text?: string;
     image_url?: string;
     lang?: string;
-    ingredients?: { text?: string; percent_estimate?: number; id?: string }[];
+    ingredients?: { text?: string; percent_estimate?: number; percent?: number; id?: string }[];
   };
 }
 
@@ -58,6 +58,9 @@ export async function getProductByBarcode(
   ).map((ingredient) => ({
     text: ingredient.text ?? "",
     percentEstimate: ingredient.percent_estimate ?? null,
+    // Seulement s'il existe : la plupart des ingrédients n'ont pas de
+    // pourcentage déclaré sur l'étiquette.
+    ...(typeof ingredient.percent === "number" ? { percentDeclared: ingredient.percent } : {}),
     offId: ingredient.id ?? null,
   }));
 

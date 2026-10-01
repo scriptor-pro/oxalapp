@@ -7,6 +7,7 @@ import { matchStructuredIngredients, type MatchLevel } from "./oxalate-matcher";
 // fromage, huile, boisson lactée), blé raffiné (Lotus) et chocolat noir
 // dont le beurre de cacao reste faible et la masse de cacao, en allemand,
 // est reconnue par son identifiant.
+// Petit Écolier vérifie la règle des pourcentages déclarés (spec 2026-10-01-pourcentages-declares).
 const EXPECTED: Record<string, { level: MatchLevel; unknownTexts: string[] }> = {
   "5449000267412": { level: "faible", unknownTexts: [] }, // Coca-Cola goût original
   "3228021170039": { level: "faible", unknownTexts: [] }, // PRESIDENT Camembert
@@ -14,6 +15,7 @@ const EXPECTED: Record<string, { level: MatchLevel; unknownTexts: string[] }> = 
   "4056489406679": { level: "faible", unknownTexts: [] }, // Boisson lactée saveur chocolat
   "5410126806069": { level: "modéré", unknownTexts: [] }, // Lotus Biscoff : farine de blé raffinée
   "4056489471264": { level: "très élevé", unknownTexts: [] }, // Edelbitter 90 % : pâte et poudre de cacao
+  "7622210421968": { level: "très élevé", unknownTexts: [] }, // Petit Écolier : chocolat déclaré 48 %, estimé 1 % par OFF
 };
 
 describe("matchStructuredIngredients sur des produits réels d'Open Food Facts", () => {
@@ -23,6 +25,7 @@ describe("matchStructuredIngredients sur des produits réels d'Open Food Facts",
         product.ingredients.map((ingredient) => ({
           text: ingredient.text,
           percentEstimate: ingredient.percent_estimate,
+          percentDeclared: (ingredient as { percent?: number }).percent ?? null,
           offId: ingredient.id,
         }))
       );

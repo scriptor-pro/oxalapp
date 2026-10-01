@@ -28,6 +28,7 @@ interface OffSearchIngredient {
   id?: string;
   text?: string;
   percent_estimate?: number;
+  percent?: number;
 }
 
 interface OffSearchProduct {
@@ -82,6 +83,7 @@ function matchProduct(product: OffSearchProduct): MatchResult {
   const structured = (product.ingredients ?? []).map((ingredient) => ({
     text: ingredient.text ?? "",
     percentEstimate: ingredient.percent_estimate ?? null,
+    percentDeclared: ingredient.percent ?? null,
     offId: ingredient.id ?? null,
   }));
   return structured.length > 0
