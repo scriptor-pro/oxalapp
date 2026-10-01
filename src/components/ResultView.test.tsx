@@ -26,7 +26,7 @@ vi.mock("../lib/ocr-client");
 describe("categorizeFailure", () => {
   it("returns 'no-ingredients' when the level is non déterminable and ingredientsText is empty", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "" }
     );
     expect(result).toBe("no-ingredients");
@@ -34,7 +34,7 @@ describe("categorizeFailure", () => {
 
   it("returns 'no-ingredients' when ingredientsText is only whitespace", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "   " }
     );
     expect(result).toBe("no-ingredients");
@@ -42,15 +42,39 @@ describe("categorizeFailure", () => {
 
   it("returns 'no-match' when the level is non déterminable but ingredientsText has content", () => {
     const result = categorizeFailure(
-      { level: "non déterminable", matchedIngredients: [] },
+      { level: "non déterminable", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "water, coconut oil, salt" }
     );
     expect(result).toBe("no-match");
   });
 
+  it("returns 'unknown-ingredients' when non déterminable with significant unknown ingredients", () => {
+    const result = categorizeFailure(
+      {
+        level: "non déterminable",
+        matchedIngredients: [],
+        unknownIngredients: [{ text: "Farine de blé", offId: "en:wheat-flour", percentEstimate: 50 }],
+      },
+      { ingredientsText: "Farine de blé, sucre" }
+    );
+    expect(result).toBe("unknown-ingredients");
+  });
+
+  it("keeps 'no-ingredients' first when the ingredients text is empty", () => {
+    const result = categorizeFailure(
+      {
+        level: "non déterminable",
+        matchedIngredients: [],
+        unknownIngredients: [{ text: "x", offId: null, percentEstimate: null }],
+      },
+      { ingredientsText: "" }
+    );
+    expect(result).toBe("no-ingredients");
+  });
+
   it("returns null when the level is not non déterminable", () => {
     const result = categorizeFailure(
-      { level: "élevé", matchedIngredients: [] },
+      { level: "élevé", matchedIngredients: [], unknownIngredients: [] },
       { ingredientsText: "cacao" }
     );
     expect(result).toBeNull();
@@ -208,7 +232,7 @@ describe("ResultView", () => {
 
     expect(
       await screen.findByText(
-        /reflète la présence d'un ingrédient connu.*pas une quantité mesurée dans ce produit précis/
+        /déduit de la liste d'ingrédients, pas d'une quantité mesurée dans ce produit précis/
       )
     ).toBeInTheDocument();
   });
@@ -384,12 +408,12 @@ describe("ResultView proportion-aware matching", () => {
     (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
       gtin: "00000000000000",
       rawCode: "0000000000000",
-      productName: "Biscuit noisettes",
-      ingredientsText: "Farine de blé, noisettes 0.8%, sucre",
+      productName: "Beurre sucré aux noisettes",
+      ingredientsText: "Sucre, beurre, noisettes 0.8%",
       structuredIngredients: [
-        { text: "Farine de blé", percentEstimate: 70 },
+        { text: "sucre", percentEstimate: 70, offId: "en:sugar" },
+        { text: "beurre", percentEstimate: 29.2, offId: "en:butter" },
         { text: "noisettes", percentEstimate: 0.8 },
-        { text: "sucre", percentEstimate: 20 },
       ],
       imageUrl: null,
       lang: "fr",
@@ -402,6 +426,29 @@ describe("ResultView proportion-aware matching", () => {
     expect(
       screen.getByText(/noisette.*0[.,]8%.*contribution réduite/i)
     ).toBeInTheDocument();
+  });
+
+  it("shows both the reduced-contribution note and the unknown ingredients when flour is unrecognized", async () => {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Biscuit noisettes",
+      ingredientsText: "Farine de blé, noisettes 0.8%, sucre",
+      structuredIngredients: [
+        { text: "Farine de blé", percentEstimate: 70, offId: "en:wheat-flour" },
+        { text: "noisettes", percentEstimate: 0.8 },
+        { text: "sucre", percentEstimate: 29.2, offId: "en:sugar" },
+      ],
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(await screen.findByText(/non déterminable/i)).toBeInTheDocument();
+    expect(screen.getByText(/noisette.*0[.,]8%.*contribution réduite/i)).toBeInTheDocument();
+    expect(screen.getByText("Ingrédients non reconnus : Farine de blé (70%).")).toBeInTheDocument();
   });
 
   it("falls back to plain-text matching when Open Food Facts has no structured ingredients", async () => {
@@ -557,5 +604,104 @@ describe("ResultView OCR ingredient recognition", () => {
     expect(
       screen.queryByLabelText(/photographier pour remplir/i)
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("ResultView closed-world explanations", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
+      create: vi.fn().mockResolvedValue({ id: "scan1" }),
+    });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  function mockStructuredProduct(
+    structuredIngredients: { text: string; percentEstimate: number | null; offId?: string | null }[]
+  ) {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000",
+      rawCode: "0000000000000",
+      productName: "Produit test",
+      ingredientsText: structuredIngredients.map((i) => i.text).join(", ") || "texte",
+      structuredIngredients,
+      imageUrl: null,
+      lang: "fr",
+      sources: ["open_food_facts"],
+    });
+  }
+
+  it("justifies a faible level when every significant ingredient is recognized", async () => {
+    mockStructuredProduct([
+      { text: "eau gazéifiée", percentEstimate: 81.4, offId: "en:carbonated-water" },
+      { text: "sucre", percentEstimate: 18.6, offId: "en:sugar" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(
+        "Tous les ingrédients présents à 2 % ou plus sont reconnus comme pauvres en oxalate."
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("lists unknown ingredients with rounded percentages and omits unknown proportions", async () => {
+    mockStructuredProduct([
+      { text: "Farine de BLÉ", percentEstimate: 50.15, offId: "en:wheat-flour" },
+      { text: "sucre", percentEstimate: 37.47, offId: "en:sugar" },
+      { text: "arôme de malt", percentEstimate: null, offId: null },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText("Ingrédients non reconnus : Farine de BLÉ (50%), arôme de malt.")
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/aucun ingrédient à risque connu/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/tous les ingrédients présents/i)).not.toBeInTheDocument();
+  });
+
+  it("names an unknown ingredient that has no text by its OFF id, or a placeholder", async () => {
+    mockStructuredProduct([
+      { text: "", percentEstimate: 60, offId: "en:mystery-ingredient" },
+      { text: " ", percentEstimate: 30, offId: null },
+      { text: "sucre", percentEstimate: 10, offId: "en:sugar" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(
+        "Ingrédients non reconnus : en:mystery-ingredient (60%), ingrédient sans nom (30%)."
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("lists a duplicated unknown ingredient only once, at its first occurrence", async () => {
+    mockStructuredProduct([
+      { text: "farine de seigle complète", percentEstimate: 70, offId: "en:wholemeal-rye-flour" },
+      { text: "sel", percentEstimate: 5, offId: "en:salt" },
+      { text: "farine de seigle complète", percentEstimate: 25, offId: "en:wholemeal-rye-flour" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText("Ingrédients non reconnus : farine de seigle complète (70%).")
+    ).toBeInTheDocument();
+  });
+
+  it("falls back to the no-match message when only negligible unknowns make up the list", async () => {
+    mockStructuredProduct([
+      { text: "Calcium 240", percentEstimate: 0.5, offId: "fr:calcium-240" },
+      { text: "pH = 7,6", percentEstimate: 0.5, offId: "fr:ph-7-6" },
+    ]);
+
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+
+    expect(
+      await screen.findByText(/aucun ingrédient à risque connu détecté/i)
+    ).toBeInTheDocument();
   });
 });

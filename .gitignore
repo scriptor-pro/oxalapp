@@ -44,3 +44,6 @@ android/.gradle/
 android/local.properties
 android/captures/
 android/.cxx/
+
+# Échantillons et mesures de l'audit « non déterminable » (scripts/audit-non-determinable.test.ts)
+.cache/

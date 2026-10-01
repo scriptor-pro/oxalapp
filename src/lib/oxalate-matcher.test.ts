@@ -481,3 +481,179 @@ describe("matchStructuredIngredients", () => {
     expect(result.level).toBe("élevé");
   });
 });
+
+describe("matchStructuredIngredients — monde fermé (spec 2026-10-01)", () => {
+  it("conclut faible quand tous les ingrédients sont reconnus faibles", () => {
+    const result = matchStructuredIngredients([
+      { text: "eau gazéifiée", percentEstimate: 81.4, offId: "en:carbonated-water" },
+      { text: "sucre", percentEstimate: 10.6, offId: "en:sugar" },
+      { text: "acide phosphorique", percentEstimate: 2, offId: "en:e338" },
+    ]);
+
+    expect(result.level).toBe("faible");
+    expect(result.matchedIngredients).toEqual([]);
+    expect(result.unknownIngredients).toEqual([]);
+  });
+
+  it("reste non déterminable et liste l'inconnu présent à 2 % ou plus", () => {
+    const result = matchStructuredIngredients([
+      { text: "Farine de BLÉ", percentEstimate: 50.15, offId: "en:wheat-flour" },
+      { text: "sucre", percentEstimate: 37.47, offId: "en:sugar" },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients).toEqual([
+      { text: "Farine de BLÉ", offId: "en:wheat-flour", percentEstimate: 50.15 },
+    ]);
+  });
+
+  it("ignore un inconnu présent à moins de 2 %", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 98.5, offId: "en:milk" },
+      { text: "ingrédient mystère", percentEstimate: 1.5, offId: "en:mystery" },
+    ]);
+
+    expect(result.level).toBe("faible");
+    expect(result.unknownIngredients).toEqual([]);
+  });
+
+  it("n'ignore plus rien quand les inconnus ignorés dépassent 5 % au total", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 94.3, offId: "en:milk" },
+      { text: "inconnu A", percentEstimate: 1.9, offId: null },
+      { text: "inconnu B", percentEstimate: 1.9, offId: null },
+      { text: "inconnu C", percentEstimate: 1.9, offId: null },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients.map((u) => u.text)).toEqual(["inconnu A", "inconnu B", "inconnu C"]);
+  });
+
+  it("compte un inconnu de proportion inconnue comme significatif", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 90, offId: "en:milk" },
+      { text: "préparation spéciale", percentEstimate: null, offId: null },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients).toEqual([
+      { text: "préparation spéciale", offId: null, percentEstimate: null },
+    ]);
+  });
+
+  it("garde un niveau élevé comme minimum malgré un inconnu significatif", () => {
+    const result = matchStructuredIngredients([
+      { text: "lentilles", percentEstimate: 20, offId: "en:lentils" },
+      { text: "farine de blé", percentEstimate: 40, offId: "en:wheat-flour" },
+      { text: "eau", percentEstimate: 40, offId: "en:water" },
+    ]);
+
+    expect(result.level).toBe("élevé");
+    expect(result.unknownIngredients.map((u) => u.offId)).toEqual(["en:wheat-flour"]);
+  });
+
+  it("ne conclut plus faible quand une trace d'ingrédient à risque masque un inconnu majeur (règle A)", () => {
+    const result = matchStructuredIngredients([
+      { text: "Farine de blé", percentEstimate: 60, offId: "en:wheat-flour" },
+      { text: "sucre", percentEstimate: 39.2, offId: "en:sugar" },
+      { text: "noisettes", percentEstimate: 0.8, offId: "en:hazelnut" },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.matchedIngredients[0].level).toBe("faible");
+    expect(result.matchedIngredients[0].levelBeforeAdjustment).toBe("très élevé");
+  });
+
+  it("conclut faible pour une trace d'ingrédient à risque quand tout le reste est faible", () => {
+    const result = matchStructuredIngredients([
+      { text: "sucre", percentEstimate: 99.2, offId: "en:sugar" },
+      { text: "noisettes", percentEstimate: 0.8, offId: "en:hazelnut" },
+    ]);
+
+    expect(result.level).toBe("faible");
+  });
+
+  it("traite un pourcentage hors de [0, 100] comme inconnu au lieu de rétrograder", () => {
+    const result = matchStructuredIngredients([
+      { text: "cranberries", percentEstimate: -359.5, offId: "en:cranberry" },
+      { text: "sucre", percentEstimate: 33, offId: "en:sugar" },
+    ]);
+
+    expect(result.level).toBe("élevé");
+    expect(result.matchedIngredients[0].percentEstimate).toBeUndefined();
+    expect(result.matchedIngredients[0].levelBeforeAdjustment).toBeUndefined();
+  });
+
+  it("traite un pourcentage non fini comme inconnu", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 90, offId: "en:milk" },
+      { text: "inconnu", percentEstimate: Number.NaN, offId: null },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients).toEqual([{ text: "inconnu", offId: null, percentEstimate: null }]);
+  });
+
+  it("reconnaît le beurre de cacao comme faible par son identifiant malgré le mot cacao", () => {
+    const result = matchStructuredIngredients([
+      { text: "sucre", percentEstimate: 45, offId: "en:sugar" },
+      { text: "beurre de cacao", percentEstimate: 30, offId: "en:cocoa-butter" },
+      { text: "lait en poudre", percentEstimate: 25, offId: "en:milk-powder" },
+    ]);
+
+    expect(result.level).toBe("faible");
+    expect(result.matchedIngredients).toEqual([]);
+  });
+
+  it("détecte toujours la pâte de cacao par le texte", () => {
+    const result = matchStructuredIngredients([
+      { text: "pâte de cacao", percentEstimate: 60, offId: "en:cocoa-paste" },
+      { text: "sucre", percentEstimate: 40, offId: "en:sugar" },
+    ]);
+
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("reconnaît les additifs de la table mais pas le rouge de betterave E162", () => {
+    const withCitricAcid = matchStructuredIngredients([
+      { text: "eau", percentEstimate: 97, offId: "en:water" },
+      { text: "acide citrique", percentEstimate: 3, offId: "en:e330" },
+    ]);
+    // Texte neutre : on vérifie l'absence d'E162 dans la table, pas le
+    // mot-clé « betterave » (voir le test suivant).
+    const withBeetrootRed = matchStructuredIngredients([
+      { text: "eau", percentEstimate: 97, offId: "en:water" },
+      { text: "colorant E162", percentEstimate: 3, offId: "en:e162" },
+    ]);
+
+    expect(withCitricAcid.level).toBe("faible");
+    expect(withBeetrootRed.level).toBe("non déterminable");
+    expect(withBeetrootRed.unknownIngredients.map((u) => u.offId)).toEqual(["en:e162"]);
+  });
+
+  it("détecte la betterave dans le texte d'un E162 libellé « rouge de betterave »", () => {
+    const result = matchStructuredIngredients([
+      { text: "eau", percentEstimate: 97, offId: "en:water" },
+      { text: "rouge de betterave", percentEstimate: 3, offId: "en:e162" },
+    ]);
+
+    expect(result.level).toBe("élevé");
+    expect(result.matchedIngredients[0].levelBeforeAdjustment).toBe("très élevé");
+  });
+
+  it("reste non déterminable, sans inconnu listé, quand seuls de minuscules inconnus composent la liste", () => {
+    const result = matchStructuredIngredients([
+      { text: "Calcium 240", percentEstimate: 0.5, offId: "fr:calcium-240" },
+      { text: "pH = 7,6", percentEstimate: 0.5, offId: "fr:ph-7-6" },
+    ]);
+
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients).toEqual([]);
+  });
+
+  it("garde unknownIngredients vide pour le texte brut", () => {
+    expect(matchIngredients("Eau, sel").unknownIngredients).toEqual([]);
+    expect(matchIngredients("").unknownIngredients).toEqual([]);
+    expect(matchIngredients("épinards").unknownIngredients).toEqual([]);
+  });
+});
