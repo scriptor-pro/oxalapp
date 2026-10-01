@@ -844,3 +844,62 @@ describe("ResultView risky ingredient display", () => {
     ).toBeInTheDocument();
   });
 });
+
+describe("ResultView minimum level notice", () => {
+  const NOTICE = /Niveau minimum : ces ingrédients n'ont pas été reconnus et pourraient l'augmenter/;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({ create: vi.fn().mockResolvedValue({ id: "scan1" }) });
+    (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+  });
+
+  function mockStructuredProduct(structuredIngredients: { text: string; percentEstimate: number | null; offId?: string | null }[]) {
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue({
+      gtin: "00000000000000", rawCode: "0000000000000", productName: "Produit test",
+      ingredientsText: structuredIngredients.map((i) => i.text).join(", "),
+      structuredIngredients, imageUrl: null, lang: "fr", sources: ["open_food_facts"],
+    });
+  }
+
+  it("flags a modéré level as a minimum when significant ingredients are unknown", async () => {
+    mockStructuredProduct([
+      { text: "farine de blé", percentEstimate: 55, offId: "en:wheat-flour" },
+      { text: "farine de seigle", percentEstimate: 40, offId: "en:rye-flour" },
+      { text: "sucre", percentEstimate: 5, offId: "en:sugar" },
+    ]);
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+    expect(
+      await screen.findByText("Niveau minimum : ces ingrédients n'ont pas été reconnus et pourraient l'augmenter : farine de seigle (40%).")
+    ).toBeInTheDocument();
+  });
+
+  it("flags an élevé level as a minimum too", async () => {
+    mockStructuredProduct([
+      { text: "farine complète", percentEstimate: 60, offId: "en:whole-wheat-flour" },
+      { text: "farine de seigle", percentEstimate: 40, offId: "en:rye-flour" },
+    ]);
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+    expect(await screen.findByText(NOTICE)).toBeInTheDocument();
+  });
+
+  it("does not flag très élevé, which cannot be exceeded", async () => {
+    mockStructuredProduct([
+      { text: "pépites de chocolat", percentEstimate: 30, offId: "en:chocolate-chunk" },
+      { text: "farine de seigle", percentEstimate: 70, offId: "en:rye-flour" },
+    ]);
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+    expect(await screen.findByText(/très élevé/i)).toBeInTheDocument();
+    expect(screen.queryByText(NOTICE)).not.toBeInTheDocument();
+  });
+
+  it("does not flag a level whose unknown ingredients are all negligible", async () => {
+    mockStructuredProduct([
+      { text: "farine de blé", percentEstimate: 98.5, offId: "en:wheat-flour" },
+      { text: "ingrédient mystère", percentEstimate: 1.5, offId: "en:mystery" },
+    ]);
+    render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
+    expect(await screen.findByText(/modéré/i)).toBeInTheDocument();
+    expect(screen.queryByText(NOTICE)).not.toBeInTheDocument();
+  });
+});

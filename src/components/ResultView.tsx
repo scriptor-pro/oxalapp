@@ -217,6 +217,13 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
             pauvres en oxalate.
           </p>
         )}
+        {(state.result.level === "modéré" || state.result.level === "élevé") &&
+          state.result.unknownIngredients.length > 0 && (
+            <p className="ingredient-line">
+              Niveau minimum : ces ingrédients n'ont pas été reconnus et pourraient
+              l'augmenter : {formatUnknownIngredients(state.result.unknownIngredients)}.
+            </p>
+          )}
         {(() => {
           const failureReason = categorizeFailure(state.result, state.product);
           if (failureReason === "unknown-ingredients") {
