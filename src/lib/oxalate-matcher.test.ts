@@ -811,3 +811,62 @@ describe("blé et chocolat par identifiant OFF (table à risque héritée)", () 
     expect(result.matchedIngredients[0].labelText).toBe("Kakaomasse");
   });
 });
+
+describe("pourcentages déclarés sur l'étiquette (spec 2026-10-01-pourcentages-declares)", () => {
+  it("retient le déclaré quand il dépasse l'estimation (Petit Écolier)", () => {
+    const result = matchStructuredIngredients([
+      { text: "PETIT BEURRE", percentEstimate: 53.5, percentDeclared: 52, offId: "en:petit-beurre" },
+      { text: "sucre", percentEstimate: 16.47, offId: "en:sugar" },
+      { text: "Chocolat au LAIT", percentEstimate: 1.07, percentDeclared: 48, offId: "en:milk-chocolate" },
+    ]);
+    expect(result.level).toBe("très élevé");
+    const chocolate = result.matchedIngredients.find((m) => m.labelText === "Chocolat au LAIT");
+    expect(chocolate?.percentEstimate).toBe(48);
+    expect(chocolate?.level).toBe("très élevé");
+  });
+
+  it("garde l'estimation quand le déclaré est plus petit", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 96.5, offId: "en:milk" },
+      { text: "amande", percentEstimate: 3.5, percentDeclared: 1.5, offId: "en:almond" },
+    ]);
+    expect(result.matchedIngredients[0].percentEstimate).toBe(3.5);
+    expect(result.level).toBe("élevé");
+  });
+
+  it("retient le déclaré quand l'estimation manque", () => {
+    const result = matchStructuredIngredients([
+      { text: "chocolat", percentEstimate: null, percentDeclared: 48, offId: "en:milk-chocolate" },
+      { text: "sucre", percentEstimate: null, offId: "en:sugar" },
+    ]);
+    expect(result.matchedIngredients[0].percentEstimate).toBe(48);
+  });
+
+  it("garde l'estimation quand le déclaré vaut 0", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 70, offId: "en:milk" },
+      { text: "chocolat", percentEstimate: 30, percentDeclared: 0, offId: "en:milk-chocolate" },
+    ]);
+    expect(result.matchedIngredients[0].percentEstimate).toBe(30);
+    expect(result.level).toBe("très élevé");
+  });
+
+  it("ignore un déclaré absurde", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 70, offId: "en:milk" },
+      { text: "chocolat", percentEstimate: 30, percentDeclared: 150, offId: "en:milk-chocolate" },
+    ]);
+    expect(result.matchedIngredients[0].percentEstimate).toBe(30);
+  });
+
+  it("rend significatif un inconnu dont le déclaré dépasse 2 %", () => {
+    const result = matchStructuredIngredients([
+      { text: "lait", percentEstimate: 89, offId: "en:milk" },
+      { text: "ingrédient mystère", percentEstimate: 1, percentDeclared: 10, offId: "en:mystery" },
+    ]);
+    expect(result.level).toBe("non déterminable");
+    expect(result.unknownIngredients).toEqual([
+      { text: "ingrédient mystère", offId: "en:mystery", percentEstimate: 10 },
+    ]);
+  });
+});

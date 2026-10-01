@@ -1,6 +1,10 @@
 export interface StructuredIngredient {
   text: string;
   percentEstimate: number | null;
+  // Pourcentage déclaré sur l'étiquette (champ OFF `percent`), quand il
+  // existe. Premier niveau seulement, comme percentEstimate. Le matcher
+  // retient le plus grand des deux (spec 2026-10-01-pourcentages-declares).
+  percentDeclared?: number | null;
   // Open Food Facts ingredient taxonomy id (e.g. "en:hazelnut"). Always
   // "en:"-prefixed, independent of the product's own language — lets the
   // matcher work on non-French/Dutch/English products. Absent when OFF

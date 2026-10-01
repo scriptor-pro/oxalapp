@@ -17,6 +17,7 @@ export interface MatchedIngredient {
   labelText?: string;
   dbItem: string;
   level: OxalateLevel;
+  // Proportion retenue : le plus grand du déclaré et de l'estimé.
   percentEstimate?: number;
   levelBeforeAdjustment?: OxalateLevel;
 }
@@ -24,6 +25,7 @@ export interface MatchedIngredient {
 export interface UnknownIngredient {
   text: string;
   offId: string | null;
+  // Proportion retenue : le plus grand du déclaré et de l'estimé.
   percentEstimate: number | null;
 }
 
@@ -76,6 +78,19 @@ function sanitizePercent(percent: number | null): number | null {
   if (percent === null || !Number.isFinite(percent)) return null;
   if (percent < 0 || percent > 100) return null;
   return percent;
+}
+
+// Proportion retenue (spec 2026-10-01-pourcentages-declares) : le plus
+// grand du pourcentage déclaré sur l'étiquette et de l'estimation d'OFF.
+// OFF découpe parfois mal une liste (« PETIT BEURRE 52 % : farine… ») et
+// estime alors le chocolat déclaré à 48 % à 1 % : retenir le plus grand
+// ne peut que surestimer un ingrédient, jamais le minimiser.
+function retainedPercent(ingredient: StructuredIngredient): number | null {
+  const declared = sanitizePercent(ingredient.percentDeclared ?? null);
+  const estimated = sanitizePercent(ingredient.percentEstimate);
+  if (declared === null) return estimated;
+  if (estimated === null) return declared;
+  return Math.max(declared, estimated);
 }
 
 // Ingrédients pauvres en oxalate, générés à partir de la taxonomie OFF par
@@ -267,7 +282,7 @@ export function matchStructuredIngredients(
   let recognizedCount = 0;
 
   for (const ingredient of structuredIngredients) {
-    const percent = sanitizePercent(ingredient.percentEstimate);
+    const percent = retainedPercent(ingredient);
     const classification = classifyStructuredIngredient(ingredient);
     if (classification.kind === "unknown") {
       unknowns.push({
