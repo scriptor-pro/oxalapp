@@ -22,6 +22,13 @@
       ]
     },
     {
+      "id": "petit-beurre",
+      "root": "en:petit-beurre",
+      "label": "petit-beurre",
+      "level": "modéré",
+      "justification": "biscuit à 73,5 % de farine de blé, 13,6 % de beurre, sucre, lait écrémé en poudre, sel (recette LU, https://fr.wikipedia.org/wiki/Petit_Beurre) : niveau du blé raffiné ; rangé par OFF sous en:biscuit et non sous en:wheat"
+    },
+    {
       "id": "chocolate",
       "root": "en:chocolate",
       "label": "chocolat",

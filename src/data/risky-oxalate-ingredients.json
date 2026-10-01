@@ -2,7 +2,7 @@
   "source": {
     "name": "Open Food Facts — taxonomie des ingrédients",
     "url": "https://static.openfoodfacts.org/data/taxonomies/ingredients.json",
-    "downloadedAt": "2026-10-01T13:05:39.840Z",
+    "downloadedAt": "2026-10-01T13:42:23.464Z",
     "sha256": "40ba854ca10c4cf9c74944b3680422df52c0042e5e13f5983debeadb62ba3821",
     "license": "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
     "generator": "scripts/generate-oxalate-tables.ts"
@@ -19,6 +19,10 @@
     "son de blé": {
       "level": "très élevé",
       "justification": "son de blé 207-457,4 mg/100 g (base OHF ; Siener et al. 2006)"
+    },
+    "petit-beurre": {
+      "level": "modéré",
+      "justification": "biscuit à 73,5 % de farine de blé, 13,6 % de beurre, sucre, lait écrémé en poudre, sel (recette LU, https://fr.wikipedia.org/wiki/Petit_Beurre) : niveau du blé raffiné ; rangé par OFF sous en:biscuit et non sous en:wheat"
     },
     "chocolat": {
       "level": "très élevé",
@@ -454,6 +458,11 @@
       "level": "élevé",
       "label": "blé complet",
       "family": "wheat"
+    },
+    "en:petit-beurre": {
+      "level": "modéré",
+      "label": "petit-beurre",
+      "family": "petit-beurre"
     },
     "en:pre-cooked-durum-wheat": {
       "level": "modéré",

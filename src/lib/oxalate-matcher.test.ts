@@ -788,6 +788,15 @@ describe("blé et chocolat par identifiant OFF (table à risque héritée)", () 
     expect(result.matchedIngredients).toEqual([]);
   });
 
+  it("classe le petit-beurre modéré, comme le blé raffiné qui le compose", () => {
+    const result = matchStructuredIngredients([
+      { text: "PETIT BEURRE", percentEstimate: 60, offId: "en:petit-beurre" },
+      { text: "sucre", percentEstimate: 40, offId: "en:sugar" },
+    ]);
+    expect(result.level).toBe("modéré");
+    expect(result.matchedIngredients[0].labelText).toBe("PETIT BEURRE");
+  });
+
   it("garde la poudre de chocolat blanc faible, bien qu'OFF la range sous le chocolat", () => {
     const result = matchStructuredIngredients([
       { text: "poudre de chocolat blanc", percentEstimate: 30, offId: "en:white-chocolate-powder" },
