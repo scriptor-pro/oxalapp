@@ -46,7 +46,7 @@ const ADDITIVES_JUSTIFICATION =
 
 // Parcours en profondeur avec ensemble de visités : la taxonomie OFF est un
 // graphe orienté qui peut contenir des cycles.
-function walk(start: string, next: (id: string) => readonly string[]): Set<string> {
+export function walk(start: string, next: (id: string) => readonly string[]): Set<string> {
   const seen = new Set<string>();
   const stack = [start];
   while (stack.length > 0) {
@@ -58,7 +58,7 @@ function walk(start: string, next: (id: string) => readonly string[]): Set<strin
   return seen;
 }
 
-function buildChildren(taxonomy: Taxonomy): Map<string, string[]> {
+export function buildChildren(taxonomy: Taxonomy): Map<string, string[]> {
   const children = new Map<string, string[]>();
   for (const [id, node] of Object.entries(taxonomy)) {
     for (const parent of node.parents ?? []) {
