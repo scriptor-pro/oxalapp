@@ -1,0 +1,964 @@
+{
+  "source": {
+    "name": "Open Food Facts — taxonomie des ingrédients",
+    "url": "https://static.openfoodfacts.org/data/taxonomies/ingredients.json",
+    "downloadedAt": "2026-10-01T12:46:29.329Z",
+    "sha256": "40ba854ca10c4cf9c74944b3680422df52c0042e5e13f5983debeadb62ba3821",
+    "license": "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
+    "generator": "scripts/generate-oxalate-tables.ts"
+  },
+  "tiers": {
+    "blé": {
+      "level": "modéré",
+      "justification": "blé raffiné : pains 16,5-45,9 mg/100 g (Okombo & Liebman 2010), pâtes 20-30 mg/100 g (Liebman & Okombo 2009) ; classement par 100 g (choix-pates-oxalate.md)"
+    },
+    "blé complet": {
+      "level": "élevé",
+      "justification": "blé complet : grain entier 53,3-76,6 mg/100 g, farine et flocons complets comparables (Siener et al. 2006, PMID 16608223)"
+    },
+    "son de blé": {
+      "level": "très élevé",
+      "justification": "son de blé 207-457,4 mg/100 g (base OHF ; Siener et al. 2006)"
+    },
+    "chocolat": {
+      "level": "très élevé",
+      "justification": "Candy, Dark Chocolate 232 mg/100 g ; Candy, Milk Chocolate 115 mg/100 g (OHF)"
+    },
+    "cacao": {
+      "level": "très élevé",
+      "justification": "Cocoa or Cacao Powder, Dark Chocolate 656 mg/100 g ; Cocoa Powder, Dutch Process 170 mg/100 g (OHF)"
+    }
+  },
+  "ids": {
+    "az:manna-yarması": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "bg:био-пшенично-брашно": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "bg:бяло-пшенично-брашно": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "bg:пшенично-брашно-тип-450": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "bg:пшенично-брашно-тип-800": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "de:feine-milchschokolade": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "de:halbbitterschokolade": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:3-fat-reduced-cocoa-powder": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:barley-and-wheat-malt": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:belgian-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:belgian-dark-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:belgian-milk-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:biscuit-and-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:british-wholegrain-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:bulgur": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:caramelized-malted-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-bar": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-chunk": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-cream": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-filling": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-flavor-filling-with-pieces-of-coconut": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-flavored-paste-with-ground-cocoa-biscuits": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-paste": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-powder": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:chocolate-sauce": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:cocoa-bean": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-biscuit": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-extract": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-fiber": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-mass-and-cocoa-butter": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-nibs": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-paste": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-paste-processed-with-alkali": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-powder": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-powder-processed-with-alkali": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-powder-with-reduced-cocoa-butter-content": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-processed-with-alkali": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-shell-nibs": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cocoa-solids": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:cooked-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:cookie-dough-with-milk-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:couscous": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:dark-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:dark-chocolate-chunks": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:dark-chocolate-with-sweeteners": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:dark-durum-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:dark-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:dehydrated-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:devitalised-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:dextrinated-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:durum-wheat": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:durum-wheat-bulgur": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:durum-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:durum-wheat-kernels": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:durum-wheat-semolina": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:durum-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:durum-whole-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:einkorn-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:einkorn-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:emmer": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:emmer-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:enriched-semolina": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:fat-reduced-cocoa": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:fat-reduced-cocoa-powder": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:finely-ground-durum-wheat": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:fortified-british-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:fortified-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:freekeh": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:graham-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:hard-red-spring-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:hard-red-winter-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:hard-white-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:highly-fat-reduced-cocoa": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:maida": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:malted-wheat-flakes": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:malted-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:milk-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:milk-chocolate-chips": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:milk-chocolate-coating": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:milk-chocolate-with-sweetener": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:natural-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:organic-cocoa-mass-and-organic-cocoa-butter": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:organic-dark-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:organic-whole-durum-wheat-semolina": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:pre-cooked-durum-wheat": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:pre-gelatinized-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:puffed-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:pure-cocoa-butter-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:raw-cacao-powder": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:raw-cocoa": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:rivet-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:rye-and-durum-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:rye-and-wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:seitan": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:semi-sweet-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:semi-whole-durum-wheat-semolina": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:semi-wholemeal-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:semolina": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:semolina-blend": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:semolina-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:skimmed-cocoa-powder": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "en:soft-red-winter-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:soft-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:soft-wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:soft-white-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:soft-whole-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:sprouted-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:sugar-free-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:sugar-free-chocolate-chips": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:sugar-free-dark-chocolate-chunks": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:superior-quality-durum-wheat-semolina": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-and-whole-rye-sourdough": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-bulgur": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flakes": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flour": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-preparation": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-t-1050": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-0": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-00": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-1": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-110": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-150": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-2": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-500": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-55": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-550": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-65": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-flour-type-850-semi-white": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-germ": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-grain": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-grit": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-groats": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:wheat-malt": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-scalding": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-semolina": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-sourdough": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-sourdough-powder": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:wheat-vermicelli": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "en:white-chocolate-powder": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:whole-durum-wheat-semolina": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-grain-durum-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-grain-einkorn-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-milk-chocolate": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "en:whole-rye-and-durum-wheat-sourdough": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-spelt-and-wheat-kernels": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat-bulgur": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat-flakes": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat-flour": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat-groats": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "en:whole-wheat-kernels": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "es:harina-de-trigo-enriquecida-segun-ley-25630": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "es:trocitos-de-pepitas-de-cacao-caramelizadas": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "fr:barre-de-chocolat-au-lait": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:ble-dur-concasse": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:ble-dur-precuit-concasse": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:ble-malte-torrefie-concasse": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:chocolat-au-lait-du-pays-alpin": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:chocolat-au-lait-en-poudre": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:chocolat-noir-a-70-de-cacao": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:chocolat-noir-de-couverture": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:eclats-de-feves-de-cacao-torrefies": {
+      "level": "très élevé",
+      "label": "cacao",
+      "family": "cocoa"
+    },
+    "fr:farine-de-ble-complete-type-110": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "fr:farine-de-ble-malte-torrefie": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-de-ble-type-55": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-de-ble-type-65": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-de-froment-t55": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-de-froment-t65": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-de-germes-de-ble-stabilise": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "fr:farine-de-gonflement-de-ble": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:farine-mi-blanche": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:grains-de-ble-dur-precuits": {
+      "level": "élevé",
+      "label": "blé complet",
+      "family": "wheat"
+    },
+    "fr:pepites-de-chocolat-au-lait": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "fr:petanielle-noire-de-nice": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:poulard-d-australie": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:poulard-d-auvergne": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:semoule-blanche-de-ble-dur": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:semoule-blanche-de-ble-dur-biologique-de-sicile": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:semoule-de-ble-dur-blanche-biologique": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:semoule-de-ble-dur-precuite": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "fr:semoule-de-ble-tendre": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "hr:pšenično-brašno-1850": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "hr:pšenično-brašno-tip-400": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    },
+    "pl:czekolada-deserowa": {
+      "level": "très élevé",
+      "label": "chocolat",
+      "family": "chocolate"
+    },
+    "pl:mąka-pszenna-typ-750": {
+      "level": "modéré",
+      "label": "blé",
+      "family": "wheat"
+    }
+  }
+}

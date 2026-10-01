@@ -2,10 +2,10 @@
   "source": {
     "name": "Open Food Facts — taxonomie des ingrédients",
     "url": "https://static.openfoodfacts.org/data/taxonomies/ingredients.json",
-    "downloadedAt": "2026-10-01T07:27:58.296Z",
+    "downloadedAt": "2026-10-01T12:46:29.329Z",
     "sha256": "40ba854ca10c4cf9c74944b3680422df52c0042e5e13f5983debeadb62ba3821",
     "license": "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
-    "generator": "scripts/generate-low-oxalate-ingredients.ts"
+    "generator": "scripts/generate-oxalate-tables.ts"
   },
   "families": {
     "en:dairy": {
@@ -247,6 +247,10 @@
     "en:flavouring": {
       "kind": "forme-raffinée",
       "justification": "Herbs and Spices, Vanilla Extract, pure, McCormick ; Herbs and Spices, Lemon Extract, pure ; Herbs and Spices, Almond Extract, McCormick"
+    },
+    "en:white-chocolate": {
+      "kind": "ohf",
+      "justification": "Candy, White Chocolate, bar or chips (8 mg/100 g)"
     },
     "additifs": {
       "kind": "neutre",
@@ -2914,6 +2918,8 @@
     "en:white-cane-sugar-from-brazil": "en:added-sugar",
     "en:white-cheddar": "en:dairy",
     "en:white-cherry": "en:cherry",
+    "en:white-chocolate": "en:white-chocolate",
+    "en:white-chocolate-coating": "en:white-chocolate",
     "en:white-distilled-vinegar": "en:vinegar",
     "en:white-fish": "en:fish",
     "en:white-fish-fillets": "en:fish",

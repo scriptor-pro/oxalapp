@@ -1,6 +1,7 @@
-// Génère src/data/low-oxalate-ingredients.json à partir de la taxonomie
-// des ingrédients d'Open Food Facts et de scripts/low-oxalate-roots.json.
-// Usage : npm run generate:low-oxalate
+// Génère src/data/low-oxalate-ingredients.json et
+// src/data/risky-oxalate-ingredients.json à partir de la taxonomie des
+// ingrédients d'Open Food Facts, de scripts/low-oxalate-roots.json et de
+// scripts/risky-oxalate-roots.json. Usage : npm run generate:oxalate-tables
 // Node 24 exécute ce fichier TypeScript directement (imports en .ts).
 import { createHash } from "node:crypto";
 import fs from "node:fs";
@@ -11,11 +12,14 @@ import {
   type RootsFile,
   type Taxonomy,
 } from "./low-oxalate-generator.ts";
+import { computeRiskyOxalateIds, type RiskyRootsFile } from "./risky-oxalate-generator.ts";
 
 const TAXONOMY_URL = "https://static.openfoodfacts.org/data/taxonomies/ingredients.json";
 const USER_AGENT = "oxalapp/0.1.0 (+https://github.com/scriptor-pro/oxalapp)";
 const ROOTS_PATH = fileURLToPath(new URL("./low-oxalate-roots.json", import.meta.url));
 const OUTPUT_PATH = fileURLToPath(new URL("../src/data/low-oxalate-ingredients.json", import.meta.url));
+const RISKY_ROOTS_PATH = fileURLToPath(new URL("./risky-oxalate-roots.json", import.meta.url));
+const RISKY_OUTPUT_PATH = fileURLToPath(new URL("../src/data/risky-oxalate-ingredients.json", import.meta.url));
 
 const response = await fetch(TAXONOMY_URL, { headers: { "User-Agent": USER_AGENT } });
 if (!response.ok) {
@@ -35,7 +39,7 @@ const output = {
     downloadedAt: new Date().toISOString(),
     sha256: createHash("sha256").update(rawTaxonomy).digest("hex"),
     license: "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
-    generator: "scripts/generate-low-oxalate-ingredients.ts",
+    generator: "scripts/generate-oxalate-tables.ts",
   },
   families: table.families,
   // Clés triées : diff lisible à chaque régénération.
@@ -54,3 +58,26 @@ console.log(`\nÉcartés par exclude (${report.excluded.length}) :`);
 console.log(`  ${report.excluded.join(" ")}`);
 console.log(`\nRendus faibles par forceLow (${report.forcedLow.length}) :`);
 console.log(`  ${report.forcedLow.join(" ")}`);
+
+const riskyRootsFile = JSON.parse(fs.readFileSync(RISKY_ROOTS_PATH, "utf8")) as RiskyRootsFile;
+const risky = computeRiskyOxalateIds(taxonomy, riskyRootsFile, new Set(Object.keys(table.ids)), riskyOffIds);
+fs.writeFileSync(
+  RISKY_OUTPUT_PATH,
+  `${JSON.stringify(
+    {
+      source: { ...output.source },
+      tiers: risky.table.tiers,
+      ids: Object.fromEntries(Object.entries(risky.table.ids).sort(([a], [b]) => a.localeCompare(b))),
+    },
+    null,
+    2
+  )}\n`
+);
+console.log(`\nIngrédients à risque hérités : ${Object.keys(risky.table.ids).length}`);
+console.log("Par palier :", risky.report.countsByTier);
+console.log(`Laissés à la table faible : ${risky.report.skippedLow.join(" ")}`);
+console.log(`Laissés aux offId connus : ${risky.report.skippedKnown.join(" ")}`);
+console.log(`Exclus : ${risky.report.excluded.join(" ")}`);
+console.log(`Dans deux familles : ${risky.report.inTwoFamilies.join(" ")}`);
+console.log(`Paliers « blé » (raffiné) : ${Object.entries(risky.table.ids).filter(([, e]) => e.label === "blé").map(([id]) => id).join(" ")}`);
+console.log(`Paliers « blé complet » : ${Object.entries(risky.table.ids).filter(([, e]) => e.label === "blé complet").map(([id]) => id).join(" ")}`);

@@ -1,7 +1,7 @@
 // Logique pure du générateur de la table des ingrédients à risque hérités de
 // la taxonomie OFF (blé en paliers, chocolat, cacao). Règles :
 // docs/superpowers/specs/2026-10-01-ble-chocolat-design.md, volet 1.
-import { buildChildren, walk, type Taxonomy } from "./low-oxalate-generator";
+import { buildChildren, walk, type Taxonomy } from "./low-oxalate-generator.ts";
 
 export type RiskyLevel = "modéré" | "élevé" | "très élevé";
 export interface RiskyUpgrade { pattern: string; level: RiskyLevel; label: string; justification: string }

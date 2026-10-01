@@ -78,7 +78,7 @@ function sanitizePercent(percent: number | null): number | null {
 }
 
 // Ingrédients pauvres en oxalate, générés à partir de la taxonomie OFF par
-// scripts/generate-low-oxalate-ingredients.ts (familles et exceptions dans
+// scripts/generate-oxalate-tables.ts (familles et exceptions dans
 // scripts/low-oxalate-roots.json).
 const LOW_OXALATE_IDS: Record<string, string> = lowOxalateTable.ids;
 

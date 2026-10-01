@@ -59,13 +59,15 @@
     { "id": "en:lactose", "kind": "forme-raffinée", "justification": "sucre purifié du lait ; Milk, Cows or Goats, All types" },
     { "id": "en:maltodextrin", "kind": "forme-raffinée", "justification": "hydrolysat d'amidon purifié ; Corn, Cornstarch ; Corn Syrup, Dark or Light" },
     { "id": "en:starch", "kind": "forme-raffinée", "justification": "Corn, Cornstarch ; Flour, Potato Starch, Bob's Red Mill" },
-    { "id": "en:flavouring", "kind": "forme-raffinée", "justification": "Herbs and Spices, Vanilla Extract, pure, McCormick ; Herbs and Spices, Lemon Extract, pure ; Herbs and Spices, Almond Extract, McCormick" }
+    { "id": "en:flavouring", "kind": "forme-raffinée", "justification": "Herbs and Spices, Vanilla Extract, pure, McCormick ; Herbs and Spices, Lemon Extract, pure ; Herbs and Spices, Almond Extract, McCormick" },
+    { "id": "en:white-chocolate", "kind": "ohf", "justification": "Candy, White Chocolate, bar or chips (8 mg/100 g)" }
   ],
   "forceLow": [
     { "id": "en:orange-juice", "justification": "Juice, Orange, (OHF faible) — l'orange entière (en:orange) est élevé" },
     { "id": "en:cocoa-butter", "justification": "Candy, White Chocolate, bar or chips (OHF faible) — graisse extraite du cacao (en:cocoa)" }
   ],
   "exclude": [
+    { "id": "en:chocolate-and-white-chocolate", "justification": "mélange avec du chocolat ordinaire (très élevé), rangé sous en:white-chocolate" },
     { "id": "en:cocoa-mass-and-cocoa-butter", "justification": "contient de la masse de cacao (très élevé)" },
     { "id": "en:organic-cocoa-mass-and-organic-cocoa-butter", "justification": "contient de la masse de cacao (très élevé)" },
     { "id": "en:raisin", "justification": "raisin sec : absent de la base OHF, ne pas déduire du raisin frais" },

@@ -1,6 +1,6 @@
 // Ingrédients à risque connus : mots-clés et identifiants de la taxonomie
 // Open Food Facts. Extrait de src/lib/oxalate-matcher.ts pour que
-// scripts/generate-low-oxalate-ingredients.ts puisse le lire sans charger
+// scripts/generate-oxalate-tables.ts puisse le lire sans charger
 // le matcher (qui importe la table générée). Réexporté par le matcher.
 
 export type OxalateLevel = "faible" | "modéré" | "élevé" | "très élevé";

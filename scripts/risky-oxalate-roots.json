@@ -1,0 +1,42 @@
+{
+  "families": [
+    {
+      "id": "wheat",
+      "root": "en:wheat",
+      "label": "blé",
+      "level": "modéré",
+      "justification": "blé raffiné : pains 16,5-45,9 mg/100 g (Okombo & Liebman 2010), pâtes 20-30 mg/100 g (Liebman & Okombo 2009) ; classement par 100 g (choix-pates-oxalate.md)",
+      "upgrades": [
+        {
+          "pattern": "whole|wholemeal|graham|bulgur|freekeh|germ|flakes|puffed|grain|kernels|groats|sprouted|einkorn-wheat|^en:emmer$|rivet|hard-|^en:soft-wheat$|soft-white-wheat|soft-red|grit|cooked-wheat|type-110|type-150|t-1050|type-850|type-2$|dark-|seitan",
+          "level": "élevé",
+          "label": "blé complet",
+          "justification": "blé complet : grain entier 53,3-76,6 mg/100 g, farine et flocons complets comparables (Siener et al. 2006, PMID 16608223)"
+        },
+        {
+          "pattern": "bran",
+          "level": "très élevé",
+          "label": "son de blé",
+          "justification": "son de blé 207-457,4 mg/100 g (base OHF ; Siener et al. 2006)"
+        }
+      ]
+    },
+    {
+      "id": "chocolate",
+      "root": "en:chocolate",
+      "label": "chocolat",
+      "level": "très élevé",
+      "justification": "Candy, Dark Chocolate 232 mg/100 g ; Candy, Milk Chocolate 115 mg/100 g (OHF)"
+    },
+    {
+      "id": "cocoa",
+      "root": "en:cocoa",
+      "label": "cacao",
+      "level": "très élevé",
+      "justification": "Cocoa or Cacao Powder, Dark Chocolate 656 mg/100 g ; Cocoa Powder, Dutch Process 170 mg/100 g (OHF)"
+    }
+  ],
+  "exclude": [
+    { "id": "en:white-chocolate", "justification": "Candy, White Chocolate, bar or chips : 8 mg/100 g, faible (OHF)" }
+  ]
+}

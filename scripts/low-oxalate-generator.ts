@@ -1,6 +1,6 @@
 // Logique pure du générateur de la table des ingrédients pauvres en
 // oxalate. Règles : docs/superpowers/specs/2026-10-01-ingredients-faibles-monde-ferme-design.md,
-// volet 1. Aucune entrée-sortie ici (voir generate-low-oxalate-ingredients.ts).
+// volet 1. Aucune entrée-sortie ici (voir generate-oxalate-tables.ts).
 
 export type Taxonomy = Record<string, { parents?: string[] }>;
 export type RootKind = "ohf" | "neutre" | "forme-raffinée";
