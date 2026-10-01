@@ -1,0 +1,191 @@
+{
+  "_source": "Open Food Facts (https://world.openfoodfacts.org) — ODbL 1.0 / DbCL 1.0, © contributeurs Open Food Facts. Extrait le 2026-10-01 ; ingrédients de premier niveau uniquement.",
+  "products": [
+    {
+      "code": "5449000267412",
+      "productName": "Coca-Cola goût original",
+      "ingredients": [
+        {
+          "id": "en:carbonated-water",
+          "text": "eau gazéifiée",
+          "percent_estimate": 81.4
+        },
+        {
+          "id": "en:sugar",
+          "text": "sucre",
+          "percent_estimate": 10.6
+        },
+        {
+          "id": "en:e150d",
+          "text": "e150d",
+          "percent_estimate": 2
+        },
+        {
+          "id": "en:e338",
+          "text": "acide phosphorique",
+          "percent_estimate": 2
+        },
+        {
+          "id": "en:natural-flavouring",
+          "text": "arômes naturels",
+          "percent_estimate": 2
+        },
+        {
+          "id": "en:caffeine",
+          "text": "caféine",
+          "percent_estimate": 2
+        }
+      ]
+    },
+    {
+      "code": "3228021170039",
+      "productName": "PRESIDENT CAMEMBERT 250g",
+      "ingredients": [
+        {
+          "id": "en:milk",
+          "text": "LAIT",
+          "percent_estimate": 72.97
+        },
+        {
+          "id": "en:lactic-and-aging-ferments",
+          "text": "ferments lactiques et d'affinage",
+          "percent_estimate": 25.63
+        },
+        {
+          "id": "en:salt",
+          "text": "sel",
+          "percent_estimate": 1.4
+        }
+      ]
+    },
+    {
+      "code": "4056489141877",
+      "productName": "Huile d'olive vierge extra",
+      "ingredients": [
+        {
+          "id": "en:extra-virgin-olive-oil",
+          "text": "Huile d'olive vierge extra",
+          "percent_estimate": 100
+        }
+      ]
+    },
+    {
+      "code": "4056489406679",
+      "productName": "Boisson lactée saveur chocolat",
+      "ingredients": [
+        {
+          "id": "en:skimmed-milk",
+          "text": "latte scremato",
+          "percent_estimate": 80.5
+        },
+        {
+          "id": "en:milk-proteins",
+          "text": "proteine del latte",
+          "percent_estimate": 17.5
+        },
+        {
+          "id": "en:fat-reduced-cocoa",
+          "text": "cacao¹ magro",
+          "percent_estimate": 1.45
+        },
+        {
+          "id": "en:e407",
+          "text": "carragenina",
+          "percent_estimate": 1.45
+        },
+        {
+          "id": "en:e955",
+          "text": "sucralosio",
+          "percent_estimate": 1.45
+        },
+        {
+          "id": "en:flavouring",
+          "text": "aroma",
+          "percent_estimate": 1.45
+        }
+      ]
+    },
+    {
+      "code": "5410126806069",
+      "productName": "LOTUS BISCOFF Original - 250g (2x125g)",
+      "ingredients": [
+        {
+          "id": "en:wheat-flour",
+          "text": "Farine de BLÉ",
+          "percent_estimate": 50.15
+        },
+        {
+          "id": "en:sugar",
+          "text": "sucre",
+          "percent_estimate": 37.47
+        },
+        {
+          "id": "en:vegetable-oil",
+          "text": "huiles végétales",
+          "percent_estimate": 18.69
+        },
+        {
+          "id": "fr:sirop-de-candi",
+          "text": "sirop de sucre candi",
+          "percent_estimate": 0
+        },
+        {
+          "id": "en:e500ii",
+          "text": "carbonate acide de sodium",
+          "percent_estimate": 0
+        },
+        {
+          "id": "en:soya-flour",
+          "text": "farine de SOJA",
+          "percent_estimate": 0
+        },
+        {
+          "id": "en:salt",
+          "text": "sel",
+          "percent_estimate": 0
+        },
+        {
+          "id": "en:cinnamon",
+          "text": "cannelle",
+          "percent_estimate": 0
+        }
+      ]
+    },
+    {
+      "code": "4056489471264",
+      "productName": "Edelbitter Mild 90%",
+      "ingredients": [
+        {
+          "id": "en:cocoa-paste",
+          "text": "Kakaomasse",
+          "percent_estimate": 60.58
+        },
+        {
+          "id": "en:cocoa-butter",
+          "text": "Kakaobutter",
+          "percent_estimate": 19.13
+        },
+        {
+          "id": "en:fat-reduced-cocoa-powder",
+          "text": "fettarmes Kakaopulver",
+          "percent_estimate": 9.93
+        },
+        {
+          "id": "en:sugar",
+          "text": "Zucker",
+          "percent_estimate": 6.36
+        },
+        {
+          "id": "en:e322",
+          "text": "Lecithine",
+          "percent_estimate": 2
+        },
+        {
+          "id": "en:vanilla-extract",
+          "text": "Vanilleextrakt",
+          "percent_estimate": 2
+        }
+      ]
+    }
+  ]
+}
