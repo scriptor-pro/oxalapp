@@ -96,6 +96,7 @@ export function App() {
               </button>
               <p className="home-or">ou</p>
               <FoodSearchView />
+              <p className="app-version">Version {__APP_VERSION__}</p>
             </div>
           ))}
 

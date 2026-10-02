@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { App } from "./App";
 import { pb } from "./lib/pocketbase";
+import packageJson from "../package.json";
 
 vi.mock("./lib/pocketbase", () => ({
   pb: {
@@ -37,6 +38,14 @@ describe("App", () => {
     expect(
       screen.getByRole("button", { name: /scanner un produit/i })
     ).toBeInTheDocument();
+  });
+
+  it("shows the app version from package.json on the home screen", () => {
+    (pb.authStore as unknown as { isValid: boolean }).isValid = true;
+
+    render(<App />);
+
+    expect(screen.getByText(`Version ${packageJson.version}`)).toBeInTheDocument();
   });
 
   it("shows a food name search field on the home screen", () => {

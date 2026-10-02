@@ -7,10 +7,13 @@ import path from 'node:path'
 const certPath = path.resolve(__dirname, '.cert/cert.pem')
 const keyPath = path.resolve(__dirname, '.cert/key.pem')
 const hasCert = fs.existsSync(certPath) && fs.existsSync(keyPath)
+const { version } = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8')) as { version: string }
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // Affichée sur l'écran d'accueil : suit package.json à chaque bump.
+  define: { __APP_VERSION__: JSON.stringify(version) },
   server: hasCert
     ? {
         https: { cert: fs.readFileSync(certPath), key: fs.readFileSync(keyPath) },
