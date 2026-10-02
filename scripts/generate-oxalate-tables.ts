@@ -15,7 +15,7 @@ import {
 import { computeRiskyOxalateIds, type RiskyRootsFile } from "./risky-oxalate-generator.ts";
 
 const TAXONOMY_URL = "https://static.openfoodfacts.org/data/taxonomies/ingredients.json";
-const USER_AGENT = "oxalapp/0.2.0 (+https://github.com/scriptor-pro/oxalapp)";
+const USER_AGENT = "oxalapp/0.2.1 (+https://github.com/scriptor-pro/oxalapp)";
 const ROOTS_PATH = fileURLToPath(new URL("./low-oxalate-roots.json", import.meta.url));
 const OUTPUT_PATH = fileURLToPath(new URL("../src/data/low-oxalate-ingredients.json", import.meta.url));
 const RISKY_ROOTS_PATH = fileURLToPath(new URL("./risky-oxalate-roots.json", import.meta.url));

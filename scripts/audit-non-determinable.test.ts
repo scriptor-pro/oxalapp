@@ -22,7 +22,7 @@ const SAMPLE_PATH = `${CACHE_DIR}off-audit-sample.json`;
 const BASELINE_PATH = `${CACHE_DIR}off-audit-baseline.json`;
 const PAGES = 2;
 const PAGE_SIZE = 100;
-const USER_AGENT = "oxalapp/0.2.0 (+https://github.com/scriptor-pro/oxalapp)";
+const USER_AGENT = "oxalapp/0.2.1 (+https://github.com/scriptor-pro/oxalapp)";
 
 interface OffSearchIngredient {
   id?: string;
