@@ -870,3 +870,75 @@ describe("pourcentages déclarés sur l'étiquette (spec 2026-10-01-pourcentages
     ]);
   });
 });
+
+describe("avoine (paliers par 100 g, comme le blé)", () => {
+  it("classe les flocons, la farine et le grain d'avoine modéré par identifiant OFF", () => {
+    for (const offId of ["en:oat-flakes", "en:oat-flour", "en:oat", "en:gluten-free-oat-flakes", "en:oat-malt"]) {
+      const result = matchStructuredIngredients([{ text: "avoine", percentEstimate: 100, offId }]);
+      expect(result.level, offId).toBe("modéré");
+    }
+  });
+
+  it("classe le son d'avoine élevé par identifiant OFF", () => {
+    for (const offId of ["en:oat-bran", "en:raw-oat-bran"]) {
+      const result = matchStructuredIngredients([{ text: "son d'avoine", percentEstimate: 100, offId }]);
+      expect(result.level, offId).toBe("élevé");
+    }
+  });
+
+  it("laisse les fibres d'avoine inconnues, faute de mesure", () => {
+    for (const offId of ["en:oat-fibre", "en:oat-husk-fiber", "en:gluten-free-oat-fibre"]) {
+      const result = matchStructuredIngredients([{ text: "fibre d'avoine", percentEstimate: 100, offId }]);
+      expect(result.level, offId).toBe("non déterminable");
+    }
+  });
+
+  it("reconnaît l'avoine modéré dans le texte brut en français, néerlandais et anglais", () => {
+    for (const text of [
+      "flocons d'avoine, sucre",
+      "Flocons d’avoine 60%, sucre",
+      "farine d'avoine, sel",
+      "avoine, miel",
+      "havervlokken, suiker",
+      "havermout, suiker",
+      "rolled oats, sugar",
+      "Oats, honey",
+      "oat flakes, salt",
+    ]) {
+      expect(matchIngredients(text).level, text).toBe("modéré");
+    }
+  });
+
+  it("affiche le passage le plus précis pour les flocons d'avoine", () => {
+    const result = matchIngredients("Flocons d’avoine, sucre");
+    expect(result.matchedIngredients.map((m) => m.labelText)).toEqual(["Flocons d’avoine"]);
+  });
+
+  it("reconnaît le son d'avoine élevé dans le texte brut", () => {
+    expect(matchIngredients("son d'avoine, sucre").level).toBe("élevé");
+    expect(matchIngredients("oat bran, sugar").level).toBe("élevé");
+    expect(matchIngredients("haverzemelen, suiker").level).toBe("élevé");
+  });
+
+  it("n'alerte pas sur les fibres, l'huile ni l'arôme d'avoine dans le texte brut", () => {
+    for (const text of [
+      "eau, fibre d'avoine",
+      "eau, fibres d’avoine",
+      "eau, huile d'avoine",
+      "eau, arôme d'avoine",
+      "water, oat fibre",
+      "water, oat fiber",
+      "water, oat oil",
+    ]) {
+      expect(matchIngredients(text).level, text).toBe("non déterminable");
+    }
+  });
+
+  it("garde le lait d'avoine élevé, sans doublon avec l'avoine", () => {
+    for (const text of ["boisson : lait d'avoine", "lait d’avoine, sel", "oat milk, salt"]) {
+      const result = matchIngredients(text);
+      expect(result.level, text).toBe("élevé");
+      expect(result.matchedIngredients, text).toHaveLength(1);
+    }
+  });
+});

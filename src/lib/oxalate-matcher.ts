@@ -120,7 +120,8 @@ export function normalize(text: string): string {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "") // strip accents
-    .replace(/-/g, " "); // treat hyphens as spaces (e.g. "chardon-marie")
+    .replace(/-/g, " ") // treat hyphens as spaces (e.g. "chardon-marie")
+    .replace(/[‘’]/g, "'"); // apostrophe typographique (« flocons d’avoine »)
 }
 
 function matchKnownIngredientsInText(text: string): MatchedIngredient[] {
@@ -156,7 +157,10 @@ function matchKnownIngredientsInText(text: string): MatchedIngredient[] {
     // Lookbehind négatif : le mot-clé ne compte pas s'il suit l'un de ces
     // mots (« beurre de cacao », « white chocolate », « arôme chocolat »).
     const exclusionLookbehind = known.excludePrecededBy?.length
-      ? `(?<!(?:${known.excludePrecededBy.map((w) => escapeRegex(normalize(w))).join("|")}) )`
+      ? `(?<!(?:${known.excludePrecededBy
+          // « fibre d' » colle au mot-clé : pas d'espace après une apostrophe.
+          .map((w) => escapeRegex(normalize(w)) + (w.endsWith("'") ? "" : " "))
+          .join("|")}))`
       : "";
     const keywordPattern = new RegExp(
       `${exclusionLookbehind}(?:\\b${escapedKeyword}${exclusionLookahead}s?\\b${pluralAlternative})`

@@ -2,7 +2,7 @@
   "source": {
     "name": "Open Food Facts — taxonomie des ingrédients",
     "url": "https://static.openfoodfacts.org/data/taxonomies/ingredients.json",
-    "downloadedAt": "2026-10-01T13:42:23.464Z",
+    "downloadedAt": "2026-10-02T07:24:52.078Z",
     "sha256": "40ba854ca10c4cf9c74944b3680422df52c0042e5e13f5983debeadb62ba3821",
     "license": "ODbL 1.0 (base) / DbCL 1.0 (contenu) — © contributeurs Open Food Facts",
     "generator": "scripts/generate-oxalate-tables.ts"
@@ -23,6 +23,14 @@
     "petit-beurre": {
       "level": "modéré",
       "justification": "biscuit à 73,5 % de farine de blé, 13,6 % de beurre, sucre, lait écrémé en poudre, sel (recette LU, https://fr.wikipedia.org/wiki/Petit_Beurre) : niveau du blé raffiné ; rangé par OFF sous en:biscuit et non sous en:wheat"
+    },
+    "avoine": {
+      "level": "modéré",
+      "justification": "avoine : flocons ~22 mg/100 g, farine 32 mg/100 g (OHF) ; classement par 100 g comme le blé"
+    },
+    "son d'avoine": {
+      "level": "élevé",
+      "justification": "son d'avoine 37-67 mg/100 g (Siener et al. 2006, PMID 16608223), 79 mg/100 g (base OHF)"
     },
     "chocolat": {
       "level": "très élevé",
@@ -98,6 +106,11 @@
       "level": "très élevé",
       "label": "chocolat",
       "family": "chocolate"
+    },
+    "en:british-wholegrain-oat-flakes": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
     },
     "en:british-wholegrain-wheat": {
       "level": "élevé",
@@ -379,6 +392,21 @@
       "label": "blé complet",
       "family": "wheat"
     },
+    "en:gluten-free-oat-flakes": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:gluten-free-oat-flour": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:gluten-free-oats": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
     "en:graham-flour": {
       "level": "élevé",
       "label": "blé complet",
@@ -403,6 +431,11 @@
       "level": "très élevé",
       "label": "cacao",
       "family": "cocoa"
+    },
+    "en:instant-oatmeal": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
     },
     "en:maida": {
       "level": "modéré",
@@ -443,6 +476,41 @@
       "level": "modéré",
       "label": "blé",
       "family": "wheat"
+    },
+    "en:oat": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:oat-bran": {
+      "level": "élevé",
+      "label": "son d'avoine",
+      "family": "oat"
+    },
+    "en:oat-flakes": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:oat-flour": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:oat-grain": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:oat-kernel": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:oat-malt": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
     },
     "en:organic-cocoa-mass-and-organic-cocoa-butter": {
       "level": "très élevé",
@@ -493,6 +561,11 @@
       "level": "très élevé",
       "label": "cacao",
       "family": "cocoa"
+    },
+    "en:raw-oat-bran": {
+      "level": "élevé",
+      "label": "son d'avoine",
+      "family": "oat"
     },
     "en:rivet-wheat": {
       "level": "élevé",
@@ -749,6 +822,11 @@
       "label": "blé complet",
       "family": "wheat"
     },
+    "en:whole-grain-oat-flakes": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
     "en:whole-milk-chocolate": {
       "level": "très élevé",
       "label": "chocolat",
@@ -793,6 +871,16 @@
       "level": "élevé",
       "label": "blé complet",
       "family": "wheat"
+    },
+    "en:wholemeal-oat": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
+    },
+    "en:wholemeal-oat-flour": {
+      "level": "modéré",
+      "label": "avoine",
+      "family": "oat"
     },
     "es:harina-de-trigo-enriquecida-segun-ley-25630": {
       "level": "modéré",

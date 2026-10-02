@@ -408,6 +408,24 @@ export const KNOWN_INGREDIENTS: KnownIngredient[] = [
   { keyword: "whole wheat flour", dbItem: "blé complet", level: "élevé" },
   { keyword: "wholemeal flour", dbItem: "blé complet", level: "élevé" },
   { keyword: "wheat germ", dbItem: "blé complet", level: "élevé" },
+
+  // Avoine en deux paliers par 100 g, comme le blé. Pas d'offId : la
+  // reconnaissance par identifiant passe par la table à risque héritée.
+  // Les fibres d'avoine restent inconnues, faute de mesure.
+  { keyword: "avoine", dbItem: "avoine", level: "modéré", excludePrecededBy: ["fibre d'", "fibres d'", "huile d'", "arome d'"] },
+  { keyword: "flocons d'avoine", dbItem: "avoine", level: "modéré" },
+  { keyword: "farine d'avoine", dbItem: "avoine", level: "modéré" },
+  { keyword: "haver", dbItem: "avoine", level: "modéré" },
+  { keyword: "havermout", dbItem: "avoine", level: "modéré" },
+  { keyword: "havervlokken", dbItem: "avoine", level: "modéré" },
+  { keyword: "havermeel", dbItem: "avoine", level: "modéré" },
+  { keyword: "oat", dbItem: "avoine", level: "modéré", excludeFollowedBy: ["fibre", "fibres", "fiber", "fibers", "husk", "oil", "flavour", "flavouring", "flavor"] },
+  { keyword: "rolled oats", dbItem: "avoine", level: "modéré" },
+  { keyword: "oat flakes", dbItem: "avoine", level: "modéré" },
+  { keyword: "oat flour", dbItem: "avoine", level: "modéré" },
+  { keyword: "son d'avoine", dbItem: "son d'avoine", level: "élevé" },
+  { keyword: "haverzemelen", dbItem: "son d'avoine", level: "élevé" },
+  { keyword: "oat bran", dbItem: "son d'avoine", level: "élevé" },
   { keyword: "chocolat", dbItem: "chocolat", level: "très élevé", excludeFollowedBy: ["blanc"], excludePrecededBy: FLAVOURING_BEFORE },
   { keyword: "chocolade", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["witte", ...FLAVOURING_BEFORE], excludeFollowedBy: FLAVOURING_AFTER },
   { keyword: "chocolate", dbItem: "chocolat", level: "très élevé", excludePrecededBy: ["white"], excludeFollowedBy: FLAVOURING_AFTER },

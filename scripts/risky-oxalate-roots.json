@@ -29,6 +29,21 @@
       "justification": "biscuit à 73,5 % de farine de blé, 13,6 % de beurre, sucre, lait écrémé en poudre, sel (recette LU, https://fr.wikipedia.org/wiki/Petit_Beurre) : niveau du blé raffiné ; rangé par OFF sous en:biscuit et non sous en:wheat"
     },
     {
+      "id": "oat",
+      "root": "en:oat",
+      "label": "avoine",
+      "level": "modéré",
+      "justification": "avoine : flocons ~22 mg/100 g, farine 32 mg/100 g (OHF) ; classement par 100 g comme le blé",
+      "upgrades": [
+        {
+          "pattern": "bran",
+          "level": "élevé",
+          "label": "son d'avoine",
+          "justification": "son d'avoine 37-67 mg/100 g (Siener et al. 2006, PMID 16608223), 79 mg/100 g (base OHF)"
+        }
+      ]
+    },
+    {
       "id": "chocolate",
       "root": "en:chocolate",
       "label": "chocolat",
@@ -44,6 +59,21 @@
     }
   ],
   "exclude": [
-    { "id": "en:white-chocolate", "justification": "Candy, White Chocolate, bar or chips : 8 mg/100 g, faible (OHF)" }
+    {
+      "id": "en:white-chocolate",
+      "justification": "Candy, White Chocolate, bar or chips : 8 mg/100 g, faible (OHF)"
+    },
+    {
+      "id": "en:oat-fibre",
+      "justification": "fibre d'avoine : aucune mesure d'oxalate publiée, laissée inconnue"
+    },
+    {
+      "id": "en:oat-husk-fiber",
+      "justification": "fibre d'avoine : aucune mesure d'oxalate publiée, laissée inconnue"
+    },
+    {
+      "id": "en:gluten-free-oat-fibre",
+      "justification": "fibre d'avoine : aucune mesure d'oxalate publiée, laissée inconnue"
+    }
   ]
 }
