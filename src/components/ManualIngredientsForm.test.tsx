@@ -12,7 +12,7 @@ function renderForm(overrides: Partial<Parameters<typeof ManualIngredientsForm>[
     onIngredientsChange: vi.fn(),
     onSubmit: vi.fn((e: FormEvent) => e.preventDefault()),
     showOcrButton: false,
-    onPhotoSelected: vi.fn(),
+    onOcrRequest: vi.fn(),
     ...overrides,
   };
   render(<ManualIngredientsForm {...props} />);
@@ -63,13 +63,11 @@ describe("ManualIngredientsForm", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("shows the OCR photo button and calls onPhotoSelected with the picked file when showOcrButton is true", () => {
+  it("shows the OCR photo button and requests the in-app camera when showOcrButton is true", () => {
     const props = renderForm({ showOcrButton: true });
 
-    const fileInput = screen.getByLabelText(/photographier pour remplir/i);
-    const file = new File(["fake-bytes"], "label.jpg", { type: "image/jpeg" });
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    fireEvent.click(screen.getByRole("button", { name: /photographier pour remplir/i }));
 
-    expect(props.onPhotoSelected).toHaveBeenCalledWith(file);
+    expect(props.onOcrRequest).toHaveBeenCalledTimes(1);
   });
 });

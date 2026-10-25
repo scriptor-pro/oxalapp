@@ -7,7 +7,7 @@ export interface ManualIngredientsFormProps {
   onIngredientsChange: (value: string) => void;
   onSubmit: (e: FormEvent) => void;
   showOcrButton: boolean;
-  onPhotoSelected?: (file: File) => void;
+  onOcrRequest?: () => void;
 }
 
 export function ManualIngredientsForm({
@@ -17,15 +17,8 @@ export function ManualIngredientsForm({
   onIngredientsChange,
   onSubmit,
   showOcrButton,
-  onPhotoSelected,
+  onOcrRequest,
 }: ManualIngredientsFormProps) {
-  function handleFileChange(e: FormEvent<HTMLInputElement>) {
-    const file = e.currentTarget.files?.[0];
-    if (file) {
-      onPhotoSelected?.(file);
-    }
-  }
-
   return (
     <form className="manual-form" onSubmit={onSubmit}>
       <div className="field">
@@ -46,17 +39,9 @@ export function ManualIngredientsForm({
           onChange={(e) => onIngredientsChange(e.target.value)}
         />
         {showOcrButton && (
-          <label htmlFor="ocr-photo" className="text-button">
+          <button type="button" className="text-button" onClick={onOcrRequest}>
             Photographier pour remplir
-            <input
-              id="ocr-photo"
-              type="file"
-              accept="image/*"
-              capture="environment"
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-          </label>
+          </button>
         )}
       </div>
       <button type="submit" className="primary-button">Valider</button>

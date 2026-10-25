@@ -11,6 +11,7 @@ import {
 } from "../lib/oxalate-matcher";
 import { pb } from "../lib/pocketbase";
 import { lookupProductName } from "../lib/upcitemdb-client";
+import { CameraCapture } from "./CameraCapture";
 import { LevelBadge } from "./LevelBadge";
 import { ManualIngredientsForm } from "./ManualIngredientsForm";
 
@@ -52,6 +53,8 @@ function formatUnknownIngredients(unknowns: UnknownIngredient[]): string {
   return labels.join(", ");
 }
 
+const OCR_CAPTURE_FILE_PATH = "oxalapp-ocr-capture.jpg";
+
 interface ResultViewProps {
   ean: string;
   onBack: () => void;
@@ -68,6 +71,9 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
   const [syncError, setSyncError] = useState(false);
   const [manualName, setManualName] = useState("");
   const [manualIngredients, setManualIngredients] = useState("");
+  const [ocrState, setOcrState] = useState<
+    "idle" | "camera" | "reading" | "empty" | "permission-error"
+  >("idle");
   const [photoUploadState, setPhotoUploadState] = useState<
     "idle" | "uploading" | "success" | "error"
   >("idle");
@@ -156,11 +162,65 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     setPhotoUploadState(success ? "success" : "error");
   }
 
-  async function handleOcrPhotoSelected(file: File) {
-    const text = await recognizeIngredientsText(file);
+  async function handleOcrCaptured(image: Blob | null) {
+    if (!image) {
+      setOcrState("empty");
+      return;
+    }
+    setOcrState("reading");
+    const text = await recognizeIngredientsText(image, {
+      tempFilePath: OCR_CAPTURE_FILE_PATH,
+    });
     if (text) {
       setManualIngredients(text);
+      setOcrState("idle");
+    } else {
+      setOcrState("empty");
     }
+  }
+
+  // Formulaire de saisie, remplaçable par la prise de vue intégrée le temps
+  // de photographier la liste d'ingrédients.
+  function renderManualForm(showOcrButton: boolean) {
+    if (ocrState === "camera") {
+      return (
+        <>
+          <CameraCapture
+            captureLabel="Prendre la photo"
+            onCaptured={handleOcrCaptured}
+            onPermissionError={() => setOcrState("permission-error")}
+          />
+          <button className="text-button" onClick={() => setOcrState("idle")}>
+            Annuler
+          </button>
+        </>
+      );
+    }
+    return (
+      <>
+        <ManualIngredientsForm
+          name={manualName}
+          onNameChange={setManualName}
+          ingredients={manualIngredients}
+          onIngredientsChange={setManualIngredients}
+          onSubmit={handleManualSubmit}
+          showOcrButton={showOcrButton}
+          onOcrRequest={() => setOcrState("camera")}
+        />
+        {ocrState === "reading" && <p className="loading-text">Lecture du texte…</p>}
+        {ocrState === "empty" && (
+          <p className="sync-error" role="alert">
+            Aucun texte lisible. Réessayez avec une photo plus nette.
+          </p>
+        )}
+        {ocrState === "permission-error" && (
+          <p className="sync-error" role="alert">
+            Impossible d'accéder à la caméra. Vérifiez l'autorisation caméra
+            dans les réglages de l'application.
+          </p>
+        )}
+      </>
+    );
   }
 
   if (state.status === "loading") {
@@ -175,15 +235,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
     return (
       <div className="screen-content">
         <p>Produit non trouvé sur Open Food Facts.</p>
-        <ManualIngredientsForm
-          name={manualName}
-          onNameChange={setManualName}
-          ingredients={manualIngredients}
-          onIngredientsChange={setManualIngredients}
-          onSubmit={handleManualSubmit}
-          showOcrButton={isNativePlatform}
-          onPhotoSelected={handleOcrPhotoSelected}
-        />
+        {renderManualForm(isNativePlatform)}
         <button className="text-button" onClick={onBack}>Retour</button>
       </div>
     );
@@ -249,15 +301,7 @@ export function ResultView({ ean, onBack }: ResultViewProps) {
                   pour ce produit.
                 </p>
                 {isNativePlatform ? (
-                  <ManualIngredientsForm
-                    name={manualName}
-                    onNameChange={setManualName}
-                    ingredients={manualIngredients}
-                    onIngredientsChange={setManualIngredients}
-                    onSubmit={handleManualSubmit}
-                    showOcrButton={true}
-                    onPhotoSelected={handleOcrPhotoSelected}
-                  />
+                  renderManualForm(true)
                 ) : (
                   <>
                     <label htmlFor="ingredients-photo" className="text-button">

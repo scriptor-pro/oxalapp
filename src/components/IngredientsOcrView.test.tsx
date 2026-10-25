@@ -3,10 +3,8 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { recognizeIngredientsText } from "../lib/ocr-client";
 import { pb } from "../lib/pocketbase";
-import {
-  IngredientsOcrView,
-  getFrameCropInVideoSpace,
-} from "./IngredientsOcrView";
+import { IngredientsOcrView } from "./IngredientsOcrView";
+import { getFrameCropInVideoSpace } from "../lib/frame-crop";
 
 vi.mock("../lib/ocr-client", () => ({
   recognizeIngredientsText: vi.fn(),

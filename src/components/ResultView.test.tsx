@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { ResultView, categorizeFailure } from "./ResultView";
@@ -483,12 +483,99 @@ describe("ResultView proportion-aware matching", () => {
 });
 
 describe("ResultView OCR ingredient recognition", () => {
+  const originalGetContext = HTMLCanvasElement.prototype.getContext;
+  const originalToBlob = HTMLCanvasElement.prototype.toBlob;
+
   beforeEach(() => {
     vi.clearAllMocks();
     (pb.collection as ReturnType<typeof vi.fn>).mockReturnValue({
       create: vi.fn().mockResolvedValue({ id: "scan1" }),
     });
     (lookupProductName as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+
+    // Caméra intégrée à l'app (getUserMedia), pas l'app photo du téléphone.
+    const track = { stop: vi.fn() };
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: {
+        getUserMedia: vi.fn().mockResolvedValue({
+          getVideoTracks: () => [track],
+          getTracks: () => [track],
+        }),
+      },
+    });
+    HTMLMediaElement.prototype.play = vi.fn().mockResolvedValue(undefined);
+    HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
+      drawImage: vi.fn(),
+    })) as unknown as typeof originalGetContext;
+    HTMLCanvasElement.prototype.toBlob = vi.fn(function (callback) {
+      callback(new Blob(["x"], { type: "image/jpeg" }));
+    }) as unknown as typeof originalToBlob;
+  });
+
+  afterEach(() => {
+    HTMLCanvasElement.prototype.getContext = originalGetContext;
+    HTMLCanvasElement.prototype.toBlob = originalToBlob;
+  });
+
+  async function captureFromInAppCamera() {
+    fireEvent.click(
+      await screen.findByRole("button", { name: /photographier pour remplir/i })
+    );
+    const shutter = await screen.findByRole("button", { name: /prendre la photo/i });
+    await waitFor(() => expect(shutter).not.toBeDisabled());
+    fireEvent.click(shutter);
+  }
+
+  const noIngredientsProduct = {
+    productName: "Gnocchi",
+    ingredientsText: "",
+    imageUrl: null,
+    lang: null,
+    structuredIngredients: [],
+    sources: ["open_food_facts"],
+  };
+
+  it("never delegates to the phone's camera app through a file input", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(noIngredientsProduct);
+
+    const { container } = render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    await screen.findByRole("button", { name: /photographier pour remplir/i });
+    expect(container.querySelector('input[type="file"]')).toBeNull();
+  });
+
+  it("goes back to the form without a photo when the capture is cancelled", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(noIngredientsProduct);
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    fireEvent.click(
+      await screen.findByRole("button", { name: /photographier pour remplir/i })
+    );
+    fireEvent.click(await screen.findByRole("button", { name: /annuler/i }));
+
+    expect(await screen.findByLabelText(/ingrédients/i)).toHaveValue("");
+    expect(recognizeIngredientsText).not.toHaveBeenCalled();
+  });
+
+  it("explains the camera permission and keeps the form when the camera is unavailable", async () => {
+    (Capacitor.isNativePlatform as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (resolveProduct as ReturnType<typeof vi.fn>).mockResolvedValue(noIngredientsProduct);
+    vi.mocked(navigator.mediaDevices.getUserMedia).mockRejectedValue(
+      new DOMException("Permission denied", "NotAllowedError")
+    );
+
+    render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
+
+    fireEvent.click(
+      await screen.findByRole("button", { name: /photographier pour remplir/i })
+    );
+
+    expect(await screen.findByText(/autorisation.*caméra/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/ingrédients/i)).toBeInTheDocument();
   });
 
   it("shows the OCR button instead of the OFF upload button for no-ingredients on native platforms", async () => {
@@ -567,14 +654,16 @@ describe("ResultView OCR ingredient recognition", () => {
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
 
-    const fileInput = await screen.findByLabelText(/photographier pour remplir/i);
-    const file = new File(["fake-bytes"], "label.jpg", { type: "image/jpeg" });
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await captureFromInAppCamera();
 
     await waitFor(() =>
       expect(screen.getByLabelText(/ingrédients/i)).toHaveValue(
         "Farine de pomme de terre, sel"
       )
+    );
+    expect(recognizeIngredientsText).toHaveBeenCalledWith(
+      expect.any(Blob),
+      expect.objectContaining({ tempFilePath: expect.any(String) })
     );
   });
 
@@ -592,11 +681,9 @@ describe("ResultView OCR ingredient recognition", () => {
 
     render(<ResultView ean="1234567890123" onBack={vi.fn()} />);
 
-    const fileInput = await screen.findByLabelText(/photographier pour remplir/i);
-    const file = new File(["fake-bytes"], "label.jpg", { type: "image/jpeg" });
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await captureFromInAppCamera();
 
-    await waitFor(() => expect(recognizeIngredientsText).toHaveBeenCalled());
+    expect(await screen.findByText(/aucun texte lisible/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/ingrédients/i)).toHaveValue("");
   });
 
@@ -607,7 +694,7 @@ describe("ResultView OCR ingredient recognition", () => {
     render(<ResultView ean="0000000000000" onBack={vi.fn()} />);
 
     await screen.findByText(/produit non trouvé/i);
-    expect(screen.getByLabelText(/photographier pour remplir/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /photographier pour remplir/i })).toBeInTheDocument();
   });
 
   it("hides the OCR button in the not-found form on web", async () => {
@@ -618,7 +705,7 @@ describe("ResultView OCR ingredient recognition", () => {
 
     await screen.findByText(/produit non trouvé/i);
     expect(
-      screen.queryByLabelText(/photographier pour remplir/i)
+      screen.queryByRole("button", { name: /photographier pour remplir/i })
     ).not.toBeInTheDocument();
   });
 });
